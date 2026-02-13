@@ -60,6 +60,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .logo-content {
@@ -75,8 +76,14 @@ body {
 }
 
 .logo-content a {
-    color: inherit;
+    color: var(--white);
     text-decoration: none;
+}
+
+.logo-content a:hover,
+.logo-content a:focus,
+.logo-content a:visited {
+    color: var(--white);
 }
 
 .logo-content h1 {
@@ -84,6 +91,7 @@ body {
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 0.2rem;
+    color: var(--white);
 }
 
 .logo-content p {
@@ -101,11 +109,39 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    border-radius: 6px;
+}
+
+.sidebar:not(.collapsed) .toggle-btn:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* Collapsed: tab on the right edge of sidebar so it's clearly "on" the sidebar */
+.sidebar.collapsed .sidebar-header {
+    padding: 0.75rem 0;
+    justify-content: center;
 }
 
 .sidebar.collapsed .toggle-btn {
-    transform: rotate(180deg);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(100%, -50%) rotate(180deg);
+    background: var(--cream);
+    color: var(--cardinal);
+    font-size: 1.1rem;
+    padding: 0.6rem 0.5rem;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.12);
+    border: 1px solid var(--fog);
+    border-left: none;
+    z-index: 10;
+}
+
+.sidebar.collapsed .toggle-btn:hover {
+    background: var(--white);
+    color: var(--cardinal-dark);
 }
 
 .nav-content {
