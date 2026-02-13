@@ -3,179 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tool Library | AI Prototyping Cart</title>
+    <title>AI Tools | AI Prototyping Cart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="app-container">
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo-content">
-                    <a href="index.html"><h1>AI Prototyping Cart</h1><p>Stanford d.school</p></a>
-                </div>
-                <button class="toggle-btn" id="sidebar-toggle" aria-label="Toggle sidebar">◀</button>
+    <header class="site-header">
+        <h1 class="site-title">AI Prototyping Cart</h1>
+        <p class="site-subtitle">Stanford d.school</p>
+        <nav class="tabs-nav">
+            <a href="index.html">Home</a>
+            <a href="workflows.html">Workflows</a>
+            <a href="tools.html" class="active">AI Tools</a>
+        </nav>
+    </header>
+    <main class="main-content">
+        <div class="content-wrapper">
+            <h1 class="page-title">AI Tools</h1>
+            <p class="lead">Filter by category or pricing to find the right tool.</p>
+            <div class="callout" style="margin-bottom: 1.5rem;">
+                <h4>Pricing</h4>
+                <p><strong>Free</strong> = no cost to use. <strong>Student tier</strong> = free plan with limits; good for learning and prototyping. <strong>Professional</strong> = paid or enterprise plans.</p>
             </div>
-            <nav class="nav-content">
-                <a class="nav-item" href="index.html"><span class="nav-icon">🏠</span><span class="nav-text">Home</span><span class="nav-item-tooltip">Home</span></a>
-                <div class="nav-section"><div class="nav-section-title">Start Here</div>
-                    <a class="nav-item" href="workflows.html"><span class="nav-icon">🚀</span><span class="nav-text">30-Minute Workflows</span><span class="nav-item-tooltip">30-Minute Workflows</span></a>
+
+            <div class="tools-filters">
+                <div class="filter-group">
+                    <h3>Category</h3>
+                    <div class="filter-options" id="filter-category">
+                        <button type="button" class="filter-chip active" data-filter="category" data-value="all">All</button>
+                        <button type="button" class="filter-chip" data-filter="category" data-value="website-building">Website building</button>
+                        <button type="button" class="filter-chip" data-filter="category" data-value="app-building">App building</button>
+                        <button type="button" class="filter-chip" data-filter="category" data-value="demo-building">Demo building</button>
+                        <button type="button" class="filter-chip" data-filter="category" data-value="writing">Writing & brainstorming</button>
+                        <button type="button" class="filter-chip" data-filter="category" data-value="visual">Visual content creation</button>
+                        <button type="button" class="filter-chip" data-filter="category" data-value="researching">Researching</button>
+                        <button type="button" class="filter-chip" data-filter="category" data-value="automating">Automating</button>
+                    </div>
                 </div>
-                <div class="nav-section"><div class="nav-section-title">Tool Library</div>
-                    <a class="nav-item active" href="tools.html"><span class="nav-icon">🌐</span><span class="nav-text">Website Building</span><span class="nav-item-tooltip">Website Building</span></a>
-                    <a class="nav-item" href="tools.html"><span class="nav-icon">📱</span><span class="nav-text">App Building</span><span class="nav-item-tooltip">App Building</span></a>
-                    <a class="nav-item" href="tools.html"><span class="nav-icon">🎨</span><span class="nav-text">Demo Building</span><span class="nav-item-tooltip">Demo Building</span></a>
-                    <a class="nav-item" href="tools.html"><span class="nav-icon">✍️</span><span class="nav-text">Writing & Brainstorming</span><span class="nav-item-tooltip">Writing & Brainstorming</span></a>
-                    <a class="nav-item" href="tools.html"><span class="nav-icon">🖼️</span><span class="nav-text">Visual Content</span><span class="nav-item-tooltip">Visual Content</span></a>
-                    <a class="nav-item" href="tools.html"><span class="nav-icon">🔍</span><span class="nav-text">Researching</span><span class="nav-item-tooltip">Researching</span></a>
-                    <a class="nav-item" href="tools.html"><span class="nav-icon">⚡</span><span class="nav-text">Automating</span><span class="nav-item-tooltip">Automating</span></a>
+                <div class="filter-group">
+                    <h3>Pricing</h3>
+                    <div class="filter-options" id="filter-pricing">
+                        <button type="button" class="filter-chip active" data-filter="pricing" data-value="all">All</button>
+                        <button type="button" class="filter-chip" data-filter="pricing" data-value="free">Free</button>
+                        <button type="button" class="filter-chip" data-filter="pricing" data-value="student">Student tier</button>
+                        <button type="button" class="filter-chip" data-filter="pricing" data-value="professional">Professional</button>
+                    </div>
                 </div>
-                <div class="nav-section"><div class="nav-section-title">Resources</div>
-                    <a class="nav-item" href="zero-budget.html"><span class="nav-icon">💰</span><span class="nav-text">Zero-Budget Stack</span><span class="nav-item-tooltip">Zero-Budget Stack</span></a>
-                    <a class="nav-item" href="cost-guide.html"><span class="nav-icon">💳</span><span class="nav-text">Cost & Credits Guide</span><span class="nav-item-tooltip">Cost & Credits Guide</span></a>
-                    <a class="nav-item" href="user-testing.html"><span class="nav-icon">🧪</span><span class="nav-text">From Prototype to User Testing</span><span class="nav-item-tooltip">From Prototype to User Testing</span></a>
-                </div>
-            </nav>
-        </aside>
-        <main class="main-content">
-            <div class="content-wrapper">
-                <h1>Tool Library</h1>
-                <p class="lead">AI tools by category. Pick what fits your workflow.</p>
-                <div class="callout" style="margin-bottom: 2rem;">
-                    <h4>Pricing labels</h4>
-                    <p><strong>Free</strong> = no cost to use. <strong>Free tier</strong> = you can use it for free with some limits; paid plans add more features or usage. <strong>Paid / Enterprise</strong> = aimed at organizations or paid plans. <strong>Open source</strong> = free to use; you can self-host or use their cloud.</p>
-                </div>
-
-                <section class="category-section section-anchor" id="website-building">
-                    <div class="category-header"><span class="category-icon">🌐</span><h2>Website Building</h2></div>
-                    <div class="tools-grid">
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Framer</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. Its biggest strength isn’t just AI—it’s the editor. It feels like Figma but with real production output.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Carrd</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible—perfect for quick launches when you don’t need a full CMS.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Lovable</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Prompt-to-app platform that generates full web apps using React and Supabase. Great for MVPs and quick product experiments, with solid GitHub integration. Pricing limits can be restrictive as projects scale.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="category-section section-anchor" id="app-building">
-                    <div class="category-header"><span class="category-icon">📱</span><h2>App Building</h2></div>
-                    <div class="tools-grid">
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Glide</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools, client portals, and simple SaaS ideas with fast setup and clean UI.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Softr</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Build web apps and client portals on top of Airtable or databases. Easy to use, good templates, ideal for marketplaces, dashboards, and membership sites without heavy development.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Microsoft Power Platform</h3><span class="tool-category">Paid</span></div>
-                            <p class="tool-description">Power Apps (app building), Power Automate (workflows), Power BI (analytics). Deep integration with Microsoft tools and AI Builder for custom AI without coding—especially powerful in the Microsoft ecosystem.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="category-section section-anchor" id="demo-building">
-                    <div class="category-header"><span class="category-icon">🎨</span><h2>Demo Building</h2></div>
-                    <div class="tools-grid">
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Figma</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">The industry standard for interface design and prototyping. With AI and interactive components, Figma makes it easy to create realistic product demos and share them with teams or stakeholders.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Uizard</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience; outputs may need refinement.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Bolt</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Browser-based: generates full-stack prototypes from prompts and deploys with one click. Extremely fast for demos and MVPs; less suited for complex backend logic.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="category-section section-anchor" id="writing">
-                    <div class="category-header"><span class="category-icon">✍️</span><h2>Writing and Brainstorming</h2></div>
-                    <div class="tools-grid">
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Taskade</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">AI-powered workspace for notes, tasks, and visual thinking. Generate mind maps, outlines, and project plans, then expand ideas or research topics with AI.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Elicit</h3><span class="tool-category">Free</span></div>
-                            <p class="tool-description">Research assistant for academic and evidence-based work. Finds papers, summarizes findings, and helps answer complex questions with cited sources.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Claude</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling—ideal for strategy, documentation, and complex brainstorming.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">ChatGPT</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Versatile AI for writing, ideation, coding, research, and problem-solving. A general-purpose thinking partner across almost any workflow.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="category-section section-anchor" id="visual">
-                    <div class="category-header"><span class="category-icon">🖼️</span><h2>Visual Content Creation</h2></div>
-                    <div class="tools-grid">
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Canva</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">All-in-one design platform for presentations, social media, and marketing. AI helps generate layouts, images, and copy quickly.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">DALL•E / Leonardo</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">AI image generators for custom visuals from text prompts. Useful for marketing graphics, concept art, and unique visual content.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Microsoft Designer</h3><span class="tool-category">Free</span></div>
-                            <p class="tool-description">Creates social posts, graphics, and marketing visuals from simple prompts. Free with a Microsoft account; results can be inconsistent.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Vizcom</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">AI-powered tool for visual and design concepts. Useful for turning ideas into visuals during prototyping.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Nano banana</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Lightweight option for quick visual and design iterations in prototyping workflows.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="category-section section-anchor" id="researching">
-                    <div class="category-header"><span class="category-icon">🔍</span><h2>Researching</h2></div>
-                    <div class="tools-grid">
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Perplexity</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">AI search engine that gives concise answers with citations. Excellent for fast research, fact-checking, and exploring topics with reliable sources.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="category-section section-anchor" id="automating">
-                    <div class="category-header"><span class="category-icon">⚡</span><h2>Automating</h2></div>
-                    <div class="tools-grid">
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">Zapier</h3><span class="tool-category">Free tier</span></div>
-                            <p class="tool-description">Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools, triggering actions, and eliminating repetitive tasks.</p>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-header"><h3 class="tool-name">n8n</h3><span class="tool-category">Open source</span></div>
-                            <p class="tool-description">Flexible, open-source automation with visual workflows and deep customization. Self-hosting has a learning curve but is very powerful once set up.</p>
-                        </div>
-                    </div>
-                </section>
             </div>
-        </main>
-    </div>
+
+            <p class="tools-results-count" id="results-count"></p>
+            <div class="tools-grid" id="tools-container"></div>
+            <div class="tools-empty hidden" id="tools-empty">No tools match your filters. Try changing category or pricing.</div>
+        </div>
+    </main>
+
+    <script>
+(function () {
+    var tools = [
+        { name: "Framer", category: "website-building", pricing: "student", badge: "Free tier", desc: "Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. It feels like Figma but with real production output." },
+        { name: "Carrd", category: "website-building", pricing: "student", badge: "Free tier", desc: "A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible." },
+        { name: "Lovable", category: "website-building", pricing: "student", badge: "Free tier", desc: "Prompt-to-app platform that generates full web apps using React and Supabase. Great for MVPs and quick product experiments." },
+        { name: "Glide", category: "app-building", pricing: "student", badge: "Free tier", desc: "Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools and simple SaaS ideas." },
+        { name: "Softr", category: "app-building", pricing: "student", badge: "Free tier", desc: "Build web apps and client portals on top of Airtable or databases. Ideal for marketplaces, dashboards, and membership sites." },
+        { name: "Microsoft Power Platform", category: "app-building", pricing: "professional", badge: "Paid", desc: "Power Apps, Power Automate, Power BI. Deep integration with Microsoft tools and AI Builder—especially powerful in the Microsoft ecosystem." },
+        { name: "Figma", category: "demo-building", pricing: "student", badge: "Free tier", desc: "The industry standard for interface design and prototyping. With AI and interactive components, easy to create realistic product demos." },
+        { name: "Uizard", category: "demo-building", pricing: "student", badge: "Free tier", desc: "Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience." },
+        { name: "Bolt", category: "demo-building", pricing: "student", badge: "Free tier", desc: "Browser-based: generates full-stack prototypes from prompts and deploys with one click. Extremely fast for demos and MVPs." },
+        { name: "Taskade", category: "writing", pricing: "student", badge: "Free tier", desc: "AI-powered workspace for notes, tasks, and visual thinking. Generate mind maps, outlines, and project plans with AI." },
+        { name: "Elicit", category: "writing", pricing: "free", badge: "Free", desc: "Research assistant for academic and evidence-based work. Finds papers, summarizes findings, and helps answer complex questions with cited sources." },
+        { name: "Claude", category: "writing", pricing: "student", badge: "Free tier", desc: "Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling—ideal for strategy and complex brainstorming." },
+        { name: "ChatGPT", category: "writing", pricing: "student", badge: "Free tier", desc: "Versatile AI for writing, ideation, coding, research, and problem-solving. A general-purpose thinking partner." },
+        { name: "Canva", category: "visual", pricing: "student", badge: "Free tier", desc: "All-in-one design platform for presentations, social media, and marketing. AI helps generate layouts, images, and copy quickly." },
+        { name: "DALL•E / Leonardo", category: "visual", pricing: "student", badge: "Free tier", desc: "AI image generators for custom visuals from text prompts. Useful for marketing graphics, concept art, and unique visual content." },
+        { name: "Microsoft Designer", category: "visual", pricing: "free", badge: "Free", desc: "Creates social posts, graphics, and marketing visuals from simple prompts. Free with a Microsoft account." },
+        { name: "Vizcom", category: "visual", pricing: "student", badge: "Free tier", desc: "AI-powered tool for visual and design concepts. Useful for turning ideas into visuals during prototyping." },
+        { name: "Nano banana", category: "visual", pricing: "student", badge: "Free tier", desc: "Lightweight option for quick visual and design iterations in prototyping workflows." },
+        { name: "Perplexity", category: "researching", pricing: "student", badge: "Free tier", desc: "AI search engine that gives concise answers with citations. Excellent for fast research and fact-checking." },
+        { name: "Zapier", category: "automating", pricing: "student", badge: "Free tier", desc: "Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools and eliminating repetitive tasks." },
+        { name: "n8n", category: "automating", pricing: "free", badge: "Open source", desc: "Flexible, open-source automation with visual workflows and deep customization. Very powerful once set up." }
+    ];
+
+    var state = { category: "all", pricing: "all" };
+
+    function renderTools() {
+        var container = document.getElementById("tools-container");
+        var emptyEl = document.getElementById("tools-empty");
+        var countEl = document.getElementById("results-count");
+
+        var filtered = tools.filter(function (t) {
+            var catOk = state.category === "all" || t.category === state.category;
+            var priceOk = state.pricing === "all" || t.pricing === state.pricing;
+            return catOk && priceOk;
+        });
+
+        container.innerHTML = filtered.map(function (t) {
+            return '<div class="tool-card" data-category="' + t.category + '" data-pricing="' + t.pricing + '">' +
+                '<div class="tool-header">' +
+                '<span class="tool-name">' + t.name + '</span>' +
+                '<span class="tool-badges"><span class="tool-badge">' + t.badge + '</span></span>' +
+                '</div>' +
+                '<p class="tool-description">' + t.desc + '</p>' +
+                '</div>';
+        }).join("");
+
+        countEl.textContent = filtered.length === 0 ? "No tools match." : filtered.length + " tool" + (filtered.length !== 1 ? "s" : "") + ".";
+        emptyEl.classList.toggle("hidden", filtered.length > 0);
+    }
+
+    function setActiveChip(filterKey, value) {
+        var selector = '[data-filter="' + filterKey + '"]';
+        document.querySelectorAll(".filter-chip" + selector).forEach(function (btn) {
+            btn.classList.toggle("active", btn.getAttribute("data-value") === value);
+        });
+    }
+
+    document.getElementById("filter-category").addEventListener("click", function (e) {
+        var btn = e.target.closest(".filter-chip[data-filter=category]");
+        if (!btn) return;
+        state.category = btn.getAttribute("data-value");
+        setActiveChip("category", state.category);
+        renderTools();
+    });
+
+    document.getElementById("filter-pricing").addEventListener("click", function (e) {
+        var btn = e.target.closest(".filter-chip[data-filter=pricing]");
+        if (!btn) return;
+        state.pricing = btn.getAttribute("data-value");
+        setActiveChip("pricing", state.pricing);
+        renderTools();
+    });
+
+    renderTools();
+})();
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
