@@ -1,0 +1,50 @@
+AI Tools:
+Website Building
+Framer
+Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. Its biggest strength isn’t just AI—it’s the editor itself. It feels like Figma but with real production output, making it one of the smoothest design-to-live workflows available.
+Carrd
+A simple, fast website builder for landing pages, portfolios, and one-page sites. Carrd is lightweight, affordable, and surprisingly flexible—perfect for quick launches when you don’t need a full CMS.
+Lovable
+Prompt-to-app platform that generates full web apps using React and Supabase. Great for MVPs and quick product experiments, with solid GitHub integration. Pricing limits can be restrictive as projects scale.
+App building
+Glide
+Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools, client portals, and simple SaaS ideas with fast setup and clean UI.
+Softr
+Build web apps and client portals on top of Airtable or databases. Easy to use, good templates, and ideal for marketplaces, dashboards, and membership sites without heavy development.
+Microsoft Power Platform
+Includes Power Apps (app building), Power Automate (workflow automation), and Power BI (analytics). Deep integration with Microsoft tools and AI Builder lets you add custom AI capabilities without coding—especially powerful for organizations already using the Microsoft ecosystem.
+Demo building
+Figma
+The industry standard for interface design and prototyping. With AI features and interactive components, Figma makes it easy to create realistic product demos and share them with teams or stakeholders.
+Uizard
+Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience, though outputs may need refinement.
+Bolt
+A browser-based environment that generates full-stack prototypes from prompts and deploys them with one click. Extremely fast for demos and MVPs, but less suited for complex backend logic.
+Writing and Brainstorming
+Taskade
+An AI-powered workspace for notes, tasks, and visual thinking. You can generate mind maps, outlines, and project plans, then expand ideas or research topics directly with AI.
+Elicit
+A research assistant focused on academic and evidence-based work. It finds papers, summarizes findings, and helps answer complex questions with cited sources.
+Claude
+Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling makes it ideal for strategy, documentation, and complex brainstorming.
+ChatGPT
+A versatile AI for writing, ideation, coding, research, and problem-solving. Great as a general-purpose thinking partner across almost any workflow.
+Visual content creation
+Canva
+An easy all-in-one design platform for presentations, social media, marketing materials, and more. AI features help generate layouts, images, and copy quickly.
+DALL•E (or Leonardo)
+AI image generators for creating custom visuals from text prompts. Useful for marketing graphics, concept art, and unique visual content.
+Microsoft Designer
+Creates social posts, graphics, and marketing visuals from simple prompts. Free with a Microsoft account and surprisingly capable, though results can be inconsistent.
+Vizcom
+Nano banana
+Researching
+Perplexity
+An AI search engine that provides concise answers with citations. Excellent for fast research, fact-checking, and exploring topics with reliable sources.
+Automating
+Zapier
+Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools, triggering actions, and eliminating repetitive tasks.
+n8n
+A flexible, open-source automation platform with powerful visual workflows and deep customization. Self-hosting can be challenging at first, but it becomes extremely powerful once properly set up.
+
+

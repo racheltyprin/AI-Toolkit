@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prototyping Cart | Stanford</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cardinal: #8C1515;
+            --cardinal-dark: #820000;
+            --palo-alto: #175E54;
+            --palo-verde: #279989;
+            --sky: #4298B5;
+            --lagunita: #007C92;
+            --poppy: #E98300;
+            --illuminating: #FEDD5C;
+            --black: #2E2D29;
+            --black-light: #585754;
+            --fog: #DAD7CB;
+            --white: #FFFFFF;
+            --cream: #FAF9F6;
+            
+            --sidebar-width: 280px;
+            --sidebar-collapsed: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            color: var(--black);
+            background: var(--cream);
+            line-height: 1.6;
+            overflow: hidden;
+        }
+        
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: var(--cardinal);
+            color: var(--white);
+            width: var(--sidebar-width);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .sidebar.collapsed {
+            width: var(--sidebar-collapsed);
+        }
+        
+        /* Header */
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-content {
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+        
+        .sidebar.collapsed .logo-content {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .logo-content h1 {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-content p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 1.3rem;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar.collapsed .toggle-btn {
+            transform: rotate(180deg);
+        }
+        
+        /* Navigation */
+        .nav-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 1rem 0;
+        }
+        
+        .nav-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .nav-content::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .nav-content::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+        
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .nav-section-title {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: opacity 0.2s ease;
+        }
+        
+        .sidebar.collapsed .nav-section-title {
+            opacity: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            position: relative;
+        }
+        
+        .sidebar.collapsed .nav-item {
+            padding: 0.75rem;
+            justify-content: center;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .nav-item.active {
+            background: rgba(255,255,255,0.15);
+            border-left-color: var(--illuminating);
+        }
+        
+        .nav-icon {
+            font-size: 1.3rem;
+            min-width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-text {
+            margin-left: 1rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+        
+        .sidebar.collapsed .nav-text {
+            opacity: 0;
+            width: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        /* Expandable sections */
+        .nav-expandable {
+            cursor: pointer;
+        }
+        
+        .expand-icon {
+            margin-left: auto;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-expandable.expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+        
+        .sidebar.collapsed .expand-icon {
+            display: none;
+        }
+        
+        .sub-nav {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .sub-nav.expanded {
+            max-height: 500px;
+        }
+        
+        .sidebar.collapsed .sub-nav {
+            display: none;
+        }
+        
+        .sub-nav-item {
+            padding-left: 3.5rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        
+        .sidebar.collapsed .sub-nav-item {
+            padding-left: 0.75rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            height: 100vh;
+            background: var(--cream);
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Typography */
+        h2 {
+            font-family: 'Source Serif 4', serif;
+            font-size: 2.5rem;
+            color: var(--cardinal);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        h3 {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.8rem;
+            color: var(--black);
+            margin: 2.5rem 0 1rem;
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            color: var(--cardinal);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .lead {
+            font-size: 1.2rem;
+            color: var(--black-light);
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+        
+        /* Workflow Cards */
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .workflow-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--lagunita);
+            transition: all 0.3s ease;
+        }
+        
+        .workflow-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        
+        .workflow-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--cardinal);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .workflow-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--fog);
+            font-size: 0.9rem;
+            color: var(--black-light);
+            flex-wrap: wrap;
+        }
+        
+        .workflow-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        /* Tool Cards */
+        .tools-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .tool-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 5px solid var(--palo-verde);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transform: translateX(4px);
+        }
+        
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+        
+        .tool-category {
+            background: var(--cardinal);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tool-description {
+            color: var(--black-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        /* Callout Boxes */
+        .callout {
+            background: linear-gradient(135deg, var(--illuminating) 0%, #FFE781 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 5px solid var(--poppy);
+        }
+        
+        .callout-blue {
+            background: linear-gradient(135deg, var(--sky) 0%, var(--lagunita) 100%);
+            color: var(--white);
+        }
+        
+        .callout-blue h3,
+        .callout-blue h4 {
+            color: var(--white);
+        }
+        
+        .callout h4 {
+            margin-top: 0;
+        }
+        
+        .callout ul {
+            margin-top: 1rem;
+            margin-left: 1.5rem;
+        }
+        
+        .callout li {
+            margin: 0.5rem 0;
+        }
+        
+        /* Budget Cards */
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .budget-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border-top: 6px solid var(--palo-verde);
+        }
+        
+        .budget-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cardinal);
+            margin: 1rem 0;
+            font-family: 'Source Serif 4', serif;
+        }
+        
+        .budget-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .budget-card li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--black-light);
+        }
+        
+        .budget-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--palo-verde);
+            font-weight: 700;
+        }
+        
+        /* Category Headers */
+        .category-section {
+            margin: 3rem 0;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--cardinal);
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+        }
+        
+        /* Tooltip for collapsed state */
+        .nav-item-tooltip {
+            position: absolute;
+            left: 100%;
+            margin-left: 1rem;
+            background: var(--black);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 1000;
+        }
+        
+        .sidebar.collapsed .nav-item:hover .nav-item-tooltip {
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: absolute;
+                height: 100vh;
+                z-index: 1000;
+            }
+            
+            .sidebar.collapsed {
+                width: var(--sidebar-collapsed);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .content-wrapper {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .workflow-grid,
+            .budget-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .sidebar.collapsed {
+                width: var(--sidebar-collapsed);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-content">
+                    <h1>AI Prototyping Cart</h1>
+                    <p>Stanford d.school</p>
+                </div>
+                <button class="toggle-btn" onclick="toggleSidebar()">◀</button>
+            </div>
+            
+            <nav class="nav-content">
+                <!-- Home -->
+                <div class="nav-item active" onclick="navigate('start')">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                    <span class="nav-item-tooltip">Home</span>
+                </div>
+                
+                <!-- Quick Start -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Quick Start</div>
+                    <div class="nav-item" onclick="navigate('workflows')">
+                        <span class="nav-icon">🚀</span>
+                        <span class="nav-text">30-Minute Workflows</span>
+                        <span class="nav-item-tooltip">30-Minute Workflows</span>
+                    </div>
+                </div>
+                
+                <!-- Tool Library -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Tool Library</div>
+                    
+                    <div class="nav-item nav-expandable" onclick="toggleExpand(this); event.stopPropagation();">
+                        <span class="nav-icon">🌐</span>
+                        <span class="nav-text">Website Building</span>
+                        <span class="expand-icon">▶</span>
+                        <span class="nav-item-tooltip">Website Building</span>
+                    </div>
+                    <div class="sub-nav">
+                        <div class="nav-item sub-nav-item" onclick="navigate('website-building')">
+                            <span class="nav-text">View All Tools</span>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item nav-expandable" onclick="toggleExpand(this); event.stopPropagation();">
+                        <span class="nav-icon">📱</span>
+                        <span class="nav-text">App Building</span>
+                        <span class="expand-icon">▶</span>
+                        <span class="nav-item-tooltip">App Building</span>
+                    </div>
+                    <div class="sub-nav">
+                        <div class="nav-item sub-nav-item" onclick="navigate('app-building')">
+                            <span class="nav-text">View All Tools</span>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item nav-expandable" onclick="toggleExpand(this); event.stopPropagation();">
+                        <span class="nav-icon">🎨</span>
+                        <span class="nav-text">Demo Building</span>
+                        <span class="expand-icon">▶</span>
+                        <span class="nav-item-tooltip">Demo Building</span>
+                    </div>
+                    <div class="sub-nav">
+                        <div class="nav-item sub-nav-item" onclick="navigate('demo-building')">
+                            <span class="nav-text">View All Tools</span>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item nav-expandable" onclick="toggleExpand(this); event.stopPropagation();">
+                        <span class="nav-icon">✍️</span>
+                        <span class="nav-text">Writing & Brainstorming</span>
+                        <span class="expand-icon">▶</span>
+                        <span class="nav-item-tooltip">Writing & Brainstorming</span>
+                    </div>
+                    <div class="sub-nav">
+                        <div class="nav-item sub-nav-item" onclick="navigate('writing')">
+                            <span class="nav-text">View All Tools</span>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item nav-expandable" onclick="toggleExpand(this); event.stopPropagation();">
+                        <span class="nav-icon">🖼️</span>
+                        <span class="nav-text">Visual Content</span>
+                        <span class="expand-icon">▶</span>
+                        <span class="nav-item-tooltip">Visual Content</span>
+                    </div>
+                    <div class="sub-nav">
+                        <div class="nav-item sub-nav-item" onclick="navigate('visual')">
+                            <span class="nav-text">View All Tools</span>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item" onclick="navigate('research')">
+                        <span class="nav-icon">🔍</span>
+                        <span class="nav-text">Researching</span>
+                        <span class="nav-item-tooltip">Researching</span>
+                    </div>
+                    
+                    <div class="nav-item" onclick="navigate('automation')">
+                        <span class="nav-icon">⚡</span>
+                        <span class="nav-text">Automating</span>
+                        <span class="nav-item-tooltip">Automating</span>
+                    </div>
+                </div>
+                
+                <!-- Resources -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Resources</div>
+                    
+                    <div class="nav-item" onclick="navigate('zero-budget')">
+                        <span class="nav-icon">💰</span>
+                        <span class="nav-text">Zero-Budget Stack</span>
+                        <span class="nav-item-tooltip">Zero-Budget Stack</span>
+                    </div>
+                    
+                    <div class="nav-item" onclick="navigate('cost')">
+                        <span class="nav-icon">💳</span>
+                        <span class="nav-text">Cost & Credits Guide</span>
+                        <span class="nav-item-tooltip">Cost & Credits Guide</span>
+                    </div>
+                    
+                    <div class="nav-item" onclick="navigate('testing')">
+                        <span class="nav-icon">🧪</span>
+                        <span class="nav-text">Prototype to User Testing</span>
+                        <span class="nav-item-tooltip">Prototype to User Testing</span>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Home Page -->
+                <div id="start" class="page active">
+                    <h2>AI Prototyping Cart</h2>
+                    <p class="lead">Your curated toolkit for rapid AI-powered prototyping. Build something real in 30 minutes, no coding required.</p>
+                    
+                    <div class="callout callout-blue">
+                        <h4>🎯 What You'll Find Here</h4>
+                        <p>This isn't just a tool list—it's a structured prototyping system. Every tool has been tested in studio environments. Every workflow gets you from idea to working prototype in a single session. Start with the workflows below, then explore the tool library to customize your approach.</p>
+                    </div>
+                    
+                    <h3>Quick Start: 30-Minute Workflows</h3>
+                    <p style="color: var(--black-light); margin-bottom: 2rem;">Three tested workflows to get you from idea to prototype. Pick the one that matches your project type.</p>
+                    
+                    <div class="workflow-grid">
+                        <div class="workflow-card">
+                            <div class="workflow-number">1</div>
+                            <h4>Non-Technical MVP Builder</h4>
+                            <p>Build a functional app prototype without writing any code. Perfect for testing product ideas quickly.</p>
+                            <p><strong>Tools you'll use:</strong> Lovable or Bolt → Glide or Softr → Figma</p>
+                            <div class="workflow-meta">
+                                <span>⏱️ 40 minutes</span>
+                                <span>💰 Free</span>
+                                <span>📱 Working app</span>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-card">
+                            <div class="workflow-number">2</div>
+                            <h4>Research to Demo Creator</h4>
+                            <p>Transform user research findings into an interactive product demonstration that tells your story.</p>
+                            <p><strong>Tools you'll use:</strong> Perplexity → Figma or Uizard → Framer</p>
+                            <div class="workflow-meta">
+                                <span>⏱️ 35 minutes</span>
+                                <span>💰 $5/month</span>
+                                <span>🎨 Interactive demo</span>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-card">
+                            <div class="workflow-number">3</div>
+                            <h4>AI-Enhanced Design Sprint</h4>
+                            <p>Generate a complete landing page with copy, visuals, and branding in under 30 minutes.</p>
+                            <p><strong>Tools you'll use:</strong> ChatGPT → Canva or DALL•E → Framer or Carrd</p>
+                            <div class="workflow-meta">
+                                <span>⏱️ 30 minutes</span>
+                                <span>💰 Free</span>
+                                <span>🎯 Marketing site</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 3rem;">Why This Works</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <h4>⚡ Time-to-First-Prototype: Under 30 Minutes</h4>
+                            <p>Every workflow is designed to get you to a testable prototype in one studio session. No long tutorials, no setup overhead—just rapid execution.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>💰 At Least One Fully Free Option</h4>
+                            <p>Budget shouldn't block validation. Every category has a free tier option that's genuinely useful, not crippled. See the Zero-Budget Stack for details.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>🎓 Beginner-Level Assumptions</h4>
+                            <p>Assumes zero technical knowledge. All tools are tested by non-technical students. If you can use Google Docs, you can use these tools.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="callout" style="margin-top: 3rem;">
+                        <h4>🚀 Ready to Start?</h4>
+                        <p>If you're brand new, start with <strong>Workflow #3 (AI-Enhanced Design Sprint)</strong>. It requires zero setup and teaches you the core pattern: use AI to generate content, refine it with design tools, and publish something real.</p>
+                        <p style="margin-top: 1rem;">Then explore the Tool Library in the sidebar to build your custom workflow.</p>
+                    </div>
+                </div>
+
+                <!-- Workflows Page -->
+                <div id="workflows" class="page">
+                    <h2>30-Minute Workflows</h2>
+                    <p class="lead">Detailed step-by-step guides for each workflow. Follow along to build your first prototype.</p>
+                    
+                    <div class="callout callout-blue">
+                        <h4>💡 First Time Here?</h4>
+                        <p>Start with Workflow #3 (AI-Enhanced Design Sprint). It requires zero setup and teaches you the core pattern: use AI to generate content, refine it with design tools, and publish something real.</p>
+                    </div>
+                    
+                    <h3>Workflow #1: Non-Technical MVP Builder</h3>
+                    <p style="color: var(--black-light); margin-bottom: 2rem;">Build a functional app without code. Total time: 40 minutes.</p>
+                    
+                    <div class="tool-card">
+                        <h4>Step 1: Generate Your App (15 min)</h4>
+                        <p>Go to <strong>Lovable.dev</strong> or <strong>Bolt.new</strong>. Describe your app idea in detail: "Create a habit tracker where users can add daily goals, mark them complete, and see a weekly progress chart."</p>
+                        <p><strong>Pro tip:</strong> Be specific about features but flexible about design. The AI will generate a working prototype you can see immediately.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 2: Refine the Interface (10 min)</h4>
+                        <p>Export your design or take screenshots. Open <strong>Figma</strong> (free account) and recreate the key screens. This helps you think through user flow and make intentional design decisions.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 3: Build Data Structure (10 min)</h4>
+                        <p>Open <strong>Glide</strong> or <strong>Softr</strong>. Create a simple spreadsheet or Airtable base with your data structure. Connect it to your app template. Now you have a working prototype with real data.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 4: Share & Test (5 min)</h4>
+                        <p>Get a shareable link. Send it to 3-5 people. Watch them use it (screen share if possible). Take notes on where they get confused.</p>
+                    </div>
+
+                    <h3 style="margin-top: 3rem;">Workflow #2: Research to Demo Creator</h3>
+                    <p style="color: var(--black-light); margin-bottom: 2rem;">Transform research into an interactive demo. Total time: 35 minutes.</p>
+                    
+                    <div class="tool-card">
+                        <h4>Step 1: Research Your Space (10 min)</h4>
+                        <p>Open <strong>Perplexity</strong>. Ask: "What are the top 5 competitors in [your space]?" and "What features do users complain about in [competitor name]?" Take notes on gaps and opportunities.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 2: Sketch Your Concept (10 min)</h4>
+                        <p>Open <strong>Uizard</strong> or <strong>Figma</strong>. In Uizard, describe your app concept and let AI generate screens. In Figma, use a template from the community and customize it with your research insights.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 3: Build Interactive Prototype (10 min)</h4>
+                        <p>In <strong>Framer</strong>, describe your concept: "A task management app focused on [your unique angle from research]." Generate the site, then customize with your specific features and copy.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 4: Polish & Share (5 min)</h4>
+                        <p>Add realistic content (not lorem ipsum). Get a shareable link. Test it on mobile and desktop before sending to users.</p>
+                    </div>
+
+                    <h3 style="margin-top: 3rem;">Workflow #3: AI-Enhanced Design Sprint</h3>
+                    <p style="color: var(--black-light); margin-bottom: 2rem;">Create a complete landing page. Total time: 30 minutes.</p>
+                    
+                    <div class="tool-card">
+                        <h4>Step 1: Generate Copy (8 min)</h4>
+                        <p>Tell <strong>ChatGPT</strong>: "I'm building [your product]. Write a landing page with headline, 3 benefit sections, and a call to action. Make it conversational and specific, not generic marketing speak."</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 2: Create Visuals (10 min)</h4>
+                        <p>In <strong>Canva</strong>, search for landing page templates. Pick one, customize with your copy. Use <strong>DALL•E</strong> (in ChatGPT) to generate 2-3 custom images: "A clean, modern illustration of [your concept]."</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 3: Build the Site (10 min)</h4>
+                        <p>Go to <strong>Carrd</strong> or <strong>Framer</strong>. In Carrd, pick a template and paste your sections. In Framer, describe your site and let AI generate it, then paste in your refined copy.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Step 4: Publish & Test (2 min)</h4>
+                        <p>Click publish. Share the link. Send to 10 people and ask: "Would you click the call-to-action button? Why or why not?"</p>
+                    </div>
+
+                    <div class="callout" style="margin-top: 3rem;">
+                        <h4>🎯 Common Patterns Across All Workflows</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li><strong>Start with AI generation</strong> to get 80% there fast</li>
+                            <li><strong>Refine with design tools</strong> to add intentionality</li>
+                            <li><strong>Test immediately</strong> with real people</li>
+                            <li><strong>Iterate based on feedback</strong>, not assumptions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Website Building -->
+                <div id="website-building" class="page">
+                    <div class="category-section">
+                        <div class="category-header">
+                            <span class="category-icon">🌐</span>
+                            <h2>Website Building</h2>
+                        </div>
+                        
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Framer</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. Its biggest strength isn't just AI—it's the editor itself. It feels like Figma but with real production output, making it one of the smoothest design-to-live workflows available.</p>
+                                <div class="callout">
+                                    <h4>When to use Framer</h4>
+                                    <p>Choose Framer when you need a beautiful, interactive website fast and want the flexibility to customize every detail. Perfect for portfolios, landing pages, and marketing sites.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Carrd</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">A simple, fast website builder for landing pages, portfolios, and one-page sites. Carrd is lightweight, affordable, and surprisingly flexible—perfect for quick launches when you don't need a full CMS.</p>
+                                <div class="callout">
+                                    <h4>When to use Carrd</h4>
+                                    <p>Use Carrd for simple one-pagers, link-in-bio sites, or when you need something live in 15 minutes. Great for event pages, personal sites, and quick experiments.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Lovable</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">Prompt-to-app platform that generates full web apps using React and Supabase. Great for MVPs and quick product experiments, with solid GitHub integration. Pricing limits can be restrictive as projects scale.</p>
+                                <div class="callout">
+                                    <h4>When to use Lovable</h4>
+                                    <p>Choose Lovable when you need a functional web app (not just a website) with user authentication, databases, or interactive features. Better for products than marketing sites.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App Building -->
+                <div id="app-building" class="page">
+                    <div class="category-section">
+                        <div class="category-header">
+                            <span class="category-icon">📱</span>
+                            <h2>App Building</h2>
+                        </div>
+                        
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Glide</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools, client portals, and simple SaaS ideas with fast setup and clean UI.</p>
+                                <div class="callout">
+                                    <h4>When to use Glide</h4>
+                                    <p>Perfect for data-heavy apps, inventory systems, CRMs, or any tool where the core functionality is viewing and editing structured data. Works best when your data already exists in sheets.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Softr</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">Build web apps and client portals on top of Airtable or databases. Easy to use, good templates, and ideal for marketplaces, dashboards, and membership sites without heavy development.</p>
+                                <div class="callout">
+                                    <h4>When to use Softr</h4>
+                                    <p>Choose Softr for directory sites, member portals, or marketplaces. Especially good when you're using Airtable as your backend and need a polished front-end quickly.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Microsoft Power Platform</h3>
+                                    <span class="tool-category">Enterprise</span>
+                                </div>
+                                <p class="tool-description">Includes Power Apps (app building), Power Automate (workflow automation), and Power BI (analytics). Deep integration with Microsoft tools and AI Builder lets you add custom AI capabilities without coding—especially powerful for organizations already using the Microsoft ecosystem.</p>
+                                <div class="callout">
+                                    <h4>When to use Power Platform</h4>
+                                    <p>Best for enterprise environments or when you need tight integration with Microsoft 365, SharePoint, or Teams. Free for students through most university licenses.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demo Building -->
+                <div id="demo-building" class="page">
+                    <div class="category-section">
+                        <div class="category-header">
+                            <span class="category-icon">🎨</span>
+                            <h2>Demo Building</h2>
+                        </div>
+                        
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Figma</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">The industry standard for interface design and prototyping. With AI features and interactive components, Figma makes it easy to create realistic product demos and share them with teams or stakeholders.</p>
+                                <div class="callout">
+                                    <h4>When to use Figma</h4>
+                                    <p>Use Figma for high-fidelity prototypes, design handoffs to developers, or when you need precise control over every pixel. The learning curve is worth it for serious product work.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Uizard</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience, though outputs may need refinement.</p>
+                                <div class="callout">
+                                    <h4>When to use Uizard</h4>
+                                    <p>Perfect for rapid ideation when you're not a designer. Great for creating rough prototypes to validate concepts before investing time in proper design.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Bolt</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">A browser-based environment that generates full-stack prototypes from prompts and deploys them with one click. Extremely fast for demos and MVPs, but less suited for complex backend logic.</p>
+                                <div class="callout">
+                                    <h4>When to use Bolt</h4>
+                                    <p>Use Bolt when you need a working demo instantly—perfect for user testing sessions or quick validation. Trade-off: harder to customize than purpose-built tools.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Writing & Brainstorming -->
+                <div id="writing" class="page">
+                    <div class="category-section">
+                        <div class="category-header">
+                            <span class="category-icon">✍️</span>
+                            <h2>Writing & Brainstorming</h2>
+                        </div>
+                        
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Taskade</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">An AI-powered workspace for notes, tasks, and visual thinking. You can generate mind maps, outlines, and project plans, then expand ideas or research topics directly with AI.</p>
+                                <div class="callout">
+                                    <h4>When to use Taskade</h4>
+                                    <p>Great for brainstorming sessions, project planning, or organizing complex ideas visually. The AI helps structure your thinking when you're not sure where to start.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Elicit</h3>
+                                    <span class="tool-category">Free</span>
+                                </div>
+                                <p class="tool-description">A research assistant focused on academic and evidence-based work. It finds papers, summarizes findings, and helps answer complex questions with cited sources.</p>
+                                <div class="callout">
+                                    <h4>When to use Elicit</h4>
+                                    <p>Perfect for literature reviews, finding research to support your ideas, or when you need evidence-based answers. Much better than general AI for academic work.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Claude</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling makes it ideal for strategy, documentation, and complex brainstorming.</p>
+                                <div class="callout">
+                                    <h4>When to use Claude</h4>
+                                    <p>Use Claude for thoughtful, nuanced work—writing product strategy, analyzing user research, or thinking through complex problems. Better at reasoning than rapid-fire idea generation.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">ChatGPT</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">A versatile AI for writing, ideation, coding, research, and problem-solving. Great as a general-purpose thinking partner across almost any workflow.</p>
+                                <div class="callout">
+                                    <h4>When to use ChatGPT</h4>
+                                    <p>The Swiss Army knife of AI tools. Use it for quick questions, brainstorming, drafting copy, or when you're not sure which specialized tool you need.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Content -->
+                <div id="visual" class="page">
+                    <div class="category-section">
+                        <div class="category-header">
+                            <span class="category-icon">🖼️</span>
+                            <h2>Visual Content Creation</h2>
+                        </div>
+                        
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Canva</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">An easy all-in-one design platform for presentations, social media, marketing materials, and more. AI features help generate layouts, images, and copy quickly.</p>
+                                <div class="callout">
+                                    <h4>When to use Canva</h4>
+                                    <p>Perfect for presentations, social posts, or any visual content where templates give you a head start. The AI features are solid but the template library is the real strength.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">DALL•E / Leonardo</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">AI image generators for creating custom visuals from text prompts. Useful for marketing graphics, concept art, and unique visual content.</p>
+                                <div class="callout">
+                                    <h4>When to use DALL•E or Leonardo</h4>
+                                    <p>Use when you need unique images that don't exist in stock libraries. DALL•E (via ChatGPT) is easier; Leonardo gives more control and styles. Both require prompt practice.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Microsoft Designer</h3>
+                                    <span class="tool-category">Free</span>
+                                </div>
+                                <p class="tool-description">Creates social posts, graphics, and marketing visuals from simple prompts. Free with a Microsoft account and surprisingly capable, though results can be inconsistent.</p>
+                                <div class="callout">
+                                    <h4>When to use Microsoft Designer</h4>
+                                    <p>Good for quick social media graphics when you have a Microsoft account anyway. Less powerful than Canva but completely free.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research -->
+                <div id="research" class="page">
+                    <div class="category-section">
+                        <div class="category-header">
+                            <span class="category-icon">🔍</span>
+                            <h2>Researching</h2>
+                        </div>
+                        
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Perplexity</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">An AI search engine that provides concise answers with citations. Excellent for fast research, fact-checking, and exploring topics with reliable sources.</p>
+                                <div class="callout">
+                                    <h4>When to use Perplexity</h4>
+                                    <p>Use for competitive analysis, market research, or when you need sources cited. Better than Google when you want synthesized answers instead of just links.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automation -->
+                <div id="automation" class="page">
+                    <div class="category-section">
+                        <div class="category-header">
+                            <span class="category-icon">⚡</span>
+                            <h2>Automating</h2>
+                        </div>
+                        
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">Zapier</h3>
+                                    <span class="tool-category">Freemium</span>
+                                </div>
+                                <p class="tool-description">Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools, triggering actions, and eliminating repetitive tasks.</p>
+                                <div class="callout">
+                                    <h4>When to use Zapier</h4>
+                                    <p>Perfect for connecting tools you already use—like sending Slack notifications when forms are submitted, or adding survey responses to spreadsheets automatically.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-header">
+                                    <h3 class="tool-name">n8n</h3>
+                                    <span class="tool-category">Open Source</span>
+                                </div>
+                                <p class="tool-description">A flexible, open-source automation platform with powerful visual workflows and deep customization. Self-hosting can be challenging at first, but it becomes extremely powerful once properly set up.</p>
+                                <div class="callout">
+                                    <h4>When to use n8n</h4>
+                                    <p>Choose n8n when Zapier's limits frustrate you or you need full control. The learning curve is steeper but you own your automations completely.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zero Budget Stack -->
+                <div id="zero-budget" class="page">
+                    <h2>Zero-Budget Stack</h2>
+                    <p class="lead">Everything you need to build a working prototype without spending a dollar. This stack is tested and production-ready.</p>
+                    
+                    <div class="callout callout-blue">
+                        <h4>💡 The Zero-Budget Philosophy</h4>
+                        <p>You don't need money to validate ideas—you need time and focus. This stack gives you all the tools to build, test, and iterate without financial barriers. Once you validate your concept, then consider paid tools for scaling.</p>
+                    </div>
+                    
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <h4>🌐 Website: Carrd (Free Tier)</h4>
+                            <p>Build up to 3 sites. Perfect for landing pages, link-in-bio pages, and simple marketing sites. Publish to a carrd.co subdomain or connect a custom domain for $9/year.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>📱 App: Glide (Free Tier)</h4>
+                            <p>Unlimited editors, 500 rows of data, and all core features. Build internal tools, directories, or simple apps from Google Sheets. Upgrade only when you need more data or custom domains.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>🎨 Design: Figma (Free Tier)</h4>
+                            <p>3 Figma files and 3 FigJam boards. More than enough for prototyping. Use community templates and plugins to speed up your work. The entire design industry runs on this tool.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>✍️ AI Assistant: ChatGPT (Free)</h4>
+                            <p>GPT-4o mini is surprisingly capable for ideation, copywriting, and problem-solving. Pair with Claude's free tier for longer conversations and deeper analysis.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>🖼️ Visuals: Canva (Free Tier)</h4>
+                            <p>250,000+ templates, basic AI features, and 5GB storage. Create presentations, social graphics, and marketing materials. Pro features are nice but rarely necessary for prototypes.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>🔍 Research: Perplexity (Free)</h4>
+                            <p>5 Pro searches per day on the free tier, unlimited Quick searches. More than enough for competitive analysis and market research during prototyping.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>⚡ Automation: Zapier (Free Tier)</h4>
+                            <p>100 tasks per month, single-step Zaps. Perfect for basic automations like form submissions to Slack or new spreadsheet rows to email notifications.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Sample Zero-Budget Workflow</h3>
+                    <div class="workflow-card" style="margin-top: 2rem;">
+                        <h4>Build a SaaS MVP in One Weekend</h4>
+                        <p><strong>Saturday Morning:</strong> Research competitors with Perplexity → Brainstorm features with ChatGPT → Create user flows in FigJam</p>
+                        <p><strong>Saturday Afternoon:</strong> Design screens in Figma using templates → Generate copy with ChatGPT → Create logo and graphics in Canva</p>
+                        <p><strong>Sunday Morning:</strong> Build functional prototype in Glide connected to Google Sheets → Set up landing page in Carrd</p>
+                        <p><strong>Sunday Afternoon:</strong> Connect form submissions to Slack with Zapier → Test with 5 friends → Iterate based on feedback</p>
+                        <div class="workflow-meta">
+                            <span>💰 $0 spent</span>
+                            <span>⏱️ 12-14 hours</span>
+                            <span>✅ Ready to test</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost & Credits Guide -->
+                <div id="cost" class="page">
+                    <h2>Cost & Credits Guide</h2>
+                    <p class="lead">A realistic breakdown of what you'll actually spend. Most students stay under $25/month.</p>
+                    
+                    <div class="budget-grid">
+                        <div class="budget-card">
+                            <h4>Zero Budget</h4>
+                            <div class="budget-price">$0</div>
+                            <p style="color: var(--black-light); margin-bottom: 1rem;">Perfect for testing ideas and learning the tools</p>
+                            <ul>
+                                <li>All free tiers listed above</li>
+                                <li>No credit card required</li>
+                                <li>Enough to build and validate</li>
+                                <li>Upgrade only when necessary</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="budget-card" style="border-top-color: var(--lagunita);">
+                            <h4>Student Tier</h4>
+                            <div class="budget-price">$10</div>
+                            <p style="color: var(--black-light); margin-bottom: 1rem;">Optimized for university projects</p>
+                            <ul>
+                                <li>GitHub Student Pack (FREE)</li>
+                                <li>Figma Education (FREE)</li>
+                                <li>Notion for Students (FREE)</li>
+                                <li>Canva for Education (FREE)</li>
+                                <li>Microsoft Designer (FREE)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="budget-card" style="border-top-color: var(--poppy);">
+                            <h4>Professional</h4>
+                            <div class="budget-price">$25</div>
+                            <p style="color: var(--black-light); margin-bottom: 1rem;">When you're ready to scale</p>
+                            <ul>
+                                <li>ChatGPT Plus ($20)</li>
+                                <li>Framer or Webflow ($5-15)</li>
+                                <li>Perplexity Pro (optional)</li>
+                                <li>Unlimited AI features</li>
+                                <li>Custom domains included</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h3>Student Discounts & Credits</h3>
+                    <div class="callout">
+                        <h4>🎓 Free Credits to Claim</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li><strong>GitHub Student Developer Pack:</strong> Includes free access to GitHub Copilot, Heroku credits, domain names, and 50+ dev tools</li>
+                            <li><strong>Figma Education:</strong> Free Professional plan for students and educators</li>
+                            <li><strong>Microsoft Imagine:</strong> Azure credits, Power Platform access, and all Microsoft dev tools</li>
+                            <li><strong>AWS Educate:</strong> $100 in AWS credits for hosting and cloud services</li>
+                            <li><strong>Google Cloud for Students:</strong> $300 in credits for Firebase, hosting, and AI APIs</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Hidden Costs to Watch</h3>
+                    <div class="tool-card">
+                        <h4>⚠️ Where Students Actually Spend Money</h4>
+                        <ul>
+                            <li><strong>Storage:</strong> Image generation tools eat up space fast. Use cloud storage wisely.</li>
+                            <li><strong>API calls:</strong> Some tools charge per generation or API call. Monitor usage in free tiers.</li>
+                            <li><strong>Domain names:</strong> Budget $12/year for a custom domain if you want to look professional.</li>
+                            <li><strong>Hosting:</strong> Most tools include hosting, but custom backends (Supabase, Railway) can add $5-10/mo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Prototype to Testing -->
+                <div id="testing" class="page">
+                    <h2>From Prototype to User Testing</h2>
+                    <p class="lead">You've built something. Now what? Here's how to get it in front of users and learn fast.</p>
+                    
+                    <div class="callout callout-blue">
+                        <h4>🎯 The Goal</h4>
+                        <p>Don't aim for perfection. Aim to learn whether your core assumption is true. Every prototype should answer one key question about your users' needs.</p>
+                    </div>
+                    
+                    <h3>Step 1: Define Your Test Question</h3>
+                    <div class="tool-card">
+                        <h4>What You're Really Testing</h4>
+                        <p>Before showing anyone, write down: "I believe [specific user type] will [take specific action] because [assumption about their need]."</p>
+                        <p><strong>Example:</strong> "I believe busy parents will save recipes they find on Instagram because they're frustrated forgetting great content they scroll past."</p>
+                    </div>
+                    
+                    <h3>Step 2: Recruit 5 Test Users</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <h4>Friends & Family (The Easy Path)</h4>
+                            <p>Pros: Available immediately, free, honest feedback. Cons: May not be your target user, might be too polite.</p>
+                            <p><strong>Make it work:</strong> Give them a specific task and watch them—don't explain anything. Silence reveals problems.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>Stanford Community</h4>
+                            <p>Post in department Slack channels, student Facebook groups, or relevant email lists. Offer coffee gift cards ($5-10) for 15 minutes of feedback.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>User Testing Platforms</h4>
+                            <p><strong>UserTesting.com:</strong> Pay $49+ per tester for video walkthroughs. <strong>Lyssna:</strong> Cheaper alternative for basic feedback.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Step 3: Run the Test Session</h3>
+                    <div class="workflow-card">
+                        <h4>The 15-Minute Test Script</h4>
+                        <p><strong>Minute 0-2:</strong> "Thanks for helping. I'm testing a prototype. Think out loud as you use it. There are no wrong answers—any confusion is my fault, not yours."</p>
+                        <p><strong>Minute 2-10:</strong> Give them a realistic task. Watch and take notes. Don't help unless they're completely stuck.</p>
+                        <p><strong>Minute 10-13:</strong> Ask follow-up questions about confusion points.</p>
+                        <p><strong>Minute 13-15:</strong> "Would you use this if it existed? Would you pay for it? Who else would benefit?"</p>
+                    </div>
+                    
+                    <h3>Step 4: Analyze Patterns</h3>
+                    <div class="callout">
+                        <h4>What to Look For</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li><strong>Where do ALL 5 users get confused?</strong> → Critical fix needed</li>
+                            <li><strong>What do 3+ users misunderstand?</strong> → Major redesign required</li>
+                            <li><strong>What do users ask for that you didn't build?</strong> → Consider for V2</li>
+                            <li><strong>What features do users ignore completely?</strong> → Probably cut them</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Step 5: Iterate Fast</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <h4>Quick Fixes (Do Immediately)</h4>
+                            <p>Confusing copy, broken flows, obvious UI issues. Make changes and test again with 2-3 new users within 48 hours.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>Medium Changes (This Week)</h4>
+                            <p>Restructuring navigation, adding missing features, redesigning confused sections. Test again before moving forward.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>Big Pivots (Pause & Reflect)</h4>
+                            <p>If 4+ users don't understand the core value, or no one would actually use it—you might need to rethink the concept, not just the prototype.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="callout callout-blue" style="margin-top: 3rem;">
+                        <h4>🚀 Ready to Ship?</h4>
+                        <p>Once 4 out of 5 users successfully complete your core task without help, and at least 3 say they'd actually use it—you're ready to build a real V1 or start showing it to potential customers.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Toggle sidebar
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+        }
+        
+        // Navigate to page
+        function navigate(pageId) {
+            // Update active states
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Show page
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            document.querySelector('.main-content').scrollTop = 0;
+        }
+        
+        // Toggle expandable sections
+        function toggleExpand(element) {
+            element.classList.toggle('expanded');
+            const subNav = element.nextElementSibling;
+            if (subNav && subNav.classList.contains('sub-nav')) {
+                subNav.classList.toggle('expanded');
+            }
+        }
+    </script>
+</body>
+</html>
