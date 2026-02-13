@@ -30,49 +30,70 @@ body {
     overflow-x: hidden;
 }
 
-/* Site header: title + tabs */
+/* Site header – Stanford identity: Cardinal (primary), White, Illuminating (accent) */
 .site-header {
     background: var(--cardinal);
     color: var(--white);
-    padding: 1.25rem 2rem 0;
+    padding: 0;
+    border-bottom: 4px solid var(--illuminating);
+    box-shadow: 0 2px 8px rgba(46, 45, 41, 0.08);
+}
+
+.site-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 0;
 }
 
 .site-title {
     font-family: 'Source Serif 4', serif;
-    font-size: 1.75rem;
+    font-size: 1.875rem;
     font-weight: 700;
-    margin-bottom: 0.25rem;
+    margin: 0 0 0.15rem;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .site-subtitle {
-    font-size: 0.85rem;
-    opacity: 0.9;
-    margin-bottom: 1rem;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 0 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
+/* Tabs – Illuminating accent for active state */
 .tabs-nav {
     display: flex;
     gap: 0;
-    margin-top: 0.5rem;
+    margin: 0 -0.25rem;
 }
 
 .tabs-nav a {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: 0.7rem 1.35rem;
     color: var(--white);
     text-decoration: none;
-    font-weight: 500;
-    border-bottom: 3px solid transparent;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease, background 0.2s ease;
 }
 
 .tabs-nav a:hover {
-    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .tabs-nav a.active {
-    background: rgba(255,255,255,0.15);
-    border-bottom-color: var(--illuminating);
+    color: var(--black);
+    background: var(--illuminating);
+}
+
+.tabs-nav a.active:hover {
+    background: #FFE781;
+    color: var(--black);
 }
 
 /* Main content */
