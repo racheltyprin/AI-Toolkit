@@ -4,6 +4,7 @@
             name: "Framer", 
             category: "website-building", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=framer.com&sz=128",
             desc: "Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. It feels like Figma but with real production output.",
             url: "https://www.framer.com/",
@@ -20,6 +21,7 @@
             name: "Carrd", 
             category: "website-building", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=carrd.co&sz=128",
             desc: "A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible.",
             url: "https://carrd.co/",
@@ -36,6 +38,7 @@
             name: "Glide", 
             category: "app-building", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=glideapps.com&sz=128",
             desc: "Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools and simple SaaS ideas.",
             url: "https://www.glideapps.com/",
@@ -52,6 +55,7 @@
             name: "Softr", 
             category: "app-building", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=softr.io&sz=128",
             desc: "Build web apps and client portals on top of Airtable or databases. Ideal for marketplaces, dashboards, and membership sites.",
             url: "https://www.softr.io/",
@@ -68,6 +72,7 @@
             name: "Figma", 
             category: "demo-building", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=figma.com&sz=128",
             desc: "The industry standard for interface design and prototyping. With AI and interactive components, easy to create realistic product demos.",
             url: "https://www.figma.com/",
@@ -84,6 +89,7 @@
             name: "Uizard", 
             category: "demo-building", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=uizard.io&sz=128",
             desc: "Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience.",
             url: "https://uizard.io/",
@@ -100,6 +106,7 @@
             name: "Taskade", 
             category: "writing", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=taskade.com&sz=128",
             desc: "AI-powered workspace for notes, tasks, and visual thinking. Generate mind maps, outlines, and project plans with AI.",
             url: "https://www.taskade.com/",
@@ -116,6 +123,7 @@
             name: "Elicit", 
             category: "writing", 
             pricing: "free", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=elicit.com&sz=128",
             desc: "Research assistant for academic and evidence-based work. Finds papers, summarizes findings, and helps answer complex questions with cited sources.",
             url: "https://elicit.com/",
@@ -132,6 +140,7 @@
             name: "Claude", 
             category: "writing", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=claude.ai&sz=128",
             desc: "Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling—ideal for strategy and complex brainstorming.",
             url: "https://claude.ai/",
@@ -148,6 +157,7 @@
             name: "ChatGPT", 
             category: "writing", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=chat.openai.com&sz=128",
             desc: "Versatile AI for writing, ideation, coding, research, and problem-solving. A general-purpose thinking partner.",
             url: "https://chat.openai.com/",
@@ -164,6 +174,7 @@
             name: "Canva", 
             category: "visual", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=canva.com&sz=128",
             desc: "All-in-one design platform for presentations, social media, and marketing. AI helps generate layouts, images, and copy quickly.",
             url: "https://www.canva.com/",
@@ -180,6 +191,7 @@
             name: "DALL•E / Leonardo", 
             category: "visual", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=openai.com&sz=128",
             desc: "AI image generators for custom visuals from text prompts. Useful for marketing graphics, concept art, and unique visual content.",
             url: "https://openai.com/dall-e-3",
@@ -196,6 +208,7 @@
             name: "Microsoft Designer", 
             category: "visual", 
             pricing: "free", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=designer.microsoft.com&sz=128",
             desc: "Creates social posts, graphics, and marketing visuals from simple prompts. Free with a Microsoft account.",
             url: "https://designer.microsoft.com/",
@@ -212,6 +225,7 @@
             name: "Vizcom", 
             category: "visual", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=vizcom.ai&sz=128",
             desc: "AI-powered tool for visual and design concepts. Useful for turning ideas into visuals during prototyping.",
             url: "https://www.vizcom.ai/",
@@ -228,6 +242,7 @@
             name: "Nano Banana", 
             category: "visual", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=artlist.io&sz=128",
             desc: "AI image and video generator by Artlist. Quick visual generation for prototyping and creative projects.",
             url: "https://toolkit.artlist.io/",
@@ -244,6 +259,7 @@
             name: "Perplexity", 
             category: "researching", 
             pricing: "student", 
+            hasTutorial: true,  // Add this line
             logo: "https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128",
             desc: "AI search engine that gives concise answers with citations. Excellent for fast research and fact-checking.",
             url: "https://www.perplexity.ai/",
@@ -259,7 +275,8 @@
         { 
             name: "Zapier", 
             category: "automating", 
-            pricing: "student", 
+            pricing: "student",
+            hasTutorial: true,  // Add this line 
             logo: "https://www.google.com/s2/favicons?domain=zapier.com&sz=128",
             desc: "Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools and eliminating repetitive tasks.",
             url: "https://zapier.com/",
@@ -317,6 +334,10 @@
     function showToolDetail(tool) {
         // Convert tool name to URL-friendly format
         var tutorialSlug = tool.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    
+        // Conditionally build tutorial link
+        var tutorialLink = tool.hasTutorial 
+        ? '<a href="tutorial.html?tool=' + tutorialSlug + '" class="tool-detail-link tutorial-link">Get Started Guide →</a>' : '';
         
         detailContent.innerHTML = 
             '<div class="tool-detail-header">' +
@@ -325,7 +346,7 @@
             '</div>' +
             '<div class="tool-detail-actions">' +
             '<a href="' + tool.url + '" target="_blank" rel="noopener noreferrer" class="tool-detail-link">Visit ' + tool.name + ' →</a>' +
-            '<a href="tutorials/' + tutorialSlug + '.html" class="tool-detail-link tutorial-link">Get Started Guide →</a>' +
+            tutorialLink +
             '</div>' +
             '<div class="tool-detail-section"><h4>Overview</h4><p>' + tool.desc + '</p></div>' +
             '<div class="tool-detail-section"><h4>Pricing</h4><p>' + tool.pricingDetails + '</p></div>' +

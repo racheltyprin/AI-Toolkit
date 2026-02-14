@@ -178,14 +178,21 @@
     text-decoration: none;
     font-weight: 600;
     transition: all 0.2s ease;
-    margin-top: 0rem;      
-    margin-bottom: 1.5rem; 
 }
 
 .tool-detail-link:hover {
     background: var(--cardinal-dark);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(140, 21, 21, 0.3);
+}
+
+/* Actions container for buttons */
+.tool-detail-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
 }
 
 /* Responsive adjustments */

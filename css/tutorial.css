@@ -4,7 +4,7 @@
 .tool-detail-actions {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1.25rem;
     margin-bottom: 1.5rem;
 }
 
@@ -50,6 +50,15 @@
     color: var(--black);
 }
 
+.quick-start ol {
+    margin-left: 1.5rem;
+    margin-top: 0.75rem;
+}
+
+.quick-start li {
+    margin: 0.5rem 0;
+}
+
 /* Step cards */
 .step-card {
     background: var(--white);
@@ -77,6 +86,15 @@
 .step-card h4 {
     display: inline;
     vertical-align: middle;
+}
+
+.step-card ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.step-card li {
+    margin: 0.35rem 0;
 }
 
 /* Example project section */
@@ -140,6 +158,14 @@
     margin-top: 0;
 }
 
+.not-use-section ul {
+    margin-left: 1.5rem;
+}
+
+.not-use-section li {
+    margin: 0.5rem 0;
+}
+
 /* Code blocks in tutorials */
 .tutorial-code {
     background: var(--black);
@@ -150,6 +176,7 @@
     font-size: 0.9rem;
     overflow-x: auto;
     margin: 1rem 0;
+    white-space: pre-wrap;
 }
 
 /* Tips callout */
@@ -164,6 +191,10 @@
 .tip-box h4 {
     color: var(--white);
     margin-top: 0;
+}
+
+.tip-box p {
+    margin: 0;
 }
 
 /* Back navigation */
@@ -188,6 +219,24 @@
     font-size: 1.2rem;
 }
 
+/* Error message */
+.error-message {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--white);
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.error-message h2 {
+    color: var(--cardinal);
+}
+
+.error-message a {
+    color: var(--cardinal);
+    font-weight: 600;
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     .tutorial-header,
@@ -197,5 +246,12 @@
     .mistakes-section,
     .not-use-section {
         padding: 1.25rem;
+    }
+    
+    .step-number {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 0.9rem;
     }
 }
