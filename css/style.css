@@ -45,19 +45,27 @@ body {
     padding: 1.5rem 2rem 0;
 }
 
+/* Header title/subtitle: force white so they’re not overridden by global h1 color */
+.site-header .site-title,
+.site-header .site-subtitle {
+    color: #FFFFFF;
+}
+
+.site-header .site-subtitle {
+    color: rgba(255, 255, 255, 0.92);
+}
+
 .site-title {
     font-family: 'Source Serif 4', serif;
     font-size: 1.875rem;
     font-weight: 700;
     margin: 0 0 0.15rem;
-    color: var(--white);
     letter-spacing: -0.02em;
     line-height: 1.2;
 }
 
 .site-subtitle {
     font-size: 0.8125rem;
-    color: rgba(255, 255, 255, 0.92);
     margin: 0 0 1.25rem;
     font-weight: 400;
     letter-spacing: 0.01em;
