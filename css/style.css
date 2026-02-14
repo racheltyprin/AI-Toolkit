@@ -46,7 +46,10 @@ body {
 }
 
 /* Header title/subtitle: force white so they’re not overridden by global h1 color */
-.site-header .site-title,
+.site-header .site-title {
+    color: #FFFFFF;
+}
+
 .site-header .site-subtitle {
     color: #FFFFFF;
 }
