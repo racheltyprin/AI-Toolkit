@@ -375,5 +375,8 @@
 
     setActiveChip("category", state.category);
     renderTools();
+
+    console.log("tools.js is loading!");
+
     
 })();
