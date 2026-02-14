@@ -116,13 +116,7 @@
         renderTools();
     });
 
-    document.getElementById("filter-pricing").addEventListener("click", function (e) {
-        var btn = e.target.closest(".filter-chip[data-filter=pricing]");
-        if (!btn) return;
-        state.pricing = btn.getAttribute("data-value");
-        setActiveChip("pricing", state.pricing);
-        renderTools();
-    });
+    
 
     renderTools();
 
