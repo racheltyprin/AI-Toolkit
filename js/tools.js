@@ -319,13 +319,13 @@
             '<div class="tool-detail-header">' +
             '<img src="' + tool.logo + '" alt="' + tool.name + ' logo" class="tool-detail-logo">' +
             '<h3 class="tool-detail-title">' + tool.name + '</h3>' +
-            '</div>'  +
-            '<a href="' + tool.url + '" target="_blank" rel="noopener noreferrer" class="tool-detail-link">Visit ' + tool.name + ' →</a>'+
+            '</div>' +
             '<div class="tool-detail-section"><h4>Overview</h4><p>' + tool.desc + '</p></div>' +
             '<div class="tool-detail-section"><h4>Pricing</h4><p>' + tool.pricingDetails + '</p></div>' +
             '<div class="tool-detail-section"><h4>Use Cases</h4><ul>' + 
             tool.useCases.map(function(u){return '<li>'+u+'</li>';}).join('') + '</ul></div>' +
-            '<div class="tool-detail-section"><h4>When to Use</h4><p>' + tool.whenToUse + '</p></div>';
+            '<div class="tool-detail-section"><h4>When to Use</h4><p>' + tool.whenToUse + '</p></div>' +
+            '<a href="' + tool.url + '" target="_blank" rel="noopener noreferrer" class="tool-detail-link">Visit ' + tool.name + ' →</a>';
 
         detailPanel.classList.remove("hidden");
     }
