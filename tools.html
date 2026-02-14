@@ -13,7 +13,6 @@
     <header class="site-header">
         <div class="site-header-inner">
             <h1 class="site-title">AI Prototyping Cart</h1>
-            <p class="site-subtitle">Stanford d.school</p>
             <nav class="tabs-nav">
                 <a href="index.html">Home</a>
                 <a href="workflows.html">Workflows</a>
@@ -25,12 +24,13 @@
         <div class="content-wrapper">
             <h1 class="page-title">AI Tools</h1>
             <p class="lead">Filter by category or pricing to find the right tool.</p>
-            <div class="callout" style="margin-bottom: 1.5rem;">
-                <h4>Pricing</h4>
-                <p><strong>Free</strong> = no cost to use. <strong>Student tier</strong> = free plan with limits; good for learning and prototyping. <strong>Professional</strong> = paid or enterprise plans.</p>
-            </div>
 
-            <div class="tools-filters">
+            <div class="tools-filters" id="tools-filters">
+                <button type="button" class="tools-filters-toggle" id="tools-filters-toggle" aria-expanded="true" aria-controls="tools-filters-body">
+                    <span class="tools-filters-toggle-text">Filters</span>
+                    <span class="tools-filters-toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="tools-filters-body" id="tools-filters-body">
                 <div class="filter-group">
                     <h3>Category</h3>
                     <div class="filter-options" id="filter-category">
@@ -48,10 +48,11 @@
                     <h3>Pricing</h3>
                     <div class="filter-options" id="filter-pricing">
                         <button type="button" class="filter-chip active" data-filter="pricing" data-value="all">All</button>
-                        <button type="button" class="filter-chip" data-filter="pricing" data-value="free">Free</button>
-                        <button type="button" class="filter-chip" data-filter="pricing" data-value="student">Student tier</button>
+                        <button type="button" class="filter-chip" data-filter="pricing" data-value="Free tier">Free</button>
+                        <button type="button" class="filter-chip" data-filter="pricing" data-value="student">Student</button>
                         <button type="button" class="filter-chip" data-filter="pricing" data-value="professional">Professional</button>
                     </div>
+                </div>
                 </div>
             </div>
 
@@ -66,13 +67,10 @@
     var tools = [
         { name: "Framer", category: "website-building", pricing: "student", badge: "Free tier", desc: "Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. It feels like Figma but with real production output." },
         { name: "Carrd", category: "website-building", pricing: "student", badge: "Free tier", desc: "A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible." },
-        { name: "Lovable", category: "website-building", pricing: "student", badge: "Free tier", desc: "Prompt-to-app platform that generates full web apps using React and Supabase. Great for MVPs and quick product experiments." },
         { name: "Glide", category: "app-building", pricing: "student", badge: "Free tier", desc: "Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools and simple SaaS ideas." },
         { name: "Softr", category: "app-building", pricing: "student", badge: "Free tier", desc: "Build web apps and client portals on top of Airtable or databases. Ideal for marketplaces, dashboards, and membership sites." },
-        { name: "Microsoft Power Platform", category: "app-building", pricing: "professional", badge: "Paid", desc: "Power Apps, Power Automate, Power BI. Deep integration with Microsoft tools and AI Builder—especially powerful in the Microsoft ecosystem." },
         { name: "Figma", category: "demo-building", pricing: "student", badge: "Free tier", desc: "The industry standard for interface design and prototyping. With AI and interactive components, easy to create realistic product demos." },
         { name: "Uizard", category: "demo-building", pricing: "student", badge: "Free tier", desc: "Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience." },
-        { name: "Bolt", category: "demo-building", pricing: "student", badge: "Free tier", desc: "Browser-based: generates full-stack prototypes from prompts and deploys with one click. Extremely fast for demos and MVPs." },
         { name: "Taskade", category: "writing", pricing: "student", badge: "Free tier", desc: "AI-powered workspace for notes, tasks, and visual thinking. Generate mind maps, outlines, and project plans with AI." },
         { name: "Elicit", category: "writing", pricing: "free", badge: "Free", desc: "Research assistant for academic and evidence-based work. Finds papers, summarizes findings, and helps answer complex questions with cited sources." },
         { name: "Claude", category: "writing", pricing: "student", badge: "Free tier", desc: "Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling—ideal for strategy and complex brainstorming." },
@@ -84,7 +82,6 @@
         { name: "Nano banana", category: "visual", pricing: "student", badge: "Free tier", desc: "Lightweight option for quick visual and design iterations in prototyping workflows." },
         { name: "Perplexity", category: "researching", pricing: "student", badge: "Free tier", desc: "AI search engine that gives concise answers with citations. Excellent for fast research and fact-checking." },
         { name: "Zapier", category: "automating", pricing: "student", badge: "Free tier", desc: "Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools and eliminating repetitive tasks." },
-        { name: "n8n", category: "automating", pricing: "free", badge: "Open source", desc: "Flexible, open-source automation with visual workflows and deep customization. Very powerful once set up." }
     ];
 
     var state = { category: "all", pricing: "all" };
@@ -138,6 +135,20 @@
     });
 
     renderTools();
+
+    // Collapsible filters
+    var filtersEl = document.getElementById("tools-filters");
+    var toggleBtn = document.getElementById("tools-filters-toggle");
+    var filtersBody = document.getElementById("tools-filters-body");
+    var toggleIcon = toggleBtn && toggleBtn.querySelector(".tools-filters-toggle-icon");
+    if (toggleBtn && filtersBody) {
+        toggleBtn.addEventListener("click", function () {
+            var isOpen = !filtersEl.classList.contains("collapsed");
+            filtersEl.classList.toggle("collapsed", isOpen);
+            toggleBtn.setAttribute("aria-expanded", !isOpen);
+            if (toggleIcon) toggleIcon.textContent = isOpen ? "▶" : "▼";
+        });
+    }
 })();
     </script>
     <script src="js/main.js"></script>

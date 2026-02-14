@@ -42,7 +42,7 @@ body {
 .site-header-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1.5rem 2rem 0;
+    padding: 1.25rem 2rem 1rem;
 }
 
 /* Header title/subtitle: force white (!important overrides global h1 color) */
@@ -59,7 +59,7 @@ body {
     font-family: 'Source Serif 4', serif;
     font-size: 1.875rem;
     font-weight: 700;
-    margin: 0 0 0.15rem;
+    margin: 0 0 1.0rem;
     letter-spacing: -0.02em;
     line-height: 1.2;
 }
@@ -319,9 +319,43 @@ h4 {
 .tools-filters {
     background: var(--white);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 0;
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.tools-filters-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    background: var(--white);
+    color: var(--cardinal);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.tools-filters-toggle:hover {
+    background: var(--cream);
+}
+
+.tools-filters-toggle-icon {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.tools-filters-body {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.tools-filters.collapsed .tools-filters-body {
+    display: none;
 }
 
 .tools-filters h3 {
