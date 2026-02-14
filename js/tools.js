@@ -370,7 +370,7 @@
         });
     }
     function hideToolDetail() {
-        detailPanel.classList.add("hidden"); // ✅ hide panel
+        detailPanel.classList.remove("hidden"); // ✅ hide panel
     }
 
     setActiveChip("category", state.category);
