@@ -327,11 +327,11 @@
             '<div class="tool-detail-section"><h4>When to Use</h4><p>' + tool.whenToUse + '</p></div>' +
             '<a href="' + tool.url + '" target="_blank" rel="noopener noreferrer" class="tool-detail-link">Visit ' + tool.name + ' →</a>';
 
-        detailPanel.classList.add("active");
+        detailPanel.classList.add("hidden");
     }
 
     function hideToolDetail() {
-        detailPanel.classList.remove("active");
+        detailPanel.classList.remove("hidden");
     }
 
     document.getElementById("filter-category").addEventListener("click", function (e) {
