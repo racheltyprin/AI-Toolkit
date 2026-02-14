@@ -45,17 +45,14 @@ body {
     padding: 1.5rem 2rem 0;
 }
 
-/* Header title/subtitle: force white so they’re not overridden by global h1 color */
-.site-header .site-title {
-    color: #FFFFFF;
+/* Header title/subtitle: force white (!important overrides global h1 color) */
+.site-header .site-title,
+.site-header h1.site-title {
+    color: #FFFFFF !important;
 }
 
 .site-header .site-subtitle {
-    color: #FFFFFF;
-}
-
-.site-header .site-subtitle {
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(255, 255, 255, 0.92) !important;
 }
 
 .site-title {
