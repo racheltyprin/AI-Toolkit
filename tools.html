@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tools.css">
 </head>
 <body>
     <header class="site-header">
@@ -47,94 +48,18 @@
                 </div>
             </div>
             <p class="tools-results-count" id="results-count"></p>
-            <div class="tools-grid" id="tools-container"></div>
+            <div class="tools-layout">
+                <div class="tools-grid" id="tools-container"></div>
+                <div class="tool-detail-panel hidden" id="tool-detail-panel">
+                    <button class="tool-detail-close" id="tool-detail-close" aria-label="Close detail panel">✕</button>
+                    <div id="tool-detail-content"></div>
+                </div>
+            </div>
             <div class="tools-empty hidden" id="tools-empty">No tools match your filters. Try changing category or pricing.</div>
         </div>
     </main>
 
-    <script>
-(function () {
-    var tools = [
-        { name: "Framer", category: "website-building", pricing: "student", badge: "Free tier", desc: "Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. It feels like Figma but with real production output." },
-        { name: "Carrd", category: "website-building", pricing: "student", badge: "Free tier", desc: "A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible." },
-        { name: "Glide", category: "app-building", pricing: "student", badge: "Free tier", desc: "Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools and simple SaaS ideas." },
-        { name: "Softr", category: "app-building", pricing: "student", badge: "Free tier", desc: "Build web apps and client portals on top of Airtable or databases. Ideal for marketplaces, dashboards, and membership sites." },
-        { name: "Figma", category: "demo-building", pricing: "student", badge: "Free tier", desc: "The industry standard for interface design and prototyping. With AI and interactive components, easy to create realistic product demos." },
-        { name: "Uizard", category: "demo-building", pricing: "student", badge: "Free tier", desc: "Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience." },
-        { name: "Taskade", category: "writing", pricing: "student", badge: "Free tier", desc: "AI-powered workspace for notes, tasks, and visual thinking. Generate mind maps, outlines, and project plans with AI." },
-        { name: "Elicit", category: "writing", pricing: "free", badge: "Free", desc: "Research assistant for academic and evidence-based work. Finds papers, summarizes findings, and helps answer complex questions with cited sources." },
-        { name: "Claude", category: "writing", pricing: "student", badge: "Free tier", desc: "Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling—ideal for strategy and complex brainstorming." },
-        { name: "ChatGPT", category: "writing", pricing: "student", badge: "Free tier", desc: "Versatile AI for writing, ideation, coding, research, and problem-solving. A general-purpose thinking partner." },
-        { name: "Canva", category: "visual", pricing: "student", badge: "Free tier", desc: "All-in-one design platform for presentations, social media, and marketing. AI helps generate layouts, images, and copy quickly." },
-        { name: "DALL•E / Leonardo", category: "visual", pricing: "student", badge: "Free tier", desc: "AI image generators for custom visuals from text prompts. Useful for marketing graphics, concept art, and unique visual content." },
-        { name: "Microsoft Designer", category: "visual", pricing: "free", badge: "Free", desc: "Creates social posts, graphics, and marketing visuals from simple prompts. Free with a Microsoft account." },
-        { name: "Vizcom", category: "visual", pricing: "student", badge: "Free tier", desc: "AI-powered tool for visual and design concepts. Useful for turning ideas into visuals during prototyping." },
-        { name: "Nano banana", category: "visual", pricing: "student", badge: "Free tier", desc: "Lightweight option for quick visual and design iterations in prototyping workflows." },
-        { name: "Perplexity", category: "researching", pricing: "student", badge: "Free tier", desc: "AI search engine that gives concise answers with citations. Excellent for fast research and fact-checking." },
-        { name: "Zapier", category: "automating", pricing: "student", badge: "Free tier", desc: "Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools and eliminating repetitive tasks." },
-    ];
-
-    var state = { category: "all", pricing: "all" };
-
-    function renderTools() {
-        var container = document.getElementById("tools-container");
-        var emptyEl = document.getElementById("tools-empty");
-        var countEl = document.getElementById("results-count");
-
-        var filtered = tools.filter(function (t) {
-            var catOk = state.category === "all" || t.category === state.category;
-            var priceOk = state.pricing === "all" || t.pricing === state.pricing;
-            return catOk && priceOk;
-        });
-
-        container.innerHTML = filtered.map(function (t) {
-            return '<div class="tool-card" data-category="' + t.category + '" data-pricing="' + t.pricing + '">' +
-                '<div class="tool-header">' +
-                '<span class="tool-name">' + t.name + '</span>' +
-                '<span class="tool-badges"><span class="tool-badge">' + t.badge + '</span></span>' +
-                '</div>' +
-                '<p class="tool-description">' + t.desc + '</p>' +
-                '</div>';
-        }).join("");
-
-        countEl.textContent = filtered.length === 0 ? "No tools match." : filtered.length + " tool" + (filtered.length !== 1 ? "s" : "") + ".";
-        emptyEl.classList.toggle("hidden", filtered.length > 0);
-    }
-
-    function setActiveChip(filterKey, value) {
-        var selector = '[data-filter="' + filterKey + '"]';
-        document.querySelectorAll(".filter-chip" + selector).forEach(function (btn) {
-            btn.classList.toggle("active", btn.getAttribute("data-value") === value);
-        });
-    }
-
-    document.getElementById("filter-category").addEventListener("click", function (e) {
-        var btn = e.target.closest(".filter-chip[data-filter=category]");
-        if (!btn) return;
-        state.category = btn.getAttribute("data-value");
-        setActiveChip("category", state.category);
-        renderTools();
-    });
-
-    
-
-    renderTools();
-
-    // Collapsible filters
-    var filtersEl = document.getElementById("tools-filters");
-    var toggleBtn = document.getElementById("tools-filters-toggle");
-    var filtersBody = document.getElementById("tools-filters-body");
-    var toggleIcon = toggleBtn && toggleBtn.querySelector(".tools-filters-toggle-icon");
-    if (toggleBtn && filtersBody) {
-        toggleBtn.addEventListener("click", function () {
-            var isOpen = !filtersEl.classList.contains("collapsed");
-            filtersEl.classList.toggle("collapsed", isOpen);
-            toggleBtn.setAttribute("aria-expanded", !isOpen);
-            if (toggleIcon) toggleIcon.textContent = isOpen ? "▶" : "▼";
-        });
-    }
-})();
-    </script>
+    <script src="js/tools.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
