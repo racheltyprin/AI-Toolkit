@@ -130,13 +130,13 @@
 }
 
 .tool-detail-section {
-    margin-bottom: 1.0rem;
+    margin-bottom: 1.5rem;
 }
 
 .tool-detail-section h4 {
     font-size: 1rem;
     color: var(--cardinal);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
