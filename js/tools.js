@@ -327,7 +327,7 @@
             '<div class="tool-detail-section"><h4>When to Use</h4><p>' + tool.whenToUse + '</p></div>' +
             '<a href="' + tool.url + '" target="_blank" rel="noopener noreferrer" class="tool-detail-link">Visit ' + tool.name + ' →</a>';
 
-        detailPanel.classList.add("hidden");
+        detailPanel.classList.remove("hidden");
     }
 
     
@@ -370,7 +370,7 @@
         });
     }
     function hideToolDetail() {
-        detailPanel.classList.remove("hidden"); // ✅ hide panel
+        detailPanel.classList.add("hidden"); // ✅ hide panel
     }
 
     setActiveChip("category", state.category);
