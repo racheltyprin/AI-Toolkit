@@ -330,9 +330,7 @@
         detailPanel.classList.add("hidden");
     }
 
-    function hideToolDetail() {
-        detailPanel.classList.remove("hidden");
-    }
+    
 
     document.getElementById("filter-category").addEventListener("click", function (e) {
         var btn = e.target.closest(".filter-chip[data-filter=category]");
