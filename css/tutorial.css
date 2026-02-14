@@ -1,0 +1,201 @@
+/* Tutorial Pages Styling */
+
+/* Actions container for buttons */
+.tool-detail-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Tutorial link button styling */
+.tutorial-link {
+    background: var(--palo-verde) !important;
+}
+
+.tutorial-link:hover {
+    background: var(--palo-alto) !important;
+}
+
+/* Tutorial page specific styles */
+.tutorial-header {
+    background: linear-gradient(135deg, var(--cardinal) 0%, var(--cardinal-dark) 100%);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.tutorial-header h1 {
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.tutorial-header .lead {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0;
+}
+
+/* Quick start section */
+.quick-start {
+    background: var(--illuminating);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border-left: 5px solid var(--poppy);
+}
+
+.quick-start h3 {
+    margin-top: 0;
+    color: var(--black);
+}
+
+/* Step cards */
+.step-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-left: 5px solid var(--lagunita);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.step-number {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: var(--cardinal);
+    color: var(--white);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.75rem;
+}
+
+.step-card h4 {
+    display: inline;
+    vertical-align: middle;
+}
+
+/* Example project section */
+.example-project {
+    background: var(--cream);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border: 2px solid var(--palo-verde);
+}
+
+.example-project h3 {
+    color: var(--palo-verde);
+    margin-top: 0;
+}
+
+/* Common mistakes section */
+.mistakes-section {
+    background: linear-gradient(135deg, #FFE5E5 0%, #FFD5D5 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border-left: 5px solid #E74C3C;
+}
+
+.mistakes-section h3 {
+    color: #C0392B;
+    margin-top: 0;
+}
+
+.mistakes-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}
+
+.mistakes-section li {
+    padding: 0.5rem 0 0.5rem 1.75rem;
+    position: relative;
+    color: var(--black);
+}
+
+.mistakes-section li:before {
+    content: "⚠️";
+    position: absolute;
+    left: 0;
+    font-size: 1.1rem;
+}
+
+/* When NOT to use section */
+.not-use-section {
+    background: linear-gradient(135deg, var(--fog) 0%, #E8E6DC 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border-left: 5px solid var(--black-light);
+}
+
+.not-use-section h3 {
+    color: var(--black);
+    margin-top: 0;
+}
+
+/* Code blocks in tutorials */
+.tutorial-code {
+    background: var(--black);
+    color: var(--white);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Tips callout */
+.tip-box {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--lagunita) 100%);
+    color: var(--white);
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    margin: 1rem 0;
+}
+
+.tip-box h4 {
+    color: var(--white);
+    margin-top: 0;
+}
+
+/* Back navigation */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--cardinal);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--cardinal-dark);
+    transform: translateX(-4px);
+}
+
+.back-link:before {
+    content: "←";
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .tutorial-header,
+    .quick-start,
+    .step-card,
+    .example-project,
+    .mistakes-section,
+    .not-use-section {
+        padding: 1.25rem;
+    }
+}

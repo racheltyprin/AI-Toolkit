@@ -315,22 +315,30 @@
     var closeBtn = document.getElementById("tool-detail-close");
 
     function showToolDetail(tool) {
+        // Convert tool name to URL-friendly format
+        var tutorialSlug = tool.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        
         detailContent.innerHTML = 
             '<div class="tool-detail-header">' +
             '<img src="' + tool.logo + '" alt="' + tool.name + ' logo" class="tool-detail-logo">' +
             '<h3 class="tool-detail-title">' + tool.name + '</h3>' +
             '</div>' +
+            '<div class="tool-detail-actions">' +
             '<a href="' + tool.url + '" target="_blank" rel="noopener noreferrer" class="tool-detail-link">Visit ' + tool.name + ' →</a>' +
+            '<a href="tutorials/' + tutorialSlug + '.html" class="tool-detail-link tutorial-link">Get Started Guide →</a>' +
+            '</div>' +
             '<div class="tool-detail-section"><h4>Overview</h4><p>' + tool.desc + '</p></div>' +
             '<div class="tool-detail-section"><h4>Pricing</h4><p>' + tool.pricingDetails + '</p></div>' +
             '<div class="tool-detail-section"><h4>Use Cases</h4><ul>' + 
             tool.useCases.map(function(u){return '<li>'+u+'</li>';}).join('') + '</ul></div>' +
             '<div class="tool-detail-section"><h4>When to Use</h4><p>' + tool.whenToUse + '</p></div>';
-    
+
         detailPanel.classList.remove("hidden");
     }
 
-    
+    function hideToolDetail() {
+        detailPanel.classList.add("hidden");
+    }
 
     document.getElementById("filter-category").addEventListener("click", function (e) {
         var btn = e.target.closest(".filter-chip[data-filter=category]");
@@ -369,14 +377,8 @@
             if (toggleIcon) toggleIcon.textContent = isOpen ? "▶" : "▼";
         });
     }
-    function hideToolDetail() {
-        detailPanel.classList.add("hidden"); 
-    }
 
     setActiveChip("category", state.category);
     renderTools();
-
-    console.log("tools.js is loading!");
-
     
 })();
