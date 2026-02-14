@@ -1,0 +1,178 @@
+/* Workflow Cards */
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.workflow-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-top: 4px solid var(--lagunita);
+    transition: all 0.3s ease;
+}
+
+.workflow-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.workflow-number {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: var(--cardinal);
+    color: var(--white);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.workflow-meta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--fog);
+    font-size: 0.85rem;
+    color: var(--black-light);
+    flex-wrap: wrap;
+}
+
+.workflow-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Category sections (Workflows page) */
+.category-section {
+    margin: 2rem 0;
+}
+
+.section-anchor {
+    scroll-margin-top: 6rem;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--cardinal);
+}
+
+.category-header h2 {
+    margin-bottom: 0;
+}
+
+/* Callouts */
+.callout {
+    background: linear-gradient(135deg, var(--illuminating) 0%, #FFE781 100%);
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    margin: 1.25rem 0;
+    border-left: 5px solid var(--poppy);
+}
+
+.callout-blue {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--lagunita) 100%);
+    color: var(--white);
+}
+
+.callout-blue h3,
+.callout-blue h4 {
+    color: var(--white);
+}
+
+.callout h4 {
+    margin-top: 0;
+}
+
+.callout ul {
+    margin-top: 0.5rem;
+    margin-left: 1.25rem;
+}
+
+.callout li {
+    margin: 0.35rem 0;
+}
+
+/* Budget cards */
+.budget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.budget-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-top: 6px solid var(--palo-verde);
+}
+
+.budget-price {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--cardinal);
+    margin: 0.5rem 0;
+    font-family: 'Source Serif 4', serif;
+}
+
+.budget-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.budget-card li {
+    padding: 0.4rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+    color: var(--black-light);
+    font-size: 0.9rem;
+}
+
+.budget-card li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--palo-verde);
+    font-weight: 700;
+}
+
+/* In-page jump links (Workflows) */
+.jump-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.jump-links a {
+    color: var(--cardinal);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.jump-links a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for workflows */
+@media (max-width: 640px) {
+    .workflow-grid,
+    .budget-grid {
+        grid-template-columns: 1fr;
+    }
+}
