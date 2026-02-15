@@ -61,12 +61,14 @@
 /* Workflow Steps */
 .workflow-steps-container {
     display: flex;
-    align-items: flex-start; /* Changed from stretch to allow height differences */
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 0; /* Gap is handled by the wrapper now */
     width: 100%;
     overflow-x: auto;
-    overflow-y: visible; /* CRITICAL: Allows the tools to push downward */
-    padding: 1rem 0.5rem 2rem 0.5rem; /* Extra bottom padding for scrollbar clearance */
+    overflow-y: visible;
+    padding: 1rem 0.5rem 3rem 0.5rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
 }
 
 .workflow-step-wrapper {
@@ -227,13 +229,15 @@
 
 /* Arrow between steps */
 .workflow-arrow {
-    flex-shrink: 0;
+    flex-shrink: 0; /* CRITICAL: Prevents the arrow from being squished */
     display: flex;
     align-items: center;
+    justify-content: center;
     color: var(--palo-verde);
     font-size: 2rem;
     font-weight: 700;
-    line-height: 1;
+    width: 40px; /* Give the arrow a dedicated "lane" */
+    user-select: none;
 }
 
 /* Workflow Info Footer */
