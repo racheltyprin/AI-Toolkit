@@ -21,7 +21,7 @@ var tools = [
         category: "website-building", 
         pricing: "student", 
         hasTutorial: true,  // Add this line
-        logo: "https://icons.duckduckgo.com/ip3/carrd.co.ico",
+        logo: "https://carrd.co/assets/images/symbol.svg",
         desc: "A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible.",
         url: "https://carrd.co/",
         pricingDetails: "Free tier with 3 sites. Pro plan $19/year (very affordable).",
@@ -38,7 +38,7 @@ var tools = [
         category: "app-building", 
         pricing: "student", 
         hasTutorial: true,  // Add this line
-        logo: "https://icons.duckduckgo.com/ip3/glideapps.com.ico",
+        logo: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/DgUOI49qvMDPj0b5LTke/pub/og.png",
         desc: "Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools and simple SaaS ideas.",
         url: "https://www.glideapps.com/",
         pricingDetails: "Free tier available. Pro plan from $25/month.",
