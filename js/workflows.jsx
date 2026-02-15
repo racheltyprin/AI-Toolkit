@@ -44,6 +44,17 @@ function WorkflowApp() {
 
   const totals = calculateTotals();
 
+  // Helper to get unique tools for the Final Tech Stack display
+  const getUniqueSelectedTools = () => {
+    const allSelected = Object.values(selectedTools).flat();
+    const seen = new Set();
+    return allSelected.filter(tool => {
+      const duplicate = seen.has(tool.name);
+      seen.add(tool.name);
+      return !duplicate;
+    });
+  };
+
   return (
     <main className="main-content">
       <div className="content-wrapper">
@@ -124,20 +135,41 @@ function WorkflowApp() {
 
               <div className="math-sum-line"></div>
 
-              <div className="workflow-info-footer math-footer">
-                <div className="workflow-info-title">Project Total</div>
-                <div className="workflow-info-meta">
-                  <div className="workflow-info-meta-item">
-                    <span className="workflow-info-meta-label">Total Tools</span>
-                    <span className="workflow-info-meta-value">{totals.count}</span>
+              {/* SIDE-BY-SIDE FOOTER CONTAINER */}
+              <div className="math-footer-container">
+                {/* LEFT BOX: Project Totals */}
+                <div className="workflow-info-footer math-footer">
+                  <div className="workflow-info-title">Project Total</div>
+                  <div className="workflow-info-meta">
+                    <div className="workflow-info-meta-item">
+                      <span className="workflow-info-meta-label">Total Tools</span>
+                      <span className="workflow-info-meta-value">{totals.count}</span>
+                    </div>
+                    <div className="workflow-info-meta-item">
+                      <span className="workflow-info-meta-label">Time Est.</span>
+                      <span className="workflow-info-meta-value">{totals.time}</span>
+                    </div>
+                    <div className="workflow-info-meta-item">
+                      <span className="workflow-info-meta-label">Cost Est.</span>
+                      <span className="workflow-info-meta-value">{totals.cost}</span>
+                    </div>
                   </div>
-                  <div className="workflow-info-meta-item">
-                    <span className="workflow-info-meta-label">Time Est.</span>
-                    <span className="workflow-info-meta-value">{totals.time}</span>
-                  </div>
-                  <div className="workflow-info-meta-item">
-                    <span className="workflow-info-meta-label">Cost Est.</span>
-                    <span className="workflow-info-meta-value">{totals.cost}</span>
+                </div>
+
+                {/* RIGHT BOX: Final Tech Stack */}
+                <div className="final-stack-card">
+                  <h3 className="workflow-info-title">Final Tech Stack</h3>
+                  <div className="stack-tools-list">
+                    {getUniqueSelectedTools().length > 0 ? (
+                      getUniqueSelectedTools().map((tool, i) => (
+                        <div key={i} className="stack-tool-tag">
+                          <img src={tool.logo} alt="" onError={e => e.target.style.display='none'} />
+                          <span>{tool.name}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <span style={{color: 'var(--black-light)', fontSize: '0.9rem'}}>No tools selected yet.</span>
+                    )}
                   </div>
                 </div>
               </div>
