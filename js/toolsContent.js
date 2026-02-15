@@ -21,7 +21,7 @@ var tools = [
         category: "website-building", 
         pricing: "student", 
         hasTutorial: true,  // Add this line
-        logo: "images/logos/cardLogo.png",
+        logo: "images/logos/carrdLogo.png",
         desc: "A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible.",
         url: "https://carrd.co/",
         pricingDetails: "Free tier with 3 sites. Pro plan $19/year (very affordable).",
@@ -38,7 +38,7 @@ var tools = [
         category: "app-building", 
         pricing: "student", 
         hasTutorial: true,  // Add this line
-        logo: "images/logos/glide.png",
+        logo: "images/logos/glideLogo.png",
         desc: "Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools and simple SaaS ideas.",
         url: "https://www.glideapps.com/",
         pricingDetails: "Free tier available. Pro plan from $25/month.",
