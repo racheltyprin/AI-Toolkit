@@ -1,168 +1,152 @@
 const { useState } = React;
 
-// Add debugging
-console.log('workflows.js loaded');
-console.log('React available:', typeof React !== 'undefined');
-console.log('ReactDOM available:', typeof ReactDOM !== 'undefined');
-console.log('tools available:', typeof tools !== 'undefined');
-console.log('tools array:', tools);
-
-
 function WorkflowApp() {
   const [selectedWorkflow, setSelectedWorkflow] = useState(null);
   const [expandedSteps, setExpandedSteps] = useState({});
-
-  const getToolsForCategories = (categories) => {
-    return tools.filter(tool => categories.includes(tool.category));
-  };
+  const [selectedTools, setSelectedTools] = useState({}); // Stores { stepIndex: [tool, tool] }
 
   const toggleStep = (stepIndex) => {
-    setExpandedSteps(prev => ({
-      ...prev,
-      [stepIndex]: !prev[stepIndex]
-    }));
+    setExpandedSteps(prev => ({ ...prev, [stepIndex]: !prev[stepIndex] }));
+  };
+
+  const handleToolToggle = (stepIndex, tool) => {
+    setSelectedTools(prev => {
+      const stepTools = prev[stepIndex] || [];
+      const exists = stepTools.find(t => t.name === tool.name);
+      if (exists) {
+        return { ...prev, [stepIndex]: stepTools.filter(t => t.name !== tool.name) };
+      } else {
+        return { ...prev, [stepIndex]: [...stepTools, tool] };
+      }
+    });
   };
 
   const selectedWorkflowData = selectedWorkflow ? workflowTypes[selectedWorkflow] : null;
+
+  const calculateTotals = () => {
+    if (!selectedWorkflowData) return null;
+    const allSelected = Object.values(selectedTools).flat();
+    const uniqueTools = Array.from(new Set(allSelected.map(t => t.name)));
+    
+    // Logic: Each unique tool adds 30 mins to the project
+    const baseTimeNum = parseInt(selectedWorkflowData.time);
+    const totalTime = baseTimeNum + (uniqueTools.length * 0.5);
+    
+    // Logic: Count paid tools for a price estimate
+    const paidCount = allSelected.filter(t => t.pricing === 'paid').length;
+
+    return {
+      count: uniqueTools.length,
+      time: `${totalTime} hours`,
+      cost: paidCount > 0 ? `Est. $${paidCount * 15}/mo` : "$0 (Free Stack)"
+    };
+  };
+
+  const totals = calculateTotals();
 
   return (
     <main className="main-content">
       <div className="content-wrapper">
         <h1 className="page-title">Workflow Builder</h1>
-        <p className="lead">Select a workflow type to see the steps and recommended tools for building your project.</p>
+        <p className="lead">Select a workflow and add tools to each step to calculate your project requirements.</p>
 
-        {/* Workflow Type Selection */}
         <div className="workflow-selector">
           <div className="workflow-buttons">
-            <button
-              className={`workflow-button ${selectedWorkflow === 'mvp' ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedWorkflow('mvp');
-                setExpandedSteps({});
-              }}
-            >
-              Non-Technical MVP Builder
-            </button>
-            <button
-              className={`workflow-button ${selectedWorkflow === 'research' ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedWorkflow('research');
-                setExpandedSteps({});
-              }}
-            >
-              Research-to-Product Demo
-            </button>
-            <button
-              className={`workflow-button ${selectedWorkflow === 'design' ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedWorkflow('design');
-                setExpandedSteps({});
-              }}
-            >
-              AI-Enhanced Design Prototype
-            </button>
+            {Object.keys(workflowTypes).map(key => (
+              <button
+                key={key}
+                className={`workflow-button ${selectedWorkflow === key ? 'active' : ''}`}
+                onClick={() => { setSelectedWorkflow(key); setExpandedSteps({}); setSelectedTools({}); }}
+              >
+                {workflowTypes[key].name}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Workflow Builder Canvas */}
-        <div className="workflow-builder">
-          {!selectedWorkflow ? (
-            <div className="workflow-builder-empty">
-              Select a workflow type above to see the steps and recommended tools
-            </div>
-          ) : (
-            <div className="workflow-steps-container">
-              {selectedWorkflowData?.steps.map((step, index) => {
-                const stepTools = getToolsForCategories(step.toolCategories);
-                const isExpanded = expandedSteps[index];
-                
-                return (
-                  <div key={index} className="workflow-step-wrapper">
-                    <div className="workflow-step">
-                      <div className="workflow-step-header">
-                        <div className="workflow-step-number">{index + 1}</div>
-                        <div className="workflow-step-title">{step.title}</div>
-                      </div>
-                      <div className="workflow-step-description">{step.description}</div>
+        <div className="math-container">
+          {selectedWorkflow && (
+            <>
+              <div className="math-steps-list">
+                {selectedWorkflowData.steps.map((step, index) => {
+                  const availableTools = tools.filter(t => step.toolCategories.includes(t.category));
+                  const activeTools = selectedTools[index] || [];
+                  const isExpanded = expandedSteps[index];
+
+                  return (
+                    <div key={index} className="math-row">
+                      <div className="math-operator">{index === 0 ? "" : "+"}</div>
                       
-                      <div 
-                        className="workflow-step-tools-header"
-                        onClick={() => toggleStep(index)}
-                      >
-                        <div className="workflow-step-tools-label">
-                          Tools ({stepTools.length})
+                      <div className="workflow-step">
+                        <div className="workflow-step-header">
+                          <div className="workflow-step-number">{index + 1}</div>
+                          <div className="workflow-step-title">{step.title}</div>
                         </div>
-                        <div className="workflow-step-tools-toggle">
-                          {isExpanded ? '−' : '+'}
+                        <p className="workflow-step-description">{step.description}</p>
+                        
+                        <div className="step-actions">
+                          <button className="filter-chip" onClick={() => toggleStep(index)}>
+                             {availableTools.length} Available Tools {isExpanded ? '▴' : '▾'}
+                          </button>
                         </div>
+
+                        {isExpanded && (
+                          <div className="math-dropdown">
+                            {availableTools.map((tool, i) => {
+                              const isSelected = activeTools.some(t => t.name === tool.name);
+                              return (
+                                <div 
+                                  key={i} 
+                                  className={`tool-option ${isSelected ? 'selected' : ''}`}
+                                  onClick={() => handleToolToggle(index, tool)}
+                                >
+                                  <span>{tool.name}</span>
+                                  {isSelected && <span className="check">✓</span>}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
-                      
-                      <div className={`workflow-step-tools ${isExpanded ? 'expanded' : ''}`}>
-                        {stepTools.map((tool, toolIndex) => (
-                          <div key={toolIndex} className="tool-option">
-                            <img 
-                              src={tool.logo} 
-                              alt={tool.name}
-                              className="tool-option-logo"
-                              onError={(e) => e.target.style.display = 'none'}
-                            />
-                            <div className="tool-option-info">
-                              <div className="tool-option-name">{tool.name}</div>
-                              <div className="tool-option-category">{tool.category.replace('-', ' ')}</div>
-                            </div>
+
+                      <div className="selected-tools-tray">
+                        {activeTools.map((tool, i) => (
+                          <div key={i} className="mini-tool-card">
+                            <img src={tool.logo} alt="" onError={e => e.target.style.display='none'} />
+                            <span className="mini-tool-name">{tool.name}</span>
                           </div>
                         ))}
                       </div>
                     </div>
-                    
-                    {index < selectedWorkflowData.steps.length - 1 && (
-                      <div className="workflow-arrow">→</div>
-                    )}
+                  );
+                })}
+              </div>
+
+              <div className="math-sum-line"></div>
+
+              <div className="workflow-info-footer math-footer">
+                <div className="workflow-info-title">Project Total</div>
+                <div className="workflow-info-meta">
+                  <div className="workflow-info-meta-item">
+                    <span className="workflow-info-meta-label">Total Tools</span>
+                    <span className="workflow-info-meta-value">{totals.count}</span>
                   </div>
-                );
-              })}
-            </div>
+                  <div className="workflow-info-meta-item">
+                    <span className="workflow-info-meta-label">Time Est.</span>
+                    <span className="workflow-info-meta-value">{totals.time}</span>
+                  </div>
+                  <div className="workflow-info-meta-item">
+                    <span className="workflow-info-meta-label">Cost Est.</span>
+                    <span className="workflow-info-meta-value">{totals.cost}</span>
+                  </div>
+                </div>
+              </div>
+            </>
           )}
         </div>
-
-        {/* Workflow Info Footer */}
-        {selectedWorkflow && selectedWorkflowData && (
-          <div className="workflow-info-footer">
-            <div className="workflow-info-title">{selectedWorkflowData.name}</div>
-            <div className="workflow-info-content">{selectedWorkflowData.description}</div>
-            <div className="workflow-info-meta">
-              <div className="workflow-info-meta-item">
-                <span className="workflow-info-meta-label">Time</span>
-                <span className="workflow-info-meta-value">{selectedWorkflowData.time}</span>
-              </div>
-              <div className="workflow-info-meta-item">
-                <span className="workflow-info-meta-label">Cost</span>
-                <span className="workflow-info-meta-value">{selectedWorkflowData.cost}</span>
-              </div>
-              <div className="workflow-info-meta-item">
-                <span className="workflow-info-meta-label">Difficulty</span>
-                <span className="workflow-info-meta-value">{selectedWorkflowData.difficulty}</span>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </main>
   );
 }
 
-// Everything is already loaded by the time Babel runs this, so render immediately
-console.log('About to render React app');
-const rootElement = document.getElementById('workflow-root');
-console.log('Root element:', rootElement);
-
-if (!rootElement) {
-  console.error('Could not find #workflow-root element!');
-} else if (typeof tools === 'undefined') {
-  console.error('Tools array not found');
-  rootElement.innerHTML = '<main class="main-content"><div class="content-wrapper"><p style="color: red; font-weight: bold;">Error: Tools data not loaded.</p></div></main>';
-} else {
-  // Render the app using React 17 syntax
-  ReactDOM.render(<WorkflowApp />, rootElement);
-  console.log('React app rendered');
-}
+ReactDOM.render(<WorkflowApp />, document.getElementById('workflow-root'));

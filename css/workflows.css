@@ -334,3 +334,131 @@
         gap: 1.5rem;
     }
 }
+
+/* Math Layout Structure */
+.math-container {
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.math-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.math-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+/* Mathematical Operator (+) */
+.math-operator {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--cardinal);
+    width: 40px;
+    text-align: center;
+    padding-top: 1rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Step Card - Consistent with d.school theme */
+.workflow-step {
+    width: 420px;
+    background: var(--white);
+    border: 2px solid var(--palo-verde);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+}
+
+.step-actions {
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--fog);
+    padding-top: 0.75rem;
+}
+
+/* Selected Tools (Right Side) */
+.selected-tools-tray {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+}
+
+.mini-tool-card {
+    background: var(--white);
+    border: 1px solid var(--fog);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    animation: popIn 0.25s ease-out;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.mini-tool-card img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.mini-tool-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--black);
+}
+
+/* Dropdown Menu */
+.math-dropdown {
+    background: var(--cream);
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    padding: 0.25rem;
+    border: 1px solid var(--fog);
+}
+
+.tool-option {
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.tool-option:hover {
+    background: rgba(39, 153, 137, 0.1);
+}
+
+.tool-option.selected {
+    color: var(--palo-verde);
+    font-weight: 700;
+}
+
+/* The "Equals" Line */
+.math-sum-line {
+    height: 4px;
+    background: var(--black);
+    margin: 2.5rem 0 2rem 55px; /* Aligns with the 420px step card */
+    width: 420px;
+    border-radius: 2px;
+}
+
+/* Result Footer */
+.math-footer {
+    margin-left: 55px;
+    max-width: 420px;
+    border-left: 5px solid var(--cardinal);
+}
