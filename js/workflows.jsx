@@ -253,23 +253,18 @@ function WorkflowApp() {
   );
 }
 
-// Wait for the DOM and tools to be ready
-window.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded fired');
-  
-  // Check if tools array exists
-  if (typeof tools === 'undefined') {
-    console.error('Tools array not found. Make sure js/toolsContent.js is loaded.');
-    document.getElementById('workflow-root').innerHTML = '<main class="main-content"><div class="content-wrapper"><p style="color: red; font-weight: bold;">Error: Tools data not loaded. Please check that js/toolsContent.js exists and loads before workflows.js</p></div></main>';
-    return;
-  }
+// Everything is already loaded by the time Babel runs this, so render immediately
+console.log('About to render React app');
+const rootElement = document.getElementById('workflow-root');
+console.log('Root element:', rootElement);
 
-  console.log('About to render React app');
-  const rootElement = document.getElementById('workflow-root');
-  console.log('Root element:', rootElement);
-  
+if (!rootElement) {
+  console.error('Could not find #workflow-root element!');
+} else if (typeof tools === 'undefined') {
+  console.error('Tools array not found');
+  rootElement.innerHTML = '<main class="main-content"><div class="content-wrapper"><p style="color: red; font-weight: bold;">Error: Tools data not loaded.</p></div></main>';
+} else {
   // Render the app using React 17 syntax
   ReactDOM.render(<WorkflowApp />, rootElement);
-  
   console.log('React app rendered');
-});
+}
