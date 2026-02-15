@@ -1,5 +1,12 @@
 const { useState } = React;
 
+// Add debugging
+console.log('workflows.js loaded');
+console.log('React available:', typeof React !== 'undefined');
+console.log('ReactDOM available:', typeof ReactDOM !== 'undefined');
+console.log('tools available:', typeof tools !== 'undefined');
+console.log('tools array:', tools);
+
 const workflowTypes = {
   mvp: {
     name: "Non-Technical MVP Builder",
@@ -248,13 +255,21 @@ function WorkflowApp() {
 
 // Wait for the DOM and tools to be ready
 window.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded fired');
+  
   // Check if tools array exists
   if (typeof tools === 'undefined') {
     console.error('Tools array not found. Make sure js/toolsContent.js is loaded.');
-    document.getElementById('workflow-root').innerHTML = '<main class="main-content"><div class="content-wrapper"><p>Error: Tools data not loaded. Please check that js/toolsContent.js exists.</p></div></main>';
+    document.getElementById('workflow-root').innerHTML = '<main class="main-content"><div class="content-wrapper"><p style="color: red; font-weight: bold;">Error: Tools data not loaded. Please check that js/toolsContent.js exists and loads before workflows.js</p></div></main>';
     return;
   }
 
+  console.log('About to render React app');
+  const rootElement = document.getElementById('workflow-root');
+  console.log('Root element:', rootElement);
+  
   // Render the app using React 17 syntax
-  ReactDOM.render(<WorkflowApp />, document.getElementById('workflow-root'));
+  ReactDOM.render(<WorkflowApp />, rootElement);
+  
+  console.log('React app rendered');
 });
