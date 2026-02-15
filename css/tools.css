@@ -15,6 +15,17 @@
     margin-bottom: 0.5rem;
 }
 
+/* Perplexity logo override */
+.tool-logo.perplexity-logo {
+    width: 60px;  /* adjust to match your other logos visually */
+    height: 60px; /* adjust to match your other logos visually */
+}
+
+.tool-detail-logo.perplexity-logo {
+    width: 80px;  /* for the detail panel */
+    height: 80px;
+}
+
 .tool-header-left {
     display: flex;
     align-items: center;

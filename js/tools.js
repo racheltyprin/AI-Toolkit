@@ -18,8 +18,8 @@
             return '<div class="tool-card" data-category="' + t.category + '" data-pricing="' + t.pricing + '">' +
                 '<div class="tool-header">' +
                 '<div class="tool-header-left">' +
-                '<img src="' + t.logo + '" alt="' + t.name + ' logo" class="tool-logo" onerror="this.style.display=\'none\'">' +
-                '<span class="tool-name">' + t.name + '</span>' +
+                '<img src="' + t.logo + '" alt="' + t.name + ' logo" class="tool-logo' + (t.name === 'Perplexity' ? ' perplexity-logo' : '') + 
+                '" onerror="this.style.display=\'none\'">' + '<span class="tool-name">' + t.name + '</span>' +
                 '</div>' +
                 '</div>' +
                 '<p class="tool-description">' + t.desc + '</p>' +
