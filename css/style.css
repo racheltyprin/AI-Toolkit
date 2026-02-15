@@ -409,4 +409,91 @@ h4 {
     .filter-options {
         flex-direction: column;
     }
+    
+ /* 1. Shift Math to the Left */
+.math-container-left {
+    max-width: 1200px;
+    margin: 3rem 0; /* Changed from 'auto' to '0' to align left */
+    padding-left: 20px;
+}
+
+.math-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.math-operator {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--cardinal);
+    width: 40px;
+    text-align: center;
+    padding-top: 1rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.workflow-step {
+    width: 420px;
+    background: var(--white);
+    border: 2px solid var(--palo-verde);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+}
+
+/* 2. Larger Tool Chips (Modular Grid) */
+.selected-tools-grid {
+    flex: 1;
+    display: grid;
+    /* 105px is exactly 1/4 of the 420px card width */
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    gap: 1rem;
+    padding-top: 0.5rem;
+}
+
+.large-tool-chip {
+    background: var(--white);
+    border: 1px solid var(--fog);
+    border-radius: 10px;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column; /* Stacked icon and text */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    aspect-ratio: 1 / 1; /* Keeps them as consistent square modules */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.large-tool-chip img {
+    width: 32px; /* Enlarge the logo */
+    height: 32px;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+}
+
+.large-tool-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.2;
+}
+
+/* 3. Re-aligning the Sum line and Footer to the left-shifted cards */
+.math-sum-line {
+    height: 4px;
+    background: var(--black);
+    margin: 2rem 0 2rem 55px; /* Matches operator width offset */
+    width: 420px;
+    border-radius: 2px;
+}
+
+.math-footer {
+    margin-left: 55px;
+    max-width: 420px;
+    border-left: 5px solid var(--cardinal);
 }
