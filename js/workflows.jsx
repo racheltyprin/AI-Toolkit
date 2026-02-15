@@ -246,6 +246,15 @@ function WorkflowApp() {
   );
 }
 
-// Render the app
-const root = ReactDOM.createRoot(document.getElementById('workflow-root'));
-root.render(<WorkflowApp />);
+// Wait for the DOM and tools to be ready
+window.addEventListener('DOMContentLoaded', () => {
+  // Check if tools array exists
+  if (typeof tools === 'undefined') {
+    console.error('Tools array not found. Make sure js/toolsContent.js is loaded.');
+    document.getElementById('workflow-root').innerHTML = '<main class="main-content"><div class="content-wrapper"><p>Error: Tools data not loaded. Please check that js/toolsContent.js exists.</p></div></main>';
+    return;
+  }
+
+  // Render the app using React 17 syntax
+  ReactDOM.render(<WorkflowApp />, document.getElementById('workflow-root'));
+});
