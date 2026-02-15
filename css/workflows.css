@@ -42,13 +42,14 @@
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     padding: 2rem;
-    min-height: calc(100vh - 500px);
-    height: calc(100vh - 500px);
+    /* Use min-height instead of fixed height to allow expansion */
+    min-height: 400px;
+    height: auto; 
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Start from top so tools expand downward */
     justify-content: center;
     margin-bottom: 1.5rem;
-    overflow: hidden;
+    overflow: visible; /* Allows child expansion to be visible */
 }
 
 .workflow-builder-empty {
@@ -60,22 +61,21 @@
 /* Workflow Steps */
 .workflow-steps-container {
     display: flex;
-    align-items: stretch;
+    align-items: flex-start; /* Changed from stretch to allow height differences */
     gap: 1rem;
     width: 100%;
-    height: 100%;
     overflow-x: auto;
-    overflow-y: hidden;
-    padding: 0.5rem;
+    overflow-y: visible; /* CRITICAL: Allows the tools to push downward */
+    padding: 1rem 0.5rem 2rem 0.5rem; /* Extra bottom padding for scrollbar clearance */
 }
 
 .workflow-step-wrapper {
     display: flex;
-    align-items: stretch;
+    align-items: flex-start; /* Changed from stretch */
     gap: 1rem;
     flex: 1;
     min-width: 0;
-    height: 100%;
+    /* height: 100% removed to allow the card to grow with its content */
 }
 
 .workflow-step {
