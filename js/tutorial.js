@@ -422,7 +422,8 @@
             var tipHTML = step.tip ? 
                 '<div class="tip-box"><h4>💡 Pro Tip</h4><p>' + step.tip + '</p></div>' : '';
             
-            return '<div class="step-card">' +
+            return '<div class="step-card" data-step="' + index + '">' +
+                '<button class="step-toggle" data-step="' + index + '">Show Less</button>' +
                 '<div class="step-card-header">' +
                 '<span class="step-number">' + (index + 1) + '</span>' +
                 '<h4>' + step.title + '</h4>' +
@@ -434,6 +435,16 @@
                 '</div>';
         }).join('');
         document.getElementById('steps-container').innerHTML = stepsHTML;
+        
+        // Add toggle event listeners
+        document.querySelectorAll('.step-toggle').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var stepIndex = this.getAttribute('data-step');
+                var card = document.querySelector('.step-card[data-step="' + stepIndex + '"]');
+                card.classList.toggle('collapsed');
+                this.textContent = card.classList.contains('collapsed') ? 'Show More' : 'Show Less';
+            });
+        });
 
         // Render example project
         var exampleHTML = '<h3>📋 Example Project: ' + tutorial.example.title + '</h3>' +
