@@ -51,7 +51,8 @@
         
         detailContent.innerHTML = 
             '<div class="tool-detail-header">' +
-            '<img src="' + tool.logo + '" alt="' + tool.name + ' logo" class="tool-detail-logo">' +
+            '<img src="' + tool.logo + '" alt="' + tool.name + ' logo" class="tool-detail-logo' + 
+            (tool.name === 'Perplexity' ? ' perplexity-logo' : '') + '">' + 
             '<h3 class="tool-detail-title">' + tool.name + '</h3>' +
             '</div>' +
             '<div class="tool-detail-actions">' +
