@@ -69,24 +69,33 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
+.step-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
 .step-number {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 36px;
     height: 36px;
     background: var(--cardinal);
     color: var(--white);
     border-radius: 50%;
-    text-align: center;
-    line-height: 36px;
     font-weight: 700;
     font-size: 1rem;
     margin-right: 0.75rem;
+    flex-shrink: 0;
 }
 
 .step-card h4 {
-    display: block;
-    margin-top: 0;
-    margin-bottom: 0.75rem;
+    margin: 0;
+}
+
+.step-card-content {
+    margin-left: 0;
 }
 
 .step-card ul {
