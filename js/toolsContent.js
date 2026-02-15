@@ -259,7 +259,7 @@ var tools = [
         category: "researching", 
         pricing: "student", 
         hasTutorial: true,  // Add this line
-        logo: "https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128",
+        logo: "images/logos/perplexityLogo.png",
         desc: "AI search engine that gives concise answers with citations. Excellent for fast research and fact-checking.",
         url: "https://www.perplexity.ai/",
         pricingDetails: "Free tier available. Pro plan $20/month.",
