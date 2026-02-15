@@ -110,9 +110,6 @@ function WorkflowApp() {
                               <div className="tool-option-name">{tool.name}</div>
                               <div className="tool-option-category">{tool.category.replace('-', ' ')}</div>
                             </div>
-                            <span className={`tool-pricing-badge ${tool.pricing}`}>
-                              {tool.pricing}
-                            </span>
                           </div>
                         ))}
                       </div>
