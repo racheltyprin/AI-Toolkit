@@ -1,5 +1,5 @@
 /* Workflow Page Specific Styles */
-
+/*workflows.css*/
 /* Workflow Type Selection */
 .workflow-selector {
     margin-bottom: 1.5rem;
@@ -42,11 +42,13 @@
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     padding: 2rem;
-    min-height: 400px;
+    min-height: calc(100vh - 500px);
+    height: calc(100vh - 500px);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
+    overflow: hidden;
 }
 
 .workflow-builder-empty {
@@ -58,19 +60,22 @@
 /* Workflow Steps */
 .workflow-steps-container {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 1rem;
     width: 100%;
+    height: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     padding: 0.5rem;
 }
 
 .workflow-step-wrapper {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 1rem;
     flex: 1;
     min-width: 0;
+    height: 100%;
 }
 
 .workflow-step {
@@ -242,11 +247,10 @@
 .workflow-arrow {
     flex-shrink: 0;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     color: var(--palo-verde);
     font-size: 2rem;
     font-weight: 700;
-    padding-top: 3rem;
     line-height: 1;
 }
 
@@ -316,7 +320,8 @@
 @media (max-width: 768px) {
     .workflow-builder {
         padding: 1.5rem;
-        min-height: 300px;
+        min-height: 400px;
+        height: auto;
     }
 
     .workflow-step {
@@ -330,7 +335,6 @@
 
     .workflow-arrow {
         font-size: 1.5rem;
-        padding-top: 2rem;
     }
 
     .workflow-info-footer {

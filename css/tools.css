@@ -1,3 +1,4 @@
+/*tools.css*/
 /* Tool logo styles */
 .tool-logo {
     width: 40px;
@@ -17,12 +18,12 @@
 
 /* Perplexity logo override */
 .tool-logo.perplexity-logo {
-    width: 80px;  /* adjust to match your other logos visually */
-    height: 80px; /* adjust to match your other logos visually */
+    width: 80px;
+    height: 80px;
 }
 
 .tool-detail-logo.perplexity-logo {
-    width: 80px;  /* for the detail panel */
+    width: 80px;
     height: 80px;
 }
 
