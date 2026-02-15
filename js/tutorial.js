@@ -62,7 +62,7 @@
                 var card = document.querySelector('.step-card[data-step="' + stepIndex + '"]');
                 card.classList.toggle('collapsed');
                 this.textContent = card.classList.contains('collapsed') ? 'Show More' : 'Show Less';
-                });
+            });
         });
         // Render example project
         var exampleHTML = '<h3>📋 Example Project: ' + tutorial.example.title + '</h3>' +
