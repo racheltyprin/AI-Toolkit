@@ -93,11 +93,9 @@
         const container = document.getElementById('steps-container');
         
         container.innerHTML = steps.map((step, index) => {
-            // Get selected tools for this step from planData
             const stepTools = selectedToolsByStep[index] || [];
             
             if (stepTools.length === 0) {
-                // No tools selected for this step - skip it or show placeholder
                 return `
                     <div class="step-card">
                         <div class="step-header">
@@ -105,76 +103,68 @@
                             <div class="step-title-block">
                                 <h3>${step.title}</h3>
                                 <p class="step-description">${step.description}</p>
-                                <p style="color: var(--black-light); font-size: 0.9rem; margin-top: 0.5rem;">No tools selected for this step</p>
+                                <p style="color: var(--black-light); font-size: 0.9rem; margin-top: 0.5rem;">No tools selected</p>
                             </div>
                         </div>
                     </div>
                 `;
             }
             
-            // Render cards for each selected tool in this step
-            return stepTools.map(tool => {
+            // Map through tools and insert "OR" if it's not the first tool
+            return stepTools.map((tool, toolIndex) => {
                 const tutorial = getTutorial(tool.name);
+                if (!tutorial) return '';
                 
-                if (!tutorial) {
-                    console.warn('Missing tutorial for:', tool.name);
-                    return '';
+                let html = '';
+                
+                // If this is the second tool in the same step, add the OR divider
+                if (toolIndex > 0) {
+                    html += `
+                        <div class="step-or-divider">
+                            <span>OR</span>
+                        </div>
+                    `;
                 }
                 
-                return renderStepCard(step, tool, tutorial, index + 1);
+                // Pass true/false to renderStepCard to decide if the number should show
+                const isFirstInStep = toolIndex === 0;
+                html += renderStepCard(step, tool, tutorial, index + 1, isFirstInStep);
+                
+                return html;
             }).join('');
             
         }).join('');
     }
     
     // Render individual step card
-    function renderStepCard(step, tool, tutorial, stepNumber) {
+    function renderStepCard(step, tool, tutorial, stepNumber, isFirstInStep) {
         return `
-            <div class="step-card">
-                <div class="step-header">
-                    <div class="step-number">${stepNumber}</div>
-                    <div class="step-title-block">
-                        <h3>${step.title}</h3>
-                        <p class="step-description">${step.description}</p>
+            <div class="step-card ${!isFirstInStep ? 'step-card-continuation' : ''}">
+                ${isFirstInStep ? `
+                    <div class="step-header">
+                        <div class="step-number">${stepNumber}</div>
+                        <div class="step-title-block">
+                            <h3>${step.title}</h3>
+                            <p class="step-description">${step.description}</p>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Tool Chip -->
-                <div class="tool-chip-container">
+                ` : ''}
+    
+                <div class="tool-chip-container" style="${!isFirstInStep ? 'margin-top: 0;' : ''}">
                     <div class="tool-chip">
                         <img src="${tool.logo}" alt="${tool.name}" class="tool-chip-logo" onerror="this.style.display='none'">
                         <span class="tool-chip-name">${tool.name}</span>
                     </div>
                 </div>
-
-                <!-- Quick Start -->
+    
                 <div class="step-section">
                     <h5 class="step-section-title">Quick Start</h5>
                     <ol class="instruction-list">
                         ${tutorial.quickStart.map(item => `<li>${stripHtmlTags(item)}</li>`).join('')}
                     </ol>
                 </div>
-
-                <!-- Step by Step -->
-                ${tutorial.steps && tutorial.steps.length > 0 ? `
-                <div class="step-section">
-                    <h5 class="step-section-title">Step by Step Instructions</h5>
-                    <ol class="instruction-list">
-                        ${tutorial.steps.map(s => `<li><strong>${s.title}:</strong> ${stripHtmlTags(s.content)}</li>`).join('')}
-                    </ol>
+                
                 </div>
-                ` : ''}
-
-                <!-- Common Mistakes -->
-                ${tutorial.mistakes && tutorial.mistakes.length > 0 ? `
-                <div class="step-section">
-                    <h5 class="step-section-title">Common Mistakes</h5>
-                    <ul class="mistakes-list">
-                        ${tutorial.mistakes.map(mistake => `<li>${stripHtmlTags(mistake)}</li>`).join('')}
-                    </ul>
-                </div>
-                ` : ''}
-            </div>
         `;
     }
     

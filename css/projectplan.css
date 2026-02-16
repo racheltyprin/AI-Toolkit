@@ -275,3 +275,30 @@
         gap: 0.5rem;
     }
 }
+
+/* OR Divider Styling */
+.step-or-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -1rem 0 1rem 0; /* Pulls it between cards */
+    position: relative;
+    z-index: 2;
+}
+
+.step-or-divider span {
+    background: var(--cardinal);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Optional: Removes top border/radius of cards following an OR */
+.step-card-continuation {
+    border-top: 1px dashed #ddd;
+    margin-top: 0;
+}
