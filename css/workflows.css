@@ -308,14 +308,18 @@
     border-radius: 12px;
     border: 1px solid var(--fog);
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    
+    /* MATCHING YOUR SUM LINE EXACTLY */
+    margin-left: 64px; 
+    width: calc(100% - 64px); 
+    box-sizing: border-box; /* Crucial so padding doesn't make it wider than the line */
 }
 
-.custom-builder-inputs .title-input {
-    border: none;
-    border-bottom: 2px solid var(--fog) !important;
-    border-radius: 0 !important;
-    padding: 0.5rem 0 !important;
-    transition: border-color 0.3s ease;
+/* Ensure the text inputs inside use the full available width */
+.custom-builder-inputs .title-input,
+.custom-builder-inputs textarea {
+    width: 100% !important;
+    display: block;
 }
 
 .custom-builder-inputs .title-input:focus {
