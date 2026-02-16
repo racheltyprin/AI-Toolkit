@@ -33,10 +33,10 @@
     // Main render function
     function renderWorkflow(workflow, planData) {
         // Update title, subtitle, description
-        document.getElementById('workflow-title').textContent = workflow.title;
-        document.getElementById('workflow-subtitle').textContent = workflow.subtitle;
+        document.getElementById('workflow-title').textContent = workflow.name; // Changed .title to .name
+        document.getElementById('workflow-subtitle').textContent = workflow.name; // or leave blank if no subtitle
         document.getElementById('workflow-description').textContent = workflow.description;
-        
+
         // Update project info - use totals from planData if available
         if (totals) {
             document.getElementById('time-estimate').textContent = totals.time;
