@@ -197,16 +197,67 @@
     
     // PDF Export function
     window.exportToPDF = function() {
-        const element = document.getElementById('workflow-content');
-        const opt = {
-            margin: 0.5,
-            filename: 'ai-project-plan.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        };
-
-        html2pdf().set(opt).from(element).save();
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const workflow = workflowTypes[WORKFLOW_ID];
+        
+        let yPos = 20; // Starting vertical position in mm
+    
+        // --- Header ---
+        doc.setFontSize(22);
+        doc.setFont("helvetica", "bold");
+        doc.text(workflow.name, 20, yPos);
+        
+        yPos += 10;
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
+        // This wraps the description so it doesn't run off the page
+        const splitDesc = doc.splitTextToSize(workflow.description, 170);
+        doc.text(splitDesc, 20, yPos);
+        
+        yPos += (splitDesc.length * 7) + 10;
+    
+        // --- Render Steps ---
+        workflow.steps.forEach((step, index) => {
+            const stepTools = selectedToolsByStep[index] || [];
+            if (stepTools.length === 0) return; // Skip steps with no tools
+    
+            // Check for page overflow
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+    
+            doc.setFontSize(16);
+            doc.setFont("helvetica", "bold");
+            doc.text(`${index + 1}. ${step.title}`, 20, yPos);
+            yPos += 8;
+    
+            stepTools.forEach(tool => {
+                const tutorial = getTutorial(tool.name);
+                
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "bold");
+                doc.text(`Tool: ${tool.name}`, 25, yPos);
+                yPos += 6;
+    
+                // Quick Start Items
+                doc.setFont("helvetica", "normal");
+                tutorial.quickStart.forEach(item => {
+                    // Remove HTML tags for the PDF
+                    const cleanItem = stripHtmlTags(item);
+                    const splitItem = doc.splitTextToSize(`• ${cleanItem}`, 160);
+                    doc.text(splitItem, 30, yPos);
+                    yPos += (splitItem.length * 5) + 2;
+                });
+                
+                yPos += 5; // Extra spacing between tools
+            });
+            
+            yPos += 5; // Extra spacing between steps
+        });
+    
+        doc.save('ai-project-plan.pdf');
     };
     
     // Initialize on page load
