@@ -21,7 +21,7 @@
     
     // Initialize the page
     function init() {
-        const workflow = workflowsContent[WORKFLOW_ID];
+        const workflow = workflowsTypes[WORKFLOW_ID];
         if (!workflow) {
             console.error('Workflow not found:', WORKFLOW_ID);
             return;
@@ -43,8 +43,8 @@
             document.getElementById('cost-estimate').textContent = totals.cost;
             document.getElementById('difficulty-estimate').textContent = workflow.difficulty;
         } else {
-            document.getElementById('time-estimate').textContent = workflow.timeEstimate;
-            document.getElementById('cost-estimate').textContent = workflow.costEstimate;
+            document.getElementById('time-estimate').textContent = workflow.time;
+            document.getElementById('cost-estimate').textContent = workflow.cost;
             document.getElementById('difficulty-estimate').textContent = workflow.difficulty;
         }
         

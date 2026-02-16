@@ -35,7 +35,7 @@ var tutorials = {
         example: {
             title: "Personal Portfolio",
             goal: "Create a portfolio to showcase 3 design projects",
-            prompt: '"Create a modern, minimal portfolio website for a UX designer. Include:\\n- Hero section with name and tagline\\n- About section with photo and bio\\n- 3 project case studies with images and descriptions\\n- Contact section with email and LinkedIn\\n- Dark mode, lots of whitespace, professional but friendly"',
+            prompt: `Create a modern, minimal portfolio website for a UX designer. Include:\\n- Hero section with name and tagline\\n- About section with photo and bio\\n- 3 project case studies with images and descriptions\\n- Contact section with email and LinkedIn\\n- Dark mode, lots of whitespace, professional but friendly`,
             time: "25 minutes",
             result: "A polished, responsive portfolio ready to share with employers"
         },
@@ -224,7 +224,7 @@ var tutorials = {
         example: {
             title: "Research Report",
             goal: "Synthesize 3 academic papers into a 2-page summary",
-            prompt: "'I'm writing a lit review on [topic]. Here are 3 papers [upload PDFs]. Write a 2-page synthesis highlighting key findings, methodologies, and gaps. Use APA citations.'",
+            prompt: `I'm writing a lit review on [topic]. Here are 3 papers [upload PDFs]. Write a 2-page synthesis highlighting key findings, methodologies, and gaps. Use APA citations.`,
             time: "15 minutes",
             result: "Well-structured research summary with proper citations and critical analysis"
         },
@@ -287,7 +287,7 @@ var tutorials = {
         example: {
             title: "Data Analysis Report",
             goal: "Analyze survey results and create visualizations",
-            prompt: "'I have survey data from 100 respondents [upload CSV]. Create: 1) Summary statistics, 2) 3 key insights, 3) Visual charts, 4) Recommendations for next steps.'",
+            prompt: `I have survey data from 100 respondents [upload CSV]. Create: 1) Summary statistics, 2) 3 key insights, 3) Visual charts, 4) Recommendations for next steps.`,
             time: "20 minutes",
             result: "Complete analysis with charts, insights, and actionable recommendations"
         },
@@ -350,7 +350,7 @@ var tutorials = {
         example: {
             title: "Competitive Research",
             goal: "Research competitors in your space",
-            prompt: "'What are the top 5 no-code app builders in 2024? For each, list: pricing, target users, key features, and recent funding. Include sources.'",
+            prompt: `What are the top 5 no-code app builders in 2024? For each, list: pricing, target users, key features, and recent funding. Include sources.`,
             time: "10 minutes",
             result: "Comprehensive competitive analysis with verified data and citations"
         },
@@ -539,7 +539,7 @@ var tutorials = {
         example: {
             title: "Food Delivery App UI",
             goal: "Design a mobile app for food ordering",
-            prompt: "'Create a food delivery app with: home screen showing restaurant cards with photos and ratings, restaurant detail page with menu items and prices, cart screen, and checkout form'",
+            prompt: `Create a food delivery app with: home screen showing restaurant cards with photos and ratings, restaurant detail page with menu items and prices, cart screen, and checkout form`,
             time: "20 minutes",
             result: "Complete 4-screen mobile app design ready for feedback or development handoff"
         },
@@ -602,7 +602,7 @@ var tutorials = {
         example: {
             title: "Product Launch Plan",
             goal: "Plan a 6-week product launch with AI",
-            prompt: "'Create a comprehensive 6-week product launch plan for a mobile app. Include: pre-launch preparation, beta testing, marketing activities, launch day tasks, and post-launch monitoring.'",
+            prompt: `Create a comprehensive 6-week product launch plan for a mobile app. Include: pre-launch preparation, beta testing, marketing activities, launch day tasks, and post-launch monitoring.`,
             time: "15 minutes",
             result: "Complete project plan with tasks organized by week, ready to assign and execute"
         },
@@ -665,7 +665,7 @@ var tutorials = {
         example: {
             title: "Literature Review",
             goal: "Conduct a lit review on remote work and productivity",
-            prompt: "'What is the effect of remote work on employee productivity in knowledge workers? Include studies from 2020-2024.'",
+            prompt: `What is the effect of remote work on employee productivity in knowledge workers? Include studies from 2020-2024.`,
             time: "45 minutes",
             result: "Table of 20+ relevant papers with extracted findings, methodologies, and sample sizes ready for synthesis"
         },
@@ -791,7 +791,7 @@ var tutorials = {
         example: {
             title: "Marketing Hero Image",
             goal: "Create a hero image for a productivity app landing page",
-            prompt: "'A clean, minimal workspace with a floating holographic interface showing task lists and calendars, isometric view, pastel blue and purple color scheme, soft shadows, 3D render style, professional, modern'",
+            prompt: `A clean, minimal workspace with a floating holographic interface showing task lists and calendars, isometric view, pastel blue and purple color scheme, soft shadows, 3D render style, professional, modern`,
             time: "20 minutes (including iterations)",
             result: "Unique, on-brand hero image that matches your app's aesthetic"
         },
@@ -823,7 +823,7 @@ var tutorials = {
         tagline: "Free AI design tool from Microsoft. Create social posts and graphics from simple prompts.",
         quickStart: [
             "<strong>Sign in:</strong> Go to designer.microsoft.com with Microsoft account",
-            "<strong>Describe design:</strong> 'Create an Instagram post about...'",
+            `<strong>Describe design:</strong> 'Create an Instagram post about...`,
             "<strong>Pick layout:</strong> Choose from AI-generated options",
             "<strong>Customize:</strong> Edit text, images, colors",
             "<strong>Download:</strong> Export as PNG or share link"
@@ -854,7 +854,7 @@ var tutorials = {
         example: {
             title: "Event Announcement Post",
             goal: "Create an Instagram post for a workshop",
-            prompt: "'Create an Instagram post for a UX design workshop on March 15th, modern and professional style, teal and white colors'",
+            prompt: `Create an Instagram post for a UX design workshop on March 15th, modern and professional style, teal and white colors`,
             time: "10 minutes",
             result: "Polished Instagram post with custom graphics, ready to post"
         },
@@ -980,7 +980,7 @@ var tutorials = {
         example: {
             title: "Video Background Footage",
             goal: "Create abstract background footage for a product video",
-            prompt: "'Flowing abstract particles, teal and purple colors, smooth motion, 10 seconds'",
+            prompt: `Flowing abstract particles, teal and purple colors, smooth motion, 10 seconds`,
             time: "15 minutes",
             result: "AI-generated background video ready to use in your edit"
         },
@@ -1012,7 +1012,7 @@ var tutorials = {
         tagline: "Connect apps and automate workflows without coding. Eliminate repetitive tasks between 6,000+ apps.",
         quickStart: [
             "<strong>Sign up:</strong> Create account at zapier.com (free tier available)",
-            "<strong>Create Zap:</strong> Click 'Create Zap'",
+            `<strong>Create Zap:</strong> Click 'Create Zap`,
             "<strong>Choose trigger:</strong> 'When this happens...' (e.g., new email)",
             "<strong>Choose action:</strong> 'Do this...' (e.g., add to spreadsheet)",
             "<strong>Test and turn on:</strong> Verify it works, then activate"
