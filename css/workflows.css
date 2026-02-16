@@ -37,7 +37,7 @@
 
 /* 2. Workflow Type Selection */
 .workflow-selector {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .workflow-buttons {
@@ -185,12 +185,21 @@
     cursor: pointer;
 }
 
+.tool-option:hover {
+    background-color: var(--fog);
+}
+
+.tool-option.selected {
+    background-color: var(--cream);
+    color: var(--cardinal);
+    font-weight: bold;
+}
+
 /* 6. Math Footer Area */
 .math-sum-line {
     height: 4px;
     background: var(--black);
     margin: 2rem 0;
-    /* Aligns exactly with the start of the workflow-step cards */
     margin-left: 64px; 
     width: calc(100% - 64px); 
     border-radius: 2px;
@@ -199,7 +208,6 @@
 
 .math-footer-container {
     display: flex;
-    /* Matches the 40px operator + 1.5rem gap (24px) = 64px */
     margin-left: 64px; 
     width: calc(100% - 64px);
     gap: 1.5rem;
@@ -208,11 +216,10 @@
     box-sizing: border-box;
 }
 
-/* Force both boxes to be exactly the same size */
 .math-footer, 
 .final-stack-card {
     flex: 1; 
-    min-width: 0; /* Important for preventing overflow from tool tags */
+    min-width: 0;
     background: var(--white);
     border-radius: 12px;
     padding: 1.5rem;
@@ -235,12 +242,11 @@
     font-weight: 700;
     color: var(--cardinal);
     font-size: 1.25rem;
-    margin: 0;            /* ADD THIS: Removes default h3 spacing */
-    margin-bottom: 1rem;  /* ADD THIS: Forces consistent space below the text */
-    line-height: 1.2;     /* ADD THIS: Matches the vertical 'box' of the text */
+    margin: 0;
+    margin-bottom: 1rem;
+    line-height: 1.2;
     display: block;
 }
-
 
 .workflow-info-meta {
     display: flex;
@@ -267,7 +273,6 @@
     font-weight: 600;
 }
 
-/* Tool tags list inside the right box */
 .stack-tools-list {
     display: flex;
     flex-wrap: wrap;
@@ -294,27 +299,75 @@
     object-fit: contain;
 }
 
-/* 7. Responsive Overrides */
-@media (max-width: 1024px) {
-    .math-footer-container {
-        flex-direction: column;
-        margin-left: 64px;
-        width: calc(100% - 64px);
-    }
+/* 7. Custom Builder Layout Specifics */
+
+/* Name/Desc Input Section */
+.custom-builder-inputs {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--fog);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-@media (max-width: 768px) {
-    .math-sum-line, .math-footer-container {
-        margin-left: 0;
-        width: 100%;
-    }
+.custom-builder-inputs .title-input {
+    border: none;
+    border-bottom: 2px solid var(--fog) !important;
+    border-radius: 0 !important;
+    padding: 0.5rem 0 !important;
+    transition: border-color 0.3s ease;
 }
 
-/* Styling for the full-width plan generator button */
+.custom-builder-inputs .title-input:focus {
+    border-bottom: 2px solid var(--cardinal-light) !important;
+}
+
+/* Dynamic Step Title Input */
+.step-title-input {
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    padding: 4px 0;
+    font-family: 'Source Serif 4', serif;
+    color: var(--cardinal);
+    transition: border-color 0.2s;
+}
+
+.step-title-input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--cardinal-light);
+}
+
+.delete-step-btn {
+    background: var(--white);
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    font-size: 0.9rem;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.delete-step-btn:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+/* 8. Action Buttons */
 .generate-plan-btn {
     display: block;
-    margin: 2rem 0 4rem 64px; /* Matches the 64px margin-left of the sum line */
-    width: calc(100% - 64px);  /* Matches the width of the sum line */
+    margin: 2rem 0 4rem 64px;
+    width: calc(100% - 64px); 
     background: var(--sky);
     color: var(--white);
     border: none;
@@ -329,7 +382,27 @@
 }
 
 .generate-plan-btn:hover {
-    background: #007C92; /* Slightly darker  */
+    background: #007C92;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* 9. Responsive Overrides */
+@media (max-width: 1024px) {
+    .math-footer-container {
+        flex-direction: column;
+        margin-left: 64px;
+        width: calc(100% - 64px);
+    }
+}
+
+@media (max-width: 768px) {
+    .math-sum-line, .math-footer-container, .generate-plan-btn {
+        margin-left: 0;
+        width: 100%;
+    }
+    .workflow-step {
+        width: 100%;
+        flex: 1 1 auto;
+    }
 }

@@ -110,7 +110,12 @@ var workflowTypes = {
           defaultToolName: ""
         }
       ]
-    }
+    },
+    custom: {
+      name: "➕ Custom Workflow",
+      description: "Build your own project structure from scratch.",
+      steps: [] // We will fill this dynamically in the React app
+  }
   };
 
 

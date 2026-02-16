@@ -101,13 +101,22 @@
 }
 
 /* Step Cards - Compact */
-.step-card {
+html body .step-card {
     background: var(--white);
     border-radius: 12px;
     padding: 1.5rem;
     border-left: 5px solid var(--palo-verde);
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.25rem !important; /* Force standard spacing */
+    position: relative;
+}
+
+/* This is the logic that creates the 'Dotted Line' connection */
+html body .step-card:has(+ .step-or-divider) {
+    margin-bottom: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom: 2px dashed var(--fog) !important;
 }
 
 .step-header {
@@ -276,29 +285,100 @@
     }
 }
 
-/* OR Divider Styling */
-.step-or-divider {
+/* Styling for OR when it appears INSIDE a card */
+.step-tools-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.plan-or-divider {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1rem 0 1rem 0; /* Pulls it between cards */
-    position: relative;
-    z-index: 2;
+    margin: 2rem 0; /* Space between tool sections */
 }
 
-.step-or-divider span {
+/* The cute dotted line across the card */
+.plan-or-divider::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    border-top: 2px dashed var(--fog);
+    top: 50%;
+    left: 0;
+    z-index: 1;
+}
+
+.plan-or-divider span {
+    position: relative;
+    z-index: 2;
     background: var(--cardinal);
     color: white;
-    padding: 4px 12px;
+    padding: 4px 16px;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: bold;
+    text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Optional: Removes top border/radius of cards following an OR */
-.step-card-continuation {
-    border-top: 1px dashed #ddd;
-    margin-top: 0;
+.tool-implementation {
+    padding: 1rem 0;
+}
+
+/* This is the name your JavaScript is looking for */
+.plan-step-card {
+    background: var(--white) !important; /* Forces the white background to show */
+    border-radius: 12px;
+    padding: 1.5rem;
+    border-left: 5px solid var(--palo-verde);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 2rem;
+    position: relative;
+    display: block !important; /* Ensures it doesn't stay hidden */
+}
+
+/* Ensure the number circles show up too */
+.plan-step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--cardinal);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+/* TIGHTEN SPACE BETWEEN DESCRIPTION AND TOOLS */
+
+/* 1. Remove bottom margin from the description text */
+.plan-step-card .step-description {
+    margin-bottom: 0.0rem !important; /* Reduced from 1.5rem */
+}
+
+/* 2. Tighten the title spacing too */
+.plan-step-card .step-title-block h3 {
+    margin-bottom: 0rem !important;
+}
+
+/* 3. Remove extra padding from the tools container */
+.step-tools-content {
+    margin-top: 0 !important;
+}
+
+/* 4. Make the first tool chip sit closer to the header */
+.tool-implementation:first-child {
+    padding-top: 0rem !important;
+}
+
+.tool-chip-container {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
 }
