@@ -201,7 +201,7 @@
         const doc = new jsPDF();
         const workflow = workflowTypes[WORKFLOW_ID];
         
-        let yPos = 20; // Starting vertical position in mm
+        let yPos = 20;
     
         // --- Header ---
         doc.setFontSize(22);
@@ -211,7 +211,6 @@
         yPos += 10;
         doc.setFontSize(12);
         doc.setFont("helvetica", "normal");
-        // This wraps the description so it doesn't run off the page
         const splitDesc = doc.splitTextToSize(workflow.description, 170);
         doc.text(splitDesc, 20, yPos);
         
@@ -220,10 +219,9 @@
         // --- Render Steps ---
         workflow.steps.forEach((step, index) => {
             const stepTools = selectedToolsByStep[index] || [];
-            if (stepTools.length === 0) return; // Skip steps with no tools
+            if (stepTools.length === 0) return;
     
-            // Check for page overflow
-            if (yPos > 250) {
+            if (yPos > 240) { // Page break check
                 doc.addPage();
                 yPos = 20;
             }
@@ -235,29 +233,39 @@
     
             stepTools.forEach(tool => {
                 const tutorial = getTutorial(tool.name);
+                if (!tutorial) return;
                 
                 doc.setFontSize(12);
                 doc.setFont("helvetica", "bold");
                 doc.text(`Tool: ${tool.name}`, 25, yPos);
                 yPos += 6;
     
-                // Quick Start Items
                 doc.setFont("helvetica", "normal");
                 tutorial.quickStart.forEach(item => {
-                    // Remove HTML tags for the PDF
-                    const cleanItem = stripHtmlTags(item);
-                    const splitItem = doc.splitTextToSize(`• ${cleanItem}`, 160);
+                    // CLEANUP STEP: 
+                    // 1. Strip HTML tags
+                    // 2. Replace the weird arrow symbol with a standard arrow
+                    // 3. Fix common missing quotes
+                    let cleanItem = stripHtmlTags(item)
+                        .replace(/→/g, "->") 
+                        .replace(/Create Zap$/, "Create Zap'") // Fixes the Zapier quote
+                        .trim();
+    
+                    const splitItem = doc.splitTextToSize(`- ${cleanItem}`, 155);
+                    
+                    // Final overflow check before printing item
+                    if (yPos > 270) { doc.addPage(); yPos = 20; }
+                    
                     doc.text(splitItem, 30, yPos);
                     yPos += (splitItem.length * 5) + 2;
                 });
                 
-                yPos += 5; // Extra spacing between tools
+                yPos += 4; 
             });
-            
-            yPos += 5; // Extra spacing between steps
+            yPos += 6; 
         });
     
-        doc.save('ai-project-plan.pdf');
+        doc.save(`${workflow.name.replace(/\s+/g, '-').toLowerCase()}-plan.pdf`);
     };
     
     // Initialize on page load
