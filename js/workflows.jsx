@@ -130,7 +130,8 @@ function WorkflowApp() {
     <main className="main-content">
       <div className="content-wrapper">
         <h1 className="page-title">Workflow Builder</h1>
-        
+        <p class="lead">Choose project type to see a sample workflow.</p>
+
         {/* Step 1: Select Workflow Type */}
         <div className="workflow-selector">
           <div className="workflow-buttons">
