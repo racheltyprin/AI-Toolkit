@@ -1,5 +1,5 @@
 
-const workflowTypes = {
+var workflowTypes = {
     mvp: {
       name: "Non-Technical MVP Builder",
       description: "Build a basic MVP without writing code",
