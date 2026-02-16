@@ -41,13 +41,11 @@
     var detailContent = document.getElementById("tool-detail-content");
     var closeBtn = document.getElementById("tool-detail-close");
 
-    function showToolDetail(tool) {
-        // Convert tool name to URL-friendly format
+    function showToolDetail(tool, cardElement) {
+        // 1. Setup the content as usual
         var tutorialSlug = tool.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    
-        // Conditionally build tutorial link
         var tutorialLink = tool.hasTutorial 
-        ? '<a href="tutorial.html?tool=' + tutorialSlug + '" class="tool-detail-link tutorial-link">Get Started Guide →</a>' : '';
+            ? '<a href="tutorial.html?tool=' + tutorialSlug + '" class="tool-detail-link tutorial-link">Get Started Guide →</a>' : '';
         
         detailContent.innerHTML = 
             '<div class="tool-detail-header">' +
@@ -64,8 +62,27 @@
             '<div class="tool-detail-section"><h4>Use Cases</h4><ul>' + 
             tool.useCases.map(function(u){return '<li>'+u+'</li>';}).join('') + '</ul></div>' +
             '<div class="tool-detail-section"><h4>When to Use</h4><p>' + tool.whenToUse + '</p></div>';
-
+    
+        // 2. RESPONSIVE SPAWN LOGIC
+        // Check if we are on mobile (typically 1024px or less)
+        if (window.innerWidth <= 1024) {
+            // iPhone/Tablet: Move the panel directly after the clicked card
+            cardElement.after(detailPanel);
+            // Add a class for specific mobile styling if needed
+            detailPanel.classList.add("mobile-inline");
+        } else {
+            // Desktop: Ensure it's in the side container
+            var layoutContainer = document.querySelector(".tools-layout");
+            layoutContainer.appendChild(detailPanel);
+            detailPanel.classList.remove("mobile-inline");
+        }
+    
         detailPanel.classList.remove("hidden");
+    
+        // Optional: Scroll to the details on mobile so the user sees it spawn
+        if (window.innerWidth <= 1024) {
+            detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     }
 
     function hideToolDetail() {
@@ -87,7 +104,9 @@
             if (!card) return;
             var toolName = card.querySelector(".tool-name").textContent;
             var tool = tools.find(function(t) { return t.name === toolName; });
-            if (tool) showToolDetail(tool);
+            
+            // Pass 'card' as the second argument
+            if (tool) showToolDetail(tool, card); 
         });
     }
 

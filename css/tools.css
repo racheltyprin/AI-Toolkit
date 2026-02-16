@@ -59,13 +59,7 @@
     justify-content: flex-start;
 }
 
-.tools-grid {
-    flex: 1;
-    display: flex;       /* Add this */
-    flex-wrap: wrap;     /* Add this */
-    align-content: flex-start; /* This stops the vertical stretching */
-    gap: 1.5rem;
-}
+
 
 /* Detail panel */
 .tool-detail-panel {
