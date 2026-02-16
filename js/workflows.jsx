@@ -58,13 +58,18 @@ function WorkflowApp() {
 
   // Logic to save plan and move to new page
   const handleGeneratePlan = () => {
+    if (!selectedWorkflow) {
+      alert("Please select a workflow first.");
+      return;
+    }
+  
     const planData = {
       workflowKey: selectedWorkflow,
       selectedTools: selectedTools,
       totals: totals
     };
     localStorage.setItem('currentProjectPlan', JSON.stringify(planData));
-    window.location.href = 'plan.html';
+    window.location.href = 'projectplan.html';
   };
 
   return (

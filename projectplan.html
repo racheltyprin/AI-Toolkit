@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Build Your First AI App | AI Prototyping Cart</title>
+    <title>Project Plan | AI Prototyping Cart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Your existing CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- New project plan CSS -->
     <link rel="stylesheet" href="css/projectplan.css">
 </head>
 <body>
@@ -33,19 +37,23 @@
 
             <!-- Content to be exported -->
             <div id="workflow-content">
-                <!-- Title and Subtitle -->
-                <h1 class="page-title">Build Your First AI-Powered App</h1>
+                <!-- Title and Subtitle (dynamic) -->
+                <h1 class="page-title" id="workflow-title">Loading...</h1>
                 <div class="workflow-header">
-                    <h2>Rapid Prototyping to Production</h2>
+                    <h2 id="workflow-subtitle">Loading...</h2>
                 </div>
-                <p class="lead">
-                    This workflow takes you from idea to deployed application in hours, not weeks. 
-                    You'll use modern tools that handle the heavy lifting so you can focus on building 
-                    something people want.
-                </p>
+                <p class="lead" id="workflow-description">Loading...</p>
 
                 <!-- Visual Divider -->
                 <div class="workflow-divider"></div>
+
+                <!-- Tech Stack Section -->
+                <div class="tech-stack-card">
+                    <h4>Tech Stack</h4>
+                    <div class="tech-stack-chips" id="tech-stack-chips">
+                        <!-- Dynamic tech stack chips -->
+                    </div>
+                </div>
 
                 <!-- Project Info -->
                 <div class="project-info-card">
@@ -53,190 +61,36 @@
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-label">Time Estimate</div>
-                            <div class="info-value">4-6 hours</div>
+                            <div class="info-value" id="time-estimate">-</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Cost Estimate</div>
-                            <div class="info-value">$0-25/month</div>
+                            <div class="info-value" id="cost-estimate">-</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Difficulty</div>
-                            <div class="info-value">Beginner-Friendly</div>
+                            <div class="info-value" id="difficulty-estimate">-</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 1 -->
-                <div class="step-card">
-                    <div class="step-header">
-                        <div class="step-number">1</div>
-                        <div class="step-title-block">
-                            <h3>Set Up Your Frontend</h3>
-                            <p class="step-description">
-                                Create a modern, responsive interface using React and Tailwind CSS. 
-                                This step lays the foundation for your entire application.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Tool Chip -->
-                    <div class="tool-chip-container">
-                        <div class="tool-chip">
-                            <img src="https://www.google.com/s2/favicons?domain=vercel.com&sz=128" alt="Vercel" class="tool-chip-logo">
-                            <span class="tool-chip-name">Vercel</span>
-                        </div>
-                    </div>
-
-                    <!-- Quick Start -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Quick Start</h5>
-                        <div class="code-block">
-                            <span class="code-comment"># Install Vercel CLI</span>
-                            <span class="code-command">npm i -g vercel</span>
-                            <br><br>
-                            <span class="code-comment"># Deploy your app</span>
-                            <span class="code-command">vercel</span>
-                        </div>
-                    </div>
-
-                    <!-- Step by Step -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Step by Step Instructions</h5>
-                        <ol class="instruction-list">
-                            <li>Create a new React project with <code>npx create-react-app my-app</code></li>
-                            <li>Connect your GitHub repository to Vercel</li>
-                            <li>Configure build settings (automatic for React)</li>
-                            <li>Deploy and get your live URL</li>
-                        </ol>
-                    </div>
-
-                    <!-- Common Mistakes -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Common Mistakes</h5>
-                        <ul class="mistakes-list">
-                            <li>Not setting environment variables correctly</li>
-                            <li>Forgetting to add build commands for non-standard setups</li>
-                            <li>Not configuring custom domains properly</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="step-card">
-                    <div class="step-header">
-                        <div class="step-number">2</div>
-                        <div class="step-title-block">
-                            <h3>Add AI Capabilities</h3>
-                            <p class="step-description">
-                                Integrate OpenAI's powerful language models to add intelligent features like 
-                                chat, content generation, or data analysis to your application.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Tool Chip -->
-                    <div class="tool-chip-container">
-                        <div class="tool-chip">
-                            <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=128" alt="OpenAI" class="tool-chip-logo">
-                            <span class="tool-chip-name">OpenAI API</span>
-                        </div>
-                    </div>
-
-                    <!-- Quick Start -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Quick Start</h5>
-                        <div class="code-block">
-                            <span class="code-comment"># Install OpenAI SDK</span>
-                            <span class="code-command">npm install openai</span>
-                            <br><br>
-                            <span class="code-comment"># Initialize in your code</span>
-                            <span class="code-command">const openai = new OpenAI({apiKey: process.env.OPENAI_KEY});</span>
-                        </div>
-                    </div>
-
-                    <!-- Step by Step -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Step by Step Instructions</h5>
-                        <ol class="instruction-list">
-                            <li>Sign up at platform.openai.com and get API key</li>
-                            <li>Install the OpenAI Node.js library</li>
-                            <li>Create an API route to handle requests securely</li>
-                            <li>Test with a simple chat completion</li>
-                        </ol>
-                    </div>
-
-                    <!-- Common Mistakes -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Common Mistakes</h5>
-                        <ul class="mistakes-list">
-                            <li>Exposing API keys in client-side code</li>
-                            <li>Not implementing rate limiting</li>
-                            <li>Forgetting to handle errors gracefully</li>
-                            <li>Not setting token limits to control costs</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="step-card">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <div class="step-title-block">
-                            <h3>Set Up Your Database</h3>
-                            <p class="step-description">
-                                Store user data, app state, and content in a scalable database with built-in 
-                                authentication, real-time subscriptions, and automatic APIs.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Tool Chip -->
-                    <div class="tool-chip-container">
-                        <div class="tool-chip">
-                            <img src="https://www.google.com/s2/favicons?domain=supabase.com&sz=128" alt="Supabase" class="tool-chip-logo">
-                            <span class="tool-chip-name">Supabase</span>
-                        </div>
-                    </div>
-
-                    <!-- Quick Start -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Quick Start</h5>
-                        <div class="code-block">
-                            <span class="code-comment"># Install Supabase client</span>
-                            <span class="code-command">npm install @supabase/supabase-js</span>
-                            <br><br>
-                            <span class="code-comment"># Initialize connection</span>
-                            <span class="code-command">const supabase = createClient(url, key)</span>
-                        </div>
-                    </div>
-
-                    <!-- Step by Step -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Step by Step Instructions</h5>
-                        <ol class="instruction-list">
-                            <li>Create a new project at supabase.com</li>
-                            <li>Design your database schema using the table editor</li>
-                            <li>Set up row-level security policies</li>
-                            <li>Connect your frontend with the generated API keys</li>
-                        </ol>
-                    </div>
-
-                    <!-- Common Mistakes -->
-                    <div class="step-section">
-                        <h5 class="step-section-title">Common Mistakes</h5>
-                        <ul class="mistakes-list">
-                            <li>Not enabling row-level security on tables</li>
-                            <li>Using service role key in client-side code</li>
-                            <li>Forgetting to set up proper indexes for queries</li>
-                            <li>Not handling real-time subscription cleanup</li>
-                        </ul>
-                    </div>
+                <!-- Dynamic Steps Container -->
+                <div id="steps-container">
+                    <!-- Steps will be dynamically generated here -->
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- PDF Export Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- Content files -->
+    <script src="js/workflowscontent.js"></script>
+    <script src="js/toolscontent.js"></script>
+    <script src="js/tutorialscontent.js"></script>
+    
+    <!-- Page logic -->
     <script src="js/projectplan.js"></script>
 </body>
 </html>
