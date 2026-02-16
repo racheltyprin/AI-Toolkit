@@ -61,7 +61,10 @@
 
 .tools-grid {
     flex: 1;
-    transition: flex 0.3s ease;
+    display: flex;       /* Add this */
+    flex-wrap: wrap;     /* Add this */
+    align-content: flex-start; /* This stops the vertical stretching */
+    gap: 1.5rem;
 }
 
 /* Detail panel */
