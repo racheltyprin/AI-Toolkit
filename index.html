@@ -1,63 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <title>AI Toolbox</title>
-  </head>
-<body class="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-[#F4795B]/20">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <title>AI Toolbox</title>
+</head>
+<body>
 
-  <nav class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/75 backdrop-blur-md">
-    <div class="mx-auto max-w-7xl px-6">
-      <div class="flex h-20 items-center justify-between">
-        
-        <div class="flex items-center gap-3 group cursor-pointer">
-          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#009AB4] to-[#67AFD2] shadow-lg shadow-[#009AB4]/20 group-hover:scale-105 transition-transform">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 4a2 2 0 114 0v1a2 2 0 01-2 2H3a2 2 0 01-2-2V4a2 2 0 114 0v1a2 2 0 01-2 2h2a2 2 0 012-2V4z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 15h6M9 19h6" />
-            </svg>
-          </div>
-          <span class="text-2xl font-black tracking-tighter uppercase text-slate-900">
-            AI <span class="text-[#009AB4]">Toolbox</span>
-          </span>
-        </div>
+<div class="landing-content-wrapper">
+  
+  <h1 class="main-title">AI TOOLBOX</h1>
 
-        <div class="hidden md:flex items-center gap-10">
-          <a href="/" class="text-sm font-bold tracking-tight text-slate-600 hover:text-[#F4795B] transition-colors relative group">
-            Home
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#F4795B] transition-all group-hover:w-full"></span>
-          </a>
-          <a href="/tools" class="text-sm font-bold tracking-tight text-slate-600 hover:text-[#F4795B] transition-colors relative group">
-            AI Tools
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#F4795B] transition-all group-hover:w-full"></span>
-          </a>
-          <a href="/use-cases" class="text-sm font-bold tracking-tight text-slate-600 hover:text-[#F4795B] transition-colors relative group">
-            Use Cases
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#F4795B] transition-all group-hover:w-full"></span>
-          </a>
-        </div>
-
-        <div class="flex items-center gap-4">
-          <button class="hidden sm:block text-sm font-bold text-slate-500 hover:text-slate-900 transition-colors">
-            Sign In
-          </button>
-          <button class="rounded-xl bg-[#F4795B] px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#F4795B]/30 hover:bg-[#d6654a] hover:-translate-y-0.5 active:scale-95 transition-all">
-            Get Started
-          </button>
-        </div>
-
-      </div>
-    </div>
+  <nav class="inner-nav">
+    <a href="index.html" class="nav-item active">HOME</a>
+    <a href="tools.html" class="nav-item">AI TOOLS</a>
+    <a href="uses.html" class="nav-item">USE CASES</a>
   </nav>
 
-  <main class="mx-auto max-w-7xl px-6 py-12">
-    <div class="w-full h-[60vh] rounded-[3rem] border-2 border-dashed border-slate-200 flex items-center justify-center">
-       <p class="text-slate-400 font-medium italic">Your body content starts here...</p>
-    </div>
-  </main>
+  
 
+  <!-- stage card start -->
+
+
+  <div class="stage-header-card" id="stage-1" onclick="toggleStage('stage-1')">
+    <div class="stage-header-flex">
+      
+      <div class="stage-content-left">
+        <span class="stage-badge">Phase // 01</span>
+        <h2 class="stage-title">Product <br>Creation</h2>
+        <p class="stage-description">
+          Turn your prototype into a functioning MVP with high-speed no-code and AI deployment tools.
+        </p>
+      </div>
+      
+
+      <div class="toolset-sticker">
+        <p class="sticker-label">Primary Toolset</p>
+        <div class="sticker-icon-grid">
+          <div class="mini-tool-box"></div>
+          <div class="mini-tool-box"></div>
+          <div class="mini-tool-box"></div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="stage-expansion-content">
+      <div class="expansion-inner">
+        <div class="expansion-divider"></div>
+        <div class="expansion-grid">
+          <div class="expansion-column">
+            <h4>GOALS</h4>
+            <ul>
+              <li>Build functional DB</li>
+              <li>Connect API logic</li>
+              <li>Deploy to Vercel</li>
+            </ul>
+          </div>
+          <div class="expansion-column">
+            <h4>BEST FOR</h4>
+            <p>Solo founders looking to ship in under 48 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- stage card end -->
+
+
+
+  <!-- stage card start -->
+
+
+  <div class="stage-header-card" id="stage-2" onclick="toggleStage('stage-2')">
+    <div class="stage-header-flex">
+      
+      <div class="stage-content-left">
+        <span class="stage-badge">Section // 02</span>
+        <h2 class="stage-title">Product <br>Creation</h2>
+        <p class="stage-description">
+          Turn your prototype into a functioning MVP with high-speed no-code and AI deployment tools.
+        </p>
+      </div>
+      
+
+      <div class="toolset-sticker">
+        <p class="sticker-label">Primary Toolset</p>
+        <div class="sticker-icon-grid">
+          <div class="mini-tool-box"></div>
+          <div class="mini-tool-box"></div>
+          <div class="mini-tool-box"></div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="stage-expansion-content">
+      <div class="expansion-inner">
+        <div class="expansion-divider"></div>
+        <div class="expansion-grid">
+          <div class="expansion-column">
+            <h4>GOALS</h4>
+            <ul>
+              <li>Build functional DB</li>
+              <li>Connect API logic</li>
+              <li>Deploy to Vercel</li>
+            </ul>
+          </div>
+          <div class="expansion-column">
+            <h4>BEST FOR</h4>
+            <p>Solo founders looking to ship in under 48 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- stage card end -->
+
+  <!-- stage card start -->
+
+
+  <div class="stage-header-card" id="stage-3" onclick="toggleStage('stage-3')">
+    <div class="stage-header-flex">
+      
+      <div class="stage-content-left">
+        <span class="stage-badge">Section // 02</span>
+        <h2 class="stage-title">Product <br>Creation</h2>
+        <p class="stage-description">
+          Turn your prototype into a functioning MVP with high-speed no-code and AI deployment tools.
+        </p>
+      </div>
+      
+
+      <div class="toolset-sticker">
+        <p class="sticker-label">Primary Toolset</p>
+        <div class="sticker-icon-grid">
+          <div class="mini-tool-box"></div>
+          <div class="mini-tool-box"></div>
+          <div class="mini-tool-box"></div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="stage-expansion-content">
+      <div class="expansion-inner">
+        <div class="expansion-divider"></div>
+        <div class="expansion-grid">
+          <div class="expansion-column">
+            <h4>GOALS</h4>
+            <ul>
+              <li>Build functional DB</li>
+              <li>Connect API logic</li>
+              <li>Deploy to Vercel</li>
+            </ul>
+          </div>
+          <div class="expansion-column">
+            <h4>BEST FOR</h4>
+            <p>Solo founders looking to ship in under 48 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- stage card end -->
+
+  <!--test-->
+  <div class="stage-header-card" id="stage-1" onclick="toggleStage('stage-1')">
+    <div class="stage-header-flex">
+      <div class="stage-content-left">
+        <span class="stage-badge">Phase // 01</span>
+        <h2 class="stage-title">Product <br>Creation</h2>
+        <p class="stage-description">
+          Turn your prototype into a functioning MVP with high-speed no-code and AI deployment tools.
+        </p>
+      </div>
+  
+      <div class="toolset-sticker">
+        <p class="sticker-label">Primary Toolset</p>
+        <div class="sticker-icon-grid">
+          <div class="mini-tool-box"></div>
+          <div class="mini-tool-box"></div>
+          <div class="mini-tool-box"></div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="stage-expansion-content">
+      <div class="expansion-inner">
+        <div class="expansion-divider"></div>
+        
+        <div class="expansion-grid">
+          <div class="expansion-column">
+            <h4>01.A DATABASE</h4>
+            <p>Structuring your data using AI-assisted schema generation.</p>
+          </div>
+          <div class="expansion-column">
+            <h4>01.B LOGIC</h4>
+            <p>Connecting front-end interactions to back-end actions.</p>
+          </div>
+          <div class="expansion-column">
+            <h4>01.C DEPLOY</h4>
+            <p>Moving from a local environment to a live URL.</p>
+          </div>
+        </div>
+  
+        <div class="expansion-footer">
+          <a href="tools.html" class="card-button">VIEW ALL TOOLS</a>
+          <a href="use-cases.html" class="card-button" style="background: var(--poppy);">START WORKFLOW →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+</div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
