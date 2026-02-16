@@ -21,7 +21,7 @@
     
     // Initialize the page
     function init() {
-        const workflow = workflowsTypes[WORKFLOW_ID];
+        const workflow = workflowTypes[WORKFLOW_ID];
         if (!workflow) {
             console.error('Workflow not found:', WORKFLOW_ID);
             return;
