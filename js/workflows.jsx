@@ -1,6 +1,7 @@
 const { useState } = React;
 
 function WorkflowApp() {
+  
   const [selectedWorkflow, setSelectedWorkflow] = useState(null);
   const [expandedSteps, setExpandedSteps] = useState({});
   const [selectedTools, setSelectedTools] = useState({}); // Stores { stepIndex: [tool, tool] }
@@ -55,6 +56,17 @@ function WorkflowApp() {
     });
   };
 
+  // Logic to save plan and move to new page
+  const handleGeneratePlan = () => {
+    const planData = {
+      workflowKey: selectedWorkflow,
+      selectedTools: selectedTools,
+      totals: totals
+    };
+    localStorage.setItem('currentProjectPlan', JSON.stringify(planData));
+    window.location.href = 'plan.html';
+  };
+
   return (
     <main className="main-content">
       <div className="content-wrapper">
@@ -67,7 +79,24 @@ function WorkflowApp() {
               <button
                 key={key}
                 className={`workflow-button ${selectedWorkflow === key ? 'active' : ''}`}
-                onClick={() => { setSelectedWorkflow(key); setExpandedSteps({}); setSelectedTools({}); }}
+                onClick={() => {
+                  setSelectedWorkflow(key);
+                  setExpandedSteps({});
+                  
+                  const newPresets = {};
+                  const workflow = workflowTypes[key];
+                
+                  workflow.steps.forEach((step, index) => {
+                    if (step.defaultToolName) {
+                      const toolMatch = tools.find(t => t.name === step.defaultToolName);
+                      if (toolMatch) {
+                        newPresets[index] = [toolMatch];
+                      }
+                    }
+                  });
+                
+                  setSelectedTools(newPresets);
+                }}
               >
                 {workflowTypes[key].name}
               </button>
@@ -135,9 +164,7 @@ function WorkflowApp() {
 
               <div className="math-sum-line"></div>
 
-              {/* SIDE-BY-SIDE FOOTER CONTAINER */}
               <div className="math-footer-container">
-                {/* LEFT BOX: Project Totals */}
                 <div className="workflow-info-footer math-footer">
                   <div className="workflow-info-title">Project Total</div>
                   <div className="workflow-info-meta">
@@ -156,7 +183,6 @@ function WorkflowApp() {
                   </div>
                 </div>
 
-                {/* RIGHT BOX: Final Tech Stack */}
                 <div className="final-stack-card">
                   <h3 className="workflow-info-title">Final Tech Stack</h3>
                   <div className="stack-tools-list">
@@ -173,6 +199,15 @@ function WorkflowApp() {
                   </div>
                 </div>
               </div>
+
+              {/* Styled specifically to match the sum line width and margin */}
+              <button 
+                className="generate-plan-btn" 
+                onClick={handleGeneratePlan}
+              >
+                Generate Detailed Project Plan →
+              </button> 
+
             </>
           )}
         </div>

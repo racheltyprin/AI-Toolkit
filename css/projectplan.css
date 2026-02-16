@@ -1,0 +1,252 @@
+/* Project Plan Page Styles */
+
+/* PDF Export Button */
+.pdf-export-btn {
+    background: var(--cardinal);
+    color: var(--white);
+    border: none;
+    padding: 0.65rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(140, 21, 21, 0.2);
+}
+
+.pdf-export-btn:hover {
+    background: var(--cardinal-dark);
+    box-shadow: 0 4px 8px rgba(140, 21, 21, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Workflow divider */
+.workflow-divider {
+    width: 100%;
+    height: 3px;
+    background: var(--illuminating);
+    margin: 2rem 0;
+    border-radius: 2px;
+}
+
+.workflow-header {
+    margin-bottom: 0.5rem;
+}
+
+.workflow-header h2 {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+/* Project Info Card */
+.project-info-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    border-left: 5px solid var(--cardinal);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin: 1.5rem 0;
+}
+
+.project-info-card h4 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.info-label {
+    font-weight: 700;
+    color: var(--cardinal);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    color: var(--black);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Step Cards - Compact */
+.step-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border-left: 5px solid var(--palo-verde);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 1.25rem;
+}
+
+.step-header {
+    display: flex;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--cardinal);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    font-family: 'Source Serif 4', serif;
+}
+
+.step-title-block {
+    flex: 1;
+}
+
+.step-title-block h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.3rem;
+    color: var(--cardinal);
+    margin: 0 0 0.4rem;
+    font-weight: 700;
+}
+
+.step-description {
+    color: var(--black-light);
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Tool Chip - Like in workflows */
+.tool-chip-container {
+    margin: 1rem 0;
+}
+
+.tool-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: var(--cream);
+    border: 2px solid var(--palo-verde);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.tool-chip:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+}
+
+.tool-chip-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.tool-chip-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--black);
+}
+
+/* Step Sections - Compact */
+.step-section {
+    margin-top: 1.25rem;
+}
+
+.step-section-title {
+    font-weight: 700;
+    color: var(--cardinal);
+    font-size: 0.9rem;
+    margin: 0 0 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Code Blocks - Compact */
+.code-block {
+    background: var(--black);
+    color: var(--white);
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+.code-block .code-comment {
+    color: #888;
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.code-block .code-command {
+    color: var(--illuminating);
+}
+
+/* Instruction Lists - Compact */
+.instruction-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--black-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.instruction-list li {
+    margin-bottom: 0.4rem;
+}
+
+.instruction-list code {
+    background: var(--cream);
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    color: var(--black);
+}
+
+/* Mistakes List - Compact */
+.mistakes-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--black-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    list-style-type: disc;
+}
+
+.mistakes-list li {
+    margin-bottom: 0.4rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .step-header {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .step-card {
+        padding: 1.25rem;
+    }
+}

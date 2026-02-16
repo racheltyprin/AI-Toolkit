@@ -10,22 +10,26 @@ const workflowTypes = {
         {
           title: "Research & Planning",
           description: "Define your idea and gather requirements",
-          toolCategories: ["writing", "researching"]
+          toolCategories: ["writing", "researching"],
+          defaultToolName: "ChatGPT"
         },
         {
           title: "Visual Design",
           description: "Create mockups and visual assets",
-          toolCategories: ["visual", "demo-building"]
+          toolCategories: ["visual", "demo-building"],
+          defaultToolName: "Canva"
         },
         {
           title: "Build Website/App",
           description: "Assemble your MVP without code",
-          toolCategories: ["website-building", "app-building"]
+          toolCategories: ["website-building", "app-building"],
+          defaultToolName: "Framer"
         },
         {
           title: "Test & Iterate",
           description: "Gather feedback and refine",
-          toolCategories: ["automating"]
+          toolCategories: ["automating"],
+          defaultToolName: "Zapier"
         }
       ]
     },
@@ -39,27 +43,32 @@ const workflowTypes = {
         {
           title: "Research Phase",
           description: "Gather and synthesize insights",
-          toolCategories: ["researching", "writing"]
+          toolCategories: ["researching", "writing"],
+          defaultToolName: ""
         },
         {
           title: "Concept Development",
           description: "Develop concepts with AI assistance",
-          toolCategories: ["writing", "visual"]
+          toolCategories: ["writing", "visual"],
+          defaultToolName: ""
         },
         {
           title: "Create Visuals",
           description: "Generate visual assets and mockups",
-          toolCategories: ["visual"]
+          toolCategories: ["visual"],
+          defaultToolName: ""
         },
         {
           title: "Build Demo",
           description: "Create interactive prototype",
-          toolCategories: ["demo-building", "website-building"]
+          toolCategories: ["demo-building", "website-building"],
+          defaultToolName: ""
         },
         {
           title: "Prepare Presentation",
           description: "Package for feedback and testing",
-          toolCategories: ["visual", "automating"]
+          toolCategories: ["visual", "automating"],
+          defaultToolName: ""
         }
       ]
     },
@@ -73,27 +82,32 @@ const workflowTypes = {
         {
           title: "Design Exploration",
           description: "Ideation and exploration with AI",
-          toolCategories: ["visual", "writing"]
+          toolCategories: ["visual", "writing"],
+          defaultToolName: ""
         },
         {
           title: "Design System",
           description: "Create components and patterns",
-          toolCategories: ["demo-building"]
+          toolCategories: ["demo-building"],
+          defaultToolName: ""
         },
         {
           title: "Build Screens",
           description: "Design all screens and interactions",
-          toolCategories: ["demo-building"]
+          toolCategories: ["demo-building"],
+          defaultToolName: ""
         },
         {
           title: "Add Interactions",
           description: "Polish with microinteractions",
-          toolCategories: ["demo-building", "visual"]
+          toolCategories: ["demo-building", "visual"],
+          defaultToolName: ""
         },
         {
           title: "User Testing Setup",
           description: "Prepare for testing and iteration",
-          toolCategories: ["automating", "researching"]
+          toolCategories: ["automating", "researching"],
+          defaultToolName: ""
         }
       ]
     }

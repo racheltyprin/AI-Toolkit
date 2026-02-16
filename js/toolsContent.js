@@ -14,7 +14,8 @@ var tools = [
             "Prototyping interactive web experiences",
             "Publishing production-ready sites without code"
         ],
-        whenToUse: "Use Framer when you need a real website fast with AI assistance. Great for portfolios, landing pages, and marketing sites that need to look professional immediately."
+        whenToUse: "Use Framer when you need a real website fast with AI assistance. Great for portfolios, landing pages, and marketing sites that need to look professional immediately.",
+        difficulty: " "
     },
     { 
         name: "Carrd", 
@@ -31,7 +32,8 @@ var tools = [
             "Personal bio/link pages",
             "Simple product launches"
         ],
-        whenToUse: "Choose Carrd for ultra-simple one-page sites when you need something fast, lightweight, and affordable. Perfect for personal pages and quick launches."
+        whenToUse: "Choose Carrd for ultra-simple one-page sites when you need something fast, lightweight, and affordable. Perfect for personal pages and quick launches.",
+        difficulty: " "
     },
     { 
         name: "Glide", 
@@ -48,7 +50,8 @@ var tools = [
             "Event check-in systems",
             "Customer portals"
         ],
-        whenToUse: "Use Glide when your data lives in spreadsheets and you need a quick app interface. Ideal for internal tools, databases, and simple mobile apps."
+        whenToUse: "Use Glide when your data lives in spreadsheets and you need a quick app interface. Ideal for internal tools, databases, and simple mobile apps.",
+        difficulty: " "
     },
     { 
         name: "Softr", 
@@ -65,7 +68,8 @@ var tools = [
             "Client dashboards",
             "Directory sites"
         ],
-        whenToUse: "Choose Softr when building on Airtable and need a polished public interface. Great for marketplaces, directories, and member areas."
+        whenToUse: "Choose Softr when building on Airtable and need a polished public interface. Great for marketplaces, directories, and member areas.",
+        difficulty: " "
     },
     { 
         name: "Figma", 
@@ -82,7 +86,8 @@ var tools = [
             "Design systems and component libraries",
             "Interactive presentations"
         ],
-        whenToUse: "Use Figma for any serious design work, interactive prototypes, or when collaborating with designers. Industry standard for product design."
+        whenToUse: "Use Figma for any serious design work, interactive prototypes, or when collaborating with designers. Industry standard for product design.",
+        difficulty: " "
     },
     { 
         name: "Uizard", 
@@ -99,7 +104,8 @@ var tools = [
             "Quick app prototype generation",
             "Non-designer friendly interface creation"
         ],
-        whenToUse: "Choose Uizard when you need quick UI mockups but lack design skills. AI generates designs from prompts, sketches, or screenshots."
+        whenToUse: "Choose Uizard when you need quick UI mockups but lack design skills. AI generates designs from prompts, sketches, or screenshots.",
+        difficulty: " "
     },
     { 
         name: "Taskade", 
@@ -116,7 +122,8 @@ var tools = [
             "Team collaboration on ideas",
             "Structured note-taking"
         ],
-        whenToUse: "Use Taskade for visual thinking, brainstorming sessions, and when you need AI to help structure thoughts into outlines and plans."
+        whenToUse: "Use Taskade for visual thinking, brainstorming sessions, and when you need AI to help structure thoughts into outlines and plans.",
+        difficulty: " "
     },
     { 
         name: "Elicit", 
@@ -133,7 +140,8 @@ var tools = [
             "Evidence-based analysis",
             "Finding and summarizing papers"
         ],
-        whenToUse: "Choose Elicit for academic research or when you need evidence-based answers with proper citations from scholarly sources."
+        whenToUse: "Choose Elicit for academic research or when you need evidence-based answers with proper citations from scholarly sources.",
+        difficulty: " "
     },
     { 
         name: "Claude", 
@@ -150,7 +158,8 @@ var tools = [
             "Strategic planning documents",
             "Code generation and debugging"
         ],
-        whenToUse: "Use Claude for nuanced writing, deep analysis, or when you need to work with large documents. Excellent for strategy and thoughtful content."
+        whenToUse: "Use Claude for nuanced writing, deep analysis, or when you need to work with large documents. Excellent for strategy and thoughtful content.",
+        difficulty: " "
     },
     { 
         name: "ChatGPT", 
@@ -167,7 +176,8 @@ var tools = [
             "Quick questions and research",
             "Code assistance"
         ],
-        whenToUse: "Use ChatGPT as your general-purpose AI assistant for everyday tasks, quick answers, brainstorming, and creative work."
+        whenToUse: "Use ChatGPT as your general-purpose AI assistant for everyday tasks, quick answers, brainstorming, and creative work.",
+        difficulty: " "
     },
     { 
         name: "Canva", 
@@ -184,7 +194,8 @@ var tools = [
             "Marketing materials",
             "Posters and flyers"
         ],
-        whenToUse: "Choose Canva for any graphic design need when you want templates and AI assistance. Perfect for marketing materials and social content."
+        whenToUse: "Choose Canva for any graphic design need when you want templates and AI assistance. Perfect for marketing materials and social content.",
+        difficulty: " "
     },
     { 
         name: "DALL•E / Leonardo", 
@@ -201,7 +212,8 @@ var tools = [
             "Concept art",
             "Social media images"
         ],
-        whenToUse: "Use AI image generators when you need custom visuals that don't exist yet. Great for unique illustrations and creative concepts."
+        whenToUse: "Use AI image generators when you need custom visuals that don't exist yet. Great for unique illustrations and creative concepts.",
+        difficulty: " "
     },
     { 
         name: "Microsoft Designer", 
@@ -218,7 +230,8 @@ var tools = [
             "Event announcements",
             "Simple branded content"
         ],
-        whenToUse: "Choose Microsoft Designer for quick social graphics when you have a Microsoft account. Simplest AI graphic design option."
+        whenToUse: "Choose Microsoft Designer for quick social graphics when you have a Microsoft account. Simplest AI graphic design option.",
+        difficulty: " "
     },
     { 
         name: "Vizcom", 
@@ -235,7 +248,8 @@ var tools = [
             "Quick visual explorations",
             "Rendering sketches"
         ],
-        whenToUse: "Use Vizcom for product and industrial design when you need to visualize 3D concepts or render sketches professionally."
+        whenToUse: "Use Vizcom for product and industrial design when you need to visualize 3D concepts or render sketches professionally.",
+        difficulty: " "
     },
     { 
         name: "Nano Banana", 
@@ -252,7 +266,8 @@ var tools = [
             "Creative experimentation",
             "Rapid prototyping visuals"
         ],
-        whenToUse: "Choose Nano Banana for fast AI image/video generation, especially if you already have Artlist for stock media."
+        whenToUse: "Choose Nano Banana for fast AI image/video generation, especially if you already have Artlist for stock media.",
+        difficulty: " "
     },
     { 
         name: "Perplexity", 
@@ -269,7 +284,8 @@ var tools = [
             "Current events and news",
             "Comparative analysis"
         ],
-        whenToUse: "Use Perplexity when you need current information with citations. Better than traditional search for research questions."
+        whenToUse: "Use Perplexity when you need current information with citations. Better than traditional search for research questions.",
+        difficulty: " "
     },
     { 
         name: "Zapier", 
@@ -286,6 +302,7 @@ var tools = [
             "Email and notification workflows",
             "Social media automation"
         ],
-        whenToUse: "Choose Zapier to eliminate repetitive tasks by connecting your apps. Great for automating workflows between different tools."
+        whenToUse: "Choose Zapier to eliminate repetitive tasks by connecting your apps. Great for automating workflows between different tools.",
+        difficulty: " "
     },
 ];

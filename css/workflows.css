@@ -309,3 +309,27 @@
         width: 100%;
     }
 }
+
+/* Styling for the full-width plan generator button */
+.generate-plan-btn {
+    display: block;
+    margin: 2rem 0 4rem 64px; /* Matches the 64px margin-left of the sum line */
+    width: calc(100% - 64px);  /* Matches the width of the sum line */
+    background: var(--sky);
+    color: var(--white);
+    border: none;
+    padding: 1.25rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+}
+
+.generate-plan-btn:hover {
+    background: #007C92; /* Slightly darker  */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
