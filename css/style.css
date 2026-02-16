@@ -1,6 +1,8 @@
 /* AI Prototyping Cart – Stanford d.school */
 /* style.css */
 
+/* ===================== */
+/* Color Variables */
 :root {
     --cardinal: #8C1515;
     --cardinal-dark: #820000;
@@ -17,6 +19,8 @@
     --cream: #FAF9F6;
 }
 
+/* ===================== */
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
@@ -31,7 +35,8 @@ body {
     overflow-x: hidden;
 }
 
-/* Site header – Stanford identity: Cardinal (primary), White, Illuminating (accent) */
+/* ===================== */
+/* Site Header */
 .site-header {
     background: var(--cardinal);
     color: var(--white);
@@ -46,7 +51,6 @@ body {
     padding: 1.25rem 3rem 1rem;
 }
 
-/* Header title/subtitle: force white (!important overrides global h1 color) */
 .site-header .site-title,
 .site-header h1.site-title {
     color: #FFFFFF !important;
@@ -72,7 +76,8 @@ body {
     letter-spacing: 0.01em;
 }
 
-/* Tabs – Illuminating accent for active state */
+/* ===================== */
+/* Tabs */
 .tabs-nav {
     display: flex;
     gap: 0;
@@ -105,7 +110,8 @@ body {
     color: var(--black);
 }
 
-/* Main content */
+/* ===================== */
+/* Main Content */
 .main-content {
     min-height: calc(100vh - 140px);
     background: var(--cream);
@@ -117,6 +123,7 @@ body {
     padding: 1rem 3rem;
 }
 
+/* ===================== */
 /* Typography */
 .page-title {
     font-family: 'Source Serif 4', serif;
@@ -160,7 +167,8 @@ h4 {
     max-width: 720px;
 }
 
-/* Landing page */
+/* ===================== */
+/* Landing Page */
 .landing-hero .tagline {
     font-size: 1.2rem;
     color: var(--black-light);
@@ -202,6 +210,7 @@ h4 {
     color: var(--black-light);
 }
 
+/* ===================== */
 /* Tool Cards (Tool Library) */
 .tools-grid {
     display: grid;
@@ -263,7 +272,7 @@ h4 {
     font-size: 0.95rem;
 }
 
-/* Tool Library filters */
+/* Tool Library Filters */
 .tools-filters {
     background: var(--white);
     border-radius: 12px;
@@ -369,6 +378,7 @@ h4 {
     display: none !important;
 }
 
+/* ===================== */
 /* Responsive */
 @media (max-width: 1200px) {
     .site-header-inner {
@@ -409,153 +419,4 @@ h4 {
     .filter-options {
         flex-direction: column;
     }
-    
-}/* Math Layout Structure */
-.math-container {
-    max-width: 100%;
-    margin: 3rem 0;
-}
-
-.math-steps-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.math-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-}
-
-/* Math Layout Structure */
-.math-container {
-    max-width: 1200px;
-    margin: 3rem 0;
-}
-
-.math-steps-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.math-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-}
-
-/* Mathematical Operator (+) */
-.math-operator {
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: var(--cardinal);
-    width: 40px;
-    text-align: center;
-    padding-top: 1rem;
-    font-family: 'DM Sans', sans-serif;
-}
-
-/* Step Card - Consistent with d.school theme */
-.workflow-step {
-    width: 420px;
-    background: var(--white);
-    border: 2px solid var(--palo-verde);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    flex-shrink: 0;
-}
-
-.step-actions {
-    margin-top: 1.25rem;
-    border-top: 1px solid var(--fog);
-    padding-top: 0.75rem;
-}
-
-/* Selected Tools (Right Side) */
-.selected-tools-tray {
-    flex: grid;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding-top: 0.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
-}
-
-.mini-tool-card {
-    background: var(--white);
-    border: 1px solid var(--fog);
-    border-radius: 8px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    animation: popIn 0.25s ease-out;
-    flex-direction: column;
-    aspect-ratio: 1 / 1;
-    justify-content: center;
-}
-
-@keyframes popIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.mini-tool-card img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-}
-
-.mini-tool-name {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--black);
-}
-
-/* Dropdown Menu */
-.math-dropdown {
-    background: var(--cream);
-    margin-top: 0.5rem;
-    border-radius: 8px;
-    padding: 0.25rem;
-    border: 1px solid var(--fog);
-}
-
-.tool-option {
-    padding: 0.6rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    font-size: 0.9rem;
-    border-radius: 6px;
-    transition: background 0.2s;
-}
-
-.tool-option:hover {
-    background: rgba(39, 153, 137, 0.1);
-}
-
-.tool-option.selected {
-    color: var(--palo-verde);
-    font-weight: 700;
-}
-
-/* The "Equals" Line */
-.math-sum-line {
-    height: 4px;
-    background: var(--black);
-    margin: 2.5rem 0 2rem 55px; /* Aligns with the 420px step card */
-    width: 420px;
-    border-radius: 2px;
-}
-
-/* Result Footer */
-.math-footer {
-    margin-left: 55px;
-    max-width: 420px;
-    border-left: 5px solid var(--cardinal);
 }

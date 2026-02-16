@@ -185,58 +185,60 @@
     cursor: pointer;
 }
 
-/* 6. Math Footer Area: THE FIX */
+/* 6. Math Footer Area */
 .math-sum-line {
     height: 4px;
     background: var(--black);
     margin: 2rem 0;
-    margin-left: 55px; 
-    width: calc(100% - 55px); 
+    /* Aligns exactly with the start of the workflow-step cards */
+    margin-left: 64px; 
+    width: calc(100% - 64px); 
     border-radius: 2px;
     flex-shrink: 0;
 }
 
 .math-footer-container {
     display: flex;
+    /* Matches the 40px operator + 1.5rem gap (24px) = 64px */
+    margin-left: 64px; 
+    width: calc(100% - 64px);
     gap: 1.5rem;
-    margin-left: 55px;
-    width: calc(100% - 55px);
-    flex-wrap: nowrap;          /* Force side-by-side */
-    align-items: stretch;       /* Match heights */
+    align-items: stretch;
+    flex-wrap: nowrap;
     box-sizing: border-box;
 }
 
-.math-footer {
-    flex: 0 0 420px;           /* Fixed width to match steps */
-    background: var(--white);
-    border-radius: 12px;
-    padding: 1.5rem;
-    border-left: 5px solid var(--cardinal);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    box-sizing: border-box;
-}
-
+/* Force both boxes to be exactly the same size */
+.math-footer, 
 .final-stack-card {
-    flex: 1 1 auto;            /* Allow dynamic growth/shrink */
-    min-width: 0;               /* Key for content-based flex shrinking */
-    max-width: calc(100% - 420px - 1.5rem); 
+    flex: 1; 
+    min-width: 0; /* Important for preventing overflow from tool tags */
     background: var(--white);
     border-radius: 12px;
     padding: 1.5rem;
-    border-left: 5px solid var(--palo-verde);
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    overflow-wrap: break-word;
+}
+
+.math-footer {
+    border-left: 5px solid var(--cardinal);
+}
+
+.final-stack-card {
+    border-left: 5px solid var(--palo-verde);
 }
 
 .workflow-info-title {
     font-family: 'Source Serif 4', serif;
     font-weight: 700;
     color: var(--cardinal);
-    margin-bottom: 0.5rem;
     font-size: 1.25rem;
+    margin: 0;            /* ADD THIS: Removes default h3 spacing */
+    margin-bottom: 1rem;  /* ADD THIS: Forces consistent space below the text */
+    line-height: 1.2;     /* ADD THIS: Matches the vertical 'box' of the text */
+    display: block;
 }
 
 .workflow-info-meta {
@@ -269,7 +271,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    max-width: 100%;
     margin-top: 0.5rem;
 }
 
@@ -296,22 +297,12 @@
 @media (max-width: 1024px) {
     .math-footer-container {
         flex-direction: column;
-        width: 100%;
-        max-width: 420px;
-    }
-    .final-stack-card {
-        max-width: 100%;
+        margin-left: 64px;
+        width: calc(100% - 64px);
     }
 }
 
 @media (max-width: 768px) {
-    .math-row {
-        flex-direction: column;
-    }
-    .workflow-step {
-        width: 100%;
-        flex: 1;
-    }
     .math-sum-line, .math-footer-container {
         margin-left: 0;
         width: 100%;
