@@ -168,7 +168,7 @@ body {
 }
 
 .stage-description {
-  max-width: 400px;
+  max-width: flex;
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--stone-dark);

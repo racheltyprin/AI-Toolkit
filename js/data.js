@@ -1,326 +1,667 @@
 const toolsData = [
-    {
-      "name": "Framer",
-      "category": "website-building",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=framer.com&sz=128",
-      "desc": "Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. It feels like Figma but with real production output.",
-      "url": "https://www.framer.com/",
-      "pricingDetails": "Free tier with 1 site. Pro plan $15/month for students.",
-      "useCases": [
-        "Building portfolio websites quickly",
-        "Creating landing pages for startup ideas",
-        "Prototyping interactive web experiences",
-        "Publishing production-ready sites without code"
-      ],
-      "whenToUse": "Use Framer when you need a real website fast with AI assistance. Great for portfolios, landing pages, and marketing sites that need to look professional immediately.",
-      "difficulty": " ",
-      "product": " "
+  {
+    "id": "framer",
+    "name": "Framer",
+    "tagline": "Build production-ready websites with AI assistance in under 30 minutes. No code required.",
+    "category": "website-building",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=framer.com&sz=128",
+    "desc": "Describe the site you want and Framer generates a polished, responsive website you can edit and publish instantly. It feels like Figma but with real production output.",
+    "url": "https://www.framer.com/",
+    "pricingDetails": "Free tier with 1 site. Pro plan $15/month for students.",
+    "useCases": [
+      "Building portfolio websites quickly",
+      "Creating landing pages for startup ideas",
+      "Prototyping interactive web experiences",
+      "Publishing production-ready sites without code"
+    ],
+    "guide": ["<strong>Sign up:</strong> Go to framer.com and create a free account",
+      "<strong>Start with AI:</strong> Click 'Start with AI' and describe your website",
+      "<strong>Generate:</strong> Let Framer create your site structure",
+      "<strong>Customize:</strong> Edit text, swap images, adjust colors",
+      "<strong>Publish:</strong> Click Publish → get a live URL instantly"],
+    "example": {
+          "title": "Personal Portfolio",
+          "goal": "Create a portfolio to showcase 3 design projects",
+          "prompt": "Create a modern, minimal portfolio website for a UX designer. Include a hero section, 3 project case studies, and a contact form with dark mode.",
+          "result": "A polished, responsive portfolio ready to share with employers."
     },
-    {
-      "name": "Carrd",
-      "category": "website-building",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "images/logos/carrdLogo.png",
-      "desc": "A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible.",
-      "url": "https://carrd.co/",
-      "pricingDetails": "Free tier with 3 sites. Pro plan $19/year (very affordable).",
-      "useCases": [
-        "Single-page portfolios",
-        "Event landing pages",
-        "Personal bio/link pages",
-        "Simple product launches"
-      ],
-      "whenToUse": "Choose Carrd for ultra-simple one-page sites when you need something fast, lightweight, and affordable. Perfect for personal pages and quick launches.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Vague AI prompts: 'Make me a website' is too broad.",
+          "Not testing mobile: Always check the mobile breakpoint before publishing.",
+          "Too many fonts: Stick to 2 font families maximum for professionalism."
+    ],
+    "useWhen": "You need a beautiful marketing site, portfolio, or landing page fast with high-end animations.",
+    "notUse": "Complex web apps with custom backends or heavy e-commerce stores with hundreds of products.",
+    "nextSteps": ["Build your first site in 30 mins", "Share link for feedback", "Check Framer Academy"],
+    "difficulty": "Easy",
+    "product": "Website"
+  },
+  {
+    "id": "carrd",
+    "name": "Carrd",
+    "tagline": "Create simple, responsive one-page sites in minutes. Ideal for link-in-bios and simple portfolios.",
+    "category": "website-building",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "images/logos/carrdLogo.png",
+    "desc": "A simple, fast website builder for landing pages, portfolios, and one-page sites. Lightweight, affordable, and flexible.",
+    "url": "https://carrd.co/",
+    "pricingDetails": "Free tier with 3 sites. Pro plan $19/year (very affordable).",
+    "useCases": [
+      "Single-page portfolios",
+      "Event landing pages",
+      "Personal bio/link pages",
+      "Simple product launches"
+    ],
+    "guide": ["<strong>Sign up:</strong> Go to carrd.co and create a free account",
+      "<strong>Choose template:</strong> Pick from 50+ starting points",
+      "<strong>Customize:</strong> Edit text, colors, images with visual editor",
+      "<strong>Add sections:</strong> Use + button to add new content blocks",
+      "<strong>Publish:</strong> Click Publish and get your *.carrd.co URL"],
+    "example": {
+          "title": "Link-in-Bio",
+          "goal": "Consolidate social links into one mobile-friendly page.",
+          "prompt": "N/A - Start with a 'Profile' template.",
+          "result": "A lightweight, fast-loading page for your social media profile."
     },
-    {
-      "name": "Glide",
-      "category": "app-building",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "images/logos/glideLogo.png",
-      "desc": "Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools and simple SaaS ideas.",
-      "url": "https://www.glideapps.com/",
-      "pricingDetails": "Free tier available. Pro plan from $25/month.",
-      "useCases": [
-        "Internal team dashboards",
-        "Inventory management apps",
-        "Event check-in systems",
-        "Customer portals"
-      ],
-      "whenToUse": "Use Glide when your data lives in spreadsheets and you need a quick app interface. Ideal for internal tools, databases, and simple mobile apps.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Overcomplicating the layout: Keep it to a single vertical scroll.",
+          "Uploading massive images: Compress files before uploading to keep load times fast.",
+          "Forgetting a Call to Action (CTA): Make sure your main button stands out."
+    ],
+    "useWhen": "You need an ultra-simple, fast-loading one-page site for a personal profile or quick launch.",
+    "notUse": "Multi-page websites or sites requiring complex databases and user accounts.",
+    "nextSteps": ["Pick a template", "Link your social media", "Upgrade for custom domain"],
+    "difficulty": "Very Easy",
+    "product": "Website"
+  },
+  {
+    "id": "glide",
+    "name": "Glide",
+    "tagline": "Turn your spreadsheets into powerful mobile apps without writing a single line of code.",
+    "category": "app-building",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "images/logos/glideLogo.png",
+    "desc": "Turns spreadsheets or databases into polished mobile and web apps without coding. Great for internal tools and simple SaaS ideas.",
+    "url": "https://www.glideapps.com/",
+    "pricingDetails": "Free tier available. Pro plan from $25/month.",
+    "useCases": [
+      "Internal team dashboards",
+      "Inventory management apps",
+      "Event check-in systems",
+      "Customer portals"
+    ],
+    "guide": ["<strong>Sign up:</strong> Go to glideapps.com and create a free account",
+      "<strong>Connect data:</strong> Link a Google Sheet, Excel file, or Airtable",
+      "<strong>Choose template:</strong> Pick an app type (directory, CRM, tracker, etc.)",
+      "<strong>Customize:</strong> Add components, adjust layout, set up actions",
+      "<strong>Share:</strong> Get a link or install as PWA on mobile"],
+    "example": {
+          "title": "Inventory Tracker",
+          "goal": "Build an app for a team to track equipment.",
+          "prompt": "N/A - Sync with an Excel sheet containing Item Name, Status, and Photo.",
+          "result": "A mobile app where employees can update inventory on the go."
     },
-    {
-      "name": "Softr",
-      "category": "app-building",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=softr.io&sz=128",
-      "desc": "Build web apps and client portals on top of Airtable or databases. Ideal for marketplaces, dashboards, and membership sites.",
-      "url": "https://www.softr.io/",
-      "pricingDetails": "Free tier available. Paid plans from $49/month.",
-      "useCases": [
-        "Membership portals",
-        "Online marketplaces",
-        "Client dashboards",
-        "Directory sites"
-      ],
-      "whenToUse": "Choose Softr when building on Airtable and need a polished public interface. Great for marketplaces, directories, and member areas.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Messy Spreadsheets: Ensure your data is organized with clear headers before importing.",
+          "Too many components: Don't clutter the screen; focus on the primary user action.",
+          "Ignoring Privacy: Be careful with sensitive data when using public share links."
+    ],
+    "useWhen": "Your data already lives in a spreadsheet and you need a functional app interface quickly.",
+    "notUse": "High-performance gaming apps or apps requiring advanced device hardware access.",
+    "nextSteps": ["Connect a Google Sheet", "Design the layout", "Share with your team"],
+    "difficulty": "Medium",
+    "product": "App"
+  },
+  {
+    "id": "softr",
+    "name": "Softr",
+    "tagline": "Build professional web apps and portals on top of Airtable. No coding required.",
+    "category": "app-building",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=softr.io&sz=128",
+    "desc": "Build web apps and client portals on top of Airtable or databases. Ideal for marketplaces, dashboards, and membership sites.",
+    "url": "https://www.softr.io/",
+    "pricingDetails": "Free tier available. Paid plans from $49/month.",
+    "useCases": [
+      "Membership portals",
+      "Online marketplaces",
+      "Client dashboards",
+      "Directory sites"
+    ],
+    "guide": ["<strong>Sign up:</strong> Create account at softr.io",
+      "<strong>Connect Airtable:</strong> Link your Airtable base",
+      "<strong>Choose template:</strong> Select marketplace, directory, portal, etc.",
+      "<strong>Map data:</strong> Connect Airtable fields to Softr blocks",
+      "<strong>Publish:</strong> Get your softr.app subdomain or custom domain"],
+    "example": {
+          "title": "Client Portal",
+          "goal": "Provide a secure area for clients to view project updates.",
+          "prompt": "Connect to an Airtable 'Projects' base.",
+          "result": "A logged-in portal where clients only see their specific data."
     },
-    {
-      "name": "Figma",
-      "category": "demo-building",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=figma.com&sz=128",
-      "desc": "The industry standard for interface design and prototyping. With AI and interactive components, easy to create realistic product demos.",
-      "url": "https://www.figma.com/",
-      "pricingDetails": "Free for students. Professional plan $15/editor/month.",
-      "useCases": [
-        "UI/UX design and prototyping",
-        "Product mockups and demos",
-        "Design systems and component libraries",
-        "Interactive presentations"
-      ],
-      "whenToUse": "Use Figma for any serious design work, interactive prototypes, or when collaborating with designers. Industry standard for product design.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Incorrect Field Mapping: Double-check that Airtable columns match Softr blocks.",
+          "Ignoring User Permissions: Ensure users can't see each other's private data.",
+          "Overloading the page: Use Softr's page navigation instead of long single pages."
+    ],
+    "useWhen": "You are building a site that needs user login, profiles, and works specifically with Airtable data.",
+    "notUse": "Simple static sites (use Carrd instead) or complex native mobile apps.",
+    "nextSteps": ["Link Airtable base", "Set up user roles", "Publish to subdomain"],
+    "difficulty": "Medium",
+    "product": "App"
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "tagline": "The industry standard for interface design and collaborative prototyping. Free for students.",
+    "category": "demo-building",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=figma.com&sz=128",
+    "desc": "The industry standard for interface design and prototyping. With AI and interactive components, easy to create realistic product demos.",
+    "url": "https://www.figma.com/",
+    "pricingDetails": "Free for students. Professional plan $15/editor/month.",
+    "useCases": [
+      "UI/UX design and prototyping",
+      "Product mockups and demos",
+      "Design systems and component libraries",
+      "Interactive presentations"
+    ],
+    "guide": ["<strong>Sign up:</strong> Get Figma Education (free) at figma.com/education",
+      "<strong>Start a design file:</strong> Click + to create new design file",
+      "<strong>Add frames:</strong> Press F or select Frame tool, click and drag",
+      "<strong>Design:</strong> Use shapes, text, images from left toolbar",
+      "<strong>Prototype:</strong> Switch to Prototype tab, connect frames with arrows"],
+    "example": {
+          "title": "Interactive App Demo",
+          "goal": "Showcase how an app flows from login to home screen.",
+          "prompt": "N/A - Manual design with prototyping wires.",
+          "result": "A clickable link that looks and feels like a real mobile app."
     },
-    {
-      "name": "Uizard",
-      "category": "demo-building",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=uizard.io&sz=128",
-      "desc": "Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience.",
-      "url": "https://uizard.io/",
-      "pricingDetails": "Free tier available. Pro plan $19/month.",
-      "useCases": [
-        "Rapid UI mockups from text descriptions",
-        "Converting sketches to digital designs",
-        "Quick app prototype generation",
-        "Non-designer friendly interface creation"
-      ],
-      "whenToUse": "Choose Uizard when you need quick UI mockups but lack design skills. AI generates designs from prompts, sketches, or screenshots.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Messy Layers: Keep your layers named and grouped for easier editing.",
+          "Forgetting the Education Plan: Students get the Pro plan for free—don't pay full price!",
+          "Static designs: Without 'Prototype' wires, your demo won't be interactive."
+    ],
+    "useWhen": "You need to design a professional-grade UI or a high-fidelity clickable prototype for a demo.",
+    "notUse": "Building a live, functional website that users can browse (use Framer for that).",
+    "nextSteps": ["Get Education License", "Explore Community UI Kits", "Link frames in Prototype mode"],
+    "difficulty": "Medium/High",
+    "product": "Demo"
+  },
+  {
+    "id": "uizard",
+    "name": "Uizard",
+    "tagline": "The world's first AI-powered design tool. Turn sketches and text into professional UI.",
+    "category": "demo-building",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=uizard.io&sz=128",
+    "desc": "Turns text prompts, sketches, or screenshots into UI designs and prototypes. Great for quickly visualizing ideas without design experience.",
+    "url": "https://uizard.io/",
+    "pricingDetails": "Free tier available. Pro plan $19/month.",
+    "useCases": [
+      "Rapid UI mockups from text descriptions",
+      "Converting sketches to digital designs",
+      "Quick app prototype generation",
+      "Non-designer friendly interface creation"
+    ],
+    "guide": ["<strong>Sign up:</strong> Create account at uizard.io",
+          "<strong>Start project:</strong> Choose mobile app, web app, or website",
+          "<strong>Generate with AI:</strong> Describe your UI or upload a sketch",
+          "<strong>Customize:</strong> Edit components, colors, text",
+          "<strong>Preview:</strong> See your design on device mockups"],
+    "example": {
+          "title": "Sketch to App",
+          "goal": "Convert a hand-drawn paper sketch into a digital UI.",
+          "prompt": "Upload a photo of your notebook sketch.",
+          "result": "A digital, editable version of your drawing with clean UI components."
     },
-    {
-      "name": "Taskade",
-      "category": "writing",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=taskade.com&sz=128",
-      "desc": "AI-powered workspace for notes, tasks, and visual thinking. Generate mind maps, outlines, and project plans with AI.",
-      "url": "https://www.taskade.com/",
-      "pricingDetails": "Free tier available. Pro plan $10/month.",
-      "useCases": [
-        "Brainstorming and mind mapping",
-        "Project planning and outlines",
-        "Team collaboration on ideas",
-        "Structured note-taking"
+    "mistakes": [
+          "Low-contrast sketches: Ensure your paper drawings have dark lines for better AI recognition.",
+          "Generic prompts: Use descriptive adjectives when generating from text.",
+          "Ignoring the style guide: Ensure your colors and fonts stay consistent across screens."
+    ],
+    "useWhen": "You have an idea but don't know how to design in Figma. Perfect for non-designers.",
+    "notUse": "Creating production-ready code or final high-fidelity design systems.",
+    "nextSteps": ["Upload a sketch", "Use Autodesigner", "Preview on phone"],
+    "difficulty": "Easy",
+    "product": "Demo"
+  },
+  {
+    "id": "taskade",
+    "name": "Taskade",
+    "tagline": "Reimagine how you plan. Use AI to generate mind maps, tasks, and structured projects.",
+    "category": "writing",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=taskade.com&sz=128",
+    "desc": "AI-powered workspace for notes, tasks, and visual thinking. Generate mind maps, outlines, and project plans with AI.",
+    "url": "https://www.taskade.com/",
+    "pricingDetails": "Free tier available. Pro plan $10/month.",
+    "useCases": [
+      "Brainstorming and mind mapping",
+      "Project planning and outlines",
+      "Team collaboration on ideas",
+      "Structured note-taking"
+    ],
+    "guide": ["<strong>Sign up:</strong> Create account at taskade.com",
+          "<strong>Start with AI:</strong> Click 'Generate with AI' in new project",
+          "<strong>Choose format:</strong> List, board, mind map, or org chart",
+          "<strong>Describe project:</strong> Tell AI what you're planning",
+          "<strong>Refine:</strong> Edit, expand, or regenerate sections"
       ],
-      "whenToUse": "Use Taskade for visual thinking, brainstorming sessions, and when you need AI to help structure thoughts into outlines and plans.",
-      "difficulty": " ",
-      "product": " "
+    "example": {
+          "title": "Marketing Launch Plan",
+          "goal": "Structure a complex project into manageable tasks.",
+          "prompt": "Generate a 4-week launch plan for a new sneaker brand including social media, email, and events.",
+          "result": "A full hierarchy of tasks, deadlines, and responsibilities."
     },
-    {
-      "name": "Elicit",
-      "category": "writing",
-      "pricing": "free",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=elicit.com&sz=128",
-      "desc": "Research assistant for academic and evidence-based work. Finds papers, summarizes findings, and helps answer complex questions with cited sources.",
-      "url": "https://elicit.com/",
-      "pricingDetails": "Free with some usage limits. Plus plan $10/month.",
-      "useCases": [
-        "Literature reviews",
-        "Academic research",
-        "Evidence-based analysis",
-        "Finding and summarizing papers"
+    "mistakes": [
+          "Not exploring views: Switch between Mind Map and List views to see your data differently.",
+          "Over-relying on AI: Use the AI for the skeleton, but fill in the human details yourself.",
+          "Ignoring collaboration: Don't work alone; invite your team to the shared folder."
+    ],
+    "useWhen": "You feel overwhelmed by a project and need AI to help break it down into a visual roadmap.",
+    "notUse": "Heavy document writing or complex spreadsheet analysis.",
+    "nextSteps": ["Create a Mind Map", "Invite a collaborator", "Install the mobile app"],
+    "difficulty": "Easy",
+    "product": "Visual Content"
+  },
+  {
+    "id": "elicit",
+    "name": "Elicit",
+    "tagline": "The AI Research Assistant. Find papers and extract findings with scientific accuracy.",
+    "category": "writing",
+    "pricing": "free",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=elicit.com&sz=128",
+    "desc": "Research assistant for academic and evidence-based work. Finds papers, summarizes findings, and helps answer complex questions with cited sources.",
+    "url": "https://elicit.com/",
+    "pricingDetails": "Free with some usage limits. Plus plan $10/month.",
+    "useCases": [
+      "Literature reviews",
+      "Academic research",
+      "Evidence-based analysis",
+      "Finding and summarizing papers"
+    ],
+    "guide": ["<strong>Go to:</strong> elicit.com (free to start)",
+          "<strong>Ask research question:</strong> Be specific about your query",
+          "<strong>Review papers:</strong> Elicit finds relevant academic papers",
+          "<strong>Extract data:</strong> Pull key findings, methods, results",
+          "<strong>Synthesize:</strong> Compare across papers with AI help"
       ],
-      "whenToUse": "Choose Elicit for academic research or when you need evidence-based answers with proper citations from scholarly sources.",
-      "difficulty": " ",
-      "product": " "
+    "example": {
+          "title": "Literature Review",
+          "goal": "Find the consensus on the effects of caffeine on sleep.",
+          "prompt": "What are the effects of caffeine consumption 6 hours before bed on REM sleep?",
+          "result": "A table of relevant papers with a summary of their findings and citations."
     },
-    {
-      "name": "Claude",
-      "category": "writing",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=claude.ai&sz=128",
-      "desc": "Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling—ideal for strategy and complex brainstorming.",
-      "url": "https://claude.ai/",
-      "pricingDetails": "Free tier available. Pro plan $20/month.",
-      "useCases": [
-        "Long-form content creation",
-        "Complex analysis and research",
-        "Strategic planning documents",
-        "Code generation and debugging"
-      ],
-      "whenToUse": "Use Claude for nuanced writing, deep analysis, or when you need to work with large documents. Excellent for strategy and thoughtful content.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Treating it like a chatbot: Elicit is a search tool, not a creative writer. Use it for discovery.",
+          "Ignoring the 'Source' link: Always click through to the actual paper to verify the AI's summary.",
+          "Asking opinion questions: Elicit works best with empirical, research-based queries."
+    ],
+    "useWhen": "You need to write a thesis, literature review, or fact-check a claim using peer-reviewed sources.",
+    "notUse": "Creative writing, brainstorming, or casual web searching.",
+    "nextSteps": ["Ask a research question", "Export your table", "Check the 'Evidence' column"],
+    "difficulty": "Hard (Academic)",
+    "product": "Visual Content"
+  },
+  {
+    "id": "claude",
+    "name": "Claude",
+    "tagline": "Advanced AI for deep analysis, long-form writing, and strategic thinking.",
+    "category": "writing",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=claude.ai&sz=128",
+    "desc": "Excellent for long-form writing, deep analysis, and structured thinking. Strong context handling—ideal for strategy and complex brainstorming.",
+    "url": "https://claude.ai/",
+    "pricingDetails": "Free tier available. Pro plan $20/month.",
+    "useCases": [
+      "Long-form content creation",
+      "Complex analysis and research",
+      "Strategic planning documents",
+      "Code generation and debugging"
+    ],
+    "guide": ["<strong>Sign up:</strong> Create account at claude.ai",
+          "<strong>Start chat:</strong> Click New Chat",
+          "<strong>Be specific:</strong> Describe your task in detail",
+          "<strong>Iterate:</strong> Refine responses with follow-up questions",
+          "<strong>Use Projects:</strong> Upload documents for context (Pro)"],
+    "example": {
+          "title": "Strategic Whitepaper",
+          "goal": "Analyze a 50-page PDF report and summarize key trends.",
+          "prompt": "I've uploaded the annual report. Can you extract the top 5 risks mentioned and suggest a mitigation strategy for each?",
+          "result": "A structured, insightful strategic document."
     },
-    {
-      "name": "ChatGPT",
-      "category": "writing",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=chat.openai.com&sz=128",
-      "desc": "Versatile AI for writing, ideation, coding, research, and problem-solving. A general-purpose thinking partner.",
-      "url": "https://chat.openai.com/",
-      "pricingDetails": "Free tier available. Plus plan $20/month.",
-      "useCases": [
-        "General writing and editing",
-        "Brainstorming and ideation",
-        "Quick questions and research",
-        "Code assistance"
-      ],
-      "whenToUse": "Use ChatGPT as your general-purpose AI assistant for everyday tasks, quick answers, brainstorming, and creative work.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Short prompts: Claude thrives on context. Give it more background than you would ChatGPT.",
+          "Forgetting to upload files: Claude is best at analyzing your specific data—use the attachment tool.",
+          "Ignoring its tone: You can tell Claude to be 'professional', 'concise', or 'academic'."
+    ],
+    "useWhen": "You need to analyze large documents or write nuanced, high-quality content that sounds human.",
+    "notUse": "Generating images or real-time web browsing (unless using the latest 3.5 Sonnet features).",
+    "nextSteps": ["Upload a PDF", "Ask for a summary", "Create a 'Project'"],
+    "difficulty": "Medium",
+    "product": "Visual Content"
+  },
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "tagline": "The world's most versatile AI assistant for ideation, coding, and problem-solving.",
+    "category": "writing",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=chat.openai.com&sz=128",
+    "desc": "Versatile AI for writing, ideation, coding, research, and problem-solving. A general-purpose thinking partner.",
+    "url": "https://chat.openai.com/",
+    "pricingDetails": "Free tier available. Plus plan $20/month.",
+    "useCases": [
+      "General writing and editing",
+      "Brainstorming and ideation",
+      "Quick questions and research",
+      "Code assistance"
+    ],
+    "guide": ["<strong>Sign up:</strong> Create account at chat.openai.com",
+          "<strong>Start conversation:</strong> Type your question or task",
+          "<strong>Use GPT-4:</strong> Upgrade to Plus ($20/mo) for better responses",
+          "<strong>Try tools:</strong> Code Interpreter, DALL-E, web browsing",
+          "<strong>Create GPTs:</strong> Custom versions for specific tasks (Plus)"],
+    "example": {
+          "title": "Creative Brainstorming",
+          "goal": "Generate 10 names for a new eco-friendly water bottle brand.",
+          "prompt": "I'm starting a brand for sustainable bamboo water bottles. Give me 10 clever, catchy names and a tagline for each.",
+          "result": "A list of unique brand names like 'HydroHusk' and 'BambooBlue'."
     },
-    {
-      "name": "Canva",
-      "category": "visual",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=canva.com&sz=128",
-      "desc": "All-in-one design platform for presentations, social media, and marketing. AI helps generate layouts, images, and copy quickly.",
-      "url": "https://www.canva.com/",
-      "pricingDetails": "Free tier available. Pro plan $120/year (often discounted for students).",
-      "useCases": [
-        "Social media graphics",
-        "Presentation slides",
-        "Marketing materials",
-        "Posters and flyers"
-      ],
-      "whenToUse": "Choose Canva for any graphic design need when you want templates and AI assistance. Perfect for marketing materials and social content.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Accepting the first result: Always ask for 3 more versions or tell it to 'be more creative'.",
+          "Hallucinations: Don't trust it for facts without checking sources—it can confidently lie.",
+          "Vague instructions: Use the 'Custom Instructions' setting to tell it how you like to work."
+    ],
+    "useWhen": "You need a general assistant to help with everyday tasks, quick code snippets, or basic research.",
+    "notUse": "Highly specialized academic research (use Elicit) or high-fidelity design work.",
+    "nextSteps": ["Set Custom Instructions", "Try Voice Mode", "Build a Custom GPT"],
+    "difficulty": "Easy",
+    "product": "Visual Content"
+  },
+  {
+    "id": "canva",
+    "name": "Canva",
+    "tagline": "Empowering the world to design. Use AI to create stunning visuals in seconds.",
+    "category": "visual",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=canva.com&sz=128",
+    "desc": "All-in-one design platform for presentations, social media, and marketing. AI helps generate layouts, images, and copy quickly.",
+    "url": "https://www.canva.com/",
+    "pricingDetails": "Free tier available. Pro plan $120/year (often discounted for students).",
+    "useCases": [
+      "Social media graphics",
+      "Presentation slides",
+      "Marketing materials",
+      "Posters and flyers"
+    ],
+    "guide": ["<strong>Sign up:</strong> Free account at canva.com (students get Pro free)",
+          "<strong>Choose type:</strong> Presentation, Instagram post, flyer, etc.",
+          "<strong>Pick template:</strong> Browse thousands of designs",
+          "<strong>Customize:</strong> Edit text, swap images, adjust colors",
+          "<strong>Download or share:</strong> Export as PDF, PNG, or share link"],
+    "example": {
+          "title": "Instagram Campaign",
+          "goal": "Create a 3-post series for a bake sale.",
+          "prompt": "N/A - Search templates for 'Bake Sale' and use 'Magic Switch' to resize.",
+          "result": "A set of perfectly branded, professional-looking social posts."
     },
-    {
-      "name": "DALL•E / Leonardo",
-      "category": "visual",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=openai.com&sz=128",
-      "desc": "AI image generators for custom visuals from text prompts. Useful for marketing graphics, concept art, and unique visual content.",
-      "url": "https://openai.com/dall-e-3",
-      "pricingDetails": "DALL•E: Pay per image. Leonardo: Free tier with daily credits.",
-      "useCases": [
-        "Custom illustrations",
-        "Marketing visuals",
-        "Concept art",
-        "Social media images"
-      ],
-      "whenToUse": "Use AI image generators when you need custom visuals that don't exist yet. Great for unique illustrations and creative concepts.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Generic templates: Always change colors and fonts to match your specific brand.",
+          "Over-designing: Keep layouts clean; don't use every sticker in the Canva library.",
+          "Low-resolution exports: Use 'PDF Print' for physical items and 'PNG' for web."
+    ],
+    "useWhen": "You need professional marketing graphics or a presentation deck without learning Photoshop.",
+    "notUse": "Deep photo manipulation (use Photoshop) or creating production-ready websites.",
+    "nextSteps": ["Search for a template", "Try 'Magic Media' (AI Image)", "Brand your kit"],
+    "difficulty": "Easy",
+    "product": "Visual Content"
+  },
+  {
+    "id": "dalle-leonardo",
+    "name": "DALL•E / Leonardo",
+    "tagline": "Turn text into high-resolution images. From concept art to marketing visuals.",
+    "category": "visual",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=openai.com&sz=128",
+    "desc": "AI image generators for custom visuals from text prompts. Useful for marketing graphics, concept art, and unique visual content.",
+    "url": "https://openai.com/dall-e-3",
+    "pricingDetails": "DALL•E: Pay per image. Leonardo: Free tier with daily credits.",
+    "useCases": [
+      "Custom illustrations",
+      "Marketing visuals",
+      "Concept art",
+      "Social media images"
+    ],
+    "guide": ["<strong>DALL•E:</strong> Go to ChatGPT Plus or Bing Image Creator",
+          "<strong>Leonardo:</strong> Sign up at leonardo.ai (free tier available)",
+          "<strong>Describe image:</strong> Be specific about subject, style, composition",
+          "<strong>Generate:</strong> Wait 10-30 seconds for results",
+          "<strong>Refine:</strong> Iterate with modified prompts"],
+    "example": {
+          "title": "Website Hero Image",
+          "goal": "Generate a unique 3D illustration of a futuristic office.",
+          "prompt": "A 3D isometric rendering of a glass office on Mars, soft lighting, pastel colors, high detail, 8k.",
+          "result": "A stunning, original image for your website background."
     },
-    {
-      "name": "Microsoft Designer",
-      "category": "visual",
-      "pricing": "free",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=designer.microsoft.com&sz=128",
-      "desc": "Creates social posts, graphics, and marketing visuals from simple prompts. Free with a Microsoft account.",
-      "url": "https://designer.microsoft.com/",
-      "pricingDetails": "Completely free with Microsoft account.",
-      "useCases": [
-        "Social media posts",
-        "Quick marketing graphics",
-        "Event announcements",
-        "Simple branded content"
-      ],
-      "whenToUse": "Choose Microsoft Designer for quick social graphics when you have a Microsoft account. Simplest AI graphic design option.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Ignoring lighting/style: Don't just say 'a dog'. Say 'a dog in the style of Van Gogh with sunset lighting'.",
+          "Copyrighted names: Avoid using specific artist names; describe their style instead.",
+          "Incorrect aspect ratios: Ensure you specify 'Widescreen' or 'Portrait' depending on the platform."
+    ],
+    "useWhen": "You need an image that doesn't exist in stock photo libraries.",
+    "notUse": "Real-time editing of existing photos (use Photoshop Generative Fill for that).",
+    "nextSteps": ["Write a detailed prompt", "Choose a model", "Upscale your result"],
+    "difficulty": "Medium",
+    "product": "Visual Content"
+  },
+  {
+    "id": "designer",
+    "name": "Microsoft Designer",
+    "tagline": "Design made easy with AI. Describe it, and watch the layout appear.",
+    "category": "visual",
+    "pricing": "free",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=designer.microsoft.com&sz=128",
+    "desc": "Creates social posts, graphics, and marketing visuals from simple prompts. Free with a Microsoft account.",
+    "url": "https://designer.microsoft.com/",
+    "pricingDetails": "Completely free with Microsoft account.",
+    "useCases": [
+      "Social media posts",
+      "Quick marketing graphics",
+      "Event announcements",
+      "Simple branded content"
+    ],
+    "guide": ["<strong>Sign in:</strong> Go to designer.microsoft.com with Microsoft account",
+          `<strong>Describe design:</strong> 'Create an Instagram post about...`,
+          "<strong>Pick layout:</strong> Choose from AI-generated options",
+          "<strong>Customize:</strong> Edit text, images, colors",
+          "<strong>Download:</strong> Export as PNG or share link"],
+    "example": {
+          "title": "Event Flyer",
+          "goal": "Create a flyer for a community garden meetup.",
+          "prompt": "An inviting social media post for a community garden event on Saturday at 10 AM. Use green tones and organic shapes.",
+          "result": "A clean, ready-to-post graphic with the correct dimensions."
     },
-    {
-      "name": "Vizcom",
-      "category": "visual",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=vizcom.ai&sz=128",
-      "desc": "AI-powered tool for visual and design concepts. Useful for turning ideas into visuals during prototyping.",
-      "url": "https://www.vizcom.ai/",
-      "pricingDetails": "Free tier available. Pro plan $20/month.",
-      "useCases": [
-        "Product design visualization",
-        "Industrial design concepts",
-        "Quick visual explorations",
-        "Rendering sketches"
-      ],
-      "whenToUse": "Use Vizcom for product and industrial design when you need to visualize 3D concepts or render sketches professionally.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Accepting the first draft: The AI generates multiple options—scroll through all of them.",
+          "Cramming too much text: AI-generated layouts can break if you put a paragraph in a title box.",
+          "Ignoring Brand Consistency: Try to use similar styles across your posts."
+    ],
+    "useWhen": "You need a social media post in 30 seconds and don't want to browse through thousands of Canva templates.",
+    "notUse": "Professional logo design or multi-page documents.",
+    "nextSteps": ["Describe your post", "Select a style", "Download for Instagram"],
+    "difficulty": "Very Easy",
+    "product": "Visual Content"
+  },
+  {
+    "id": "vizcom",
+    "name": "Vizcom",
+    "tagline": "Industrial design at the speed of thought. Render sketches into products in seconds.",
+    "category": "visual",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=vizcom.ai&sz=128",
+    "desc": "AI-powered tool for visual and design concepts. Useful for turning ideas into visuals during prototyping.",
+    "url": "https://www.vizcom.ai/",
+    "pricingDetails": "Free tier available. Pro plan $20/month.",
+    "useCases": [
+      "Product design visualization",
+      "Industrial design concepts",
+      "Quick visual explorations",
+      "Rendering sketches"
+    ],
+    "guide": ["<strong>Sign up:</strong> Create account at vizcom.ai",
+          "<strong>Upload sketch:</strong> Hand-drawn or digital rough sketch",
+          "<strong>Choose style:</strong> Select rendering style (realistic, concept, etc.)",
+          "<strong>Generate:</strong> AI creates professional rendering",
+          "<strong>Refine:</strong> Iterate on style, materials, lighting"],
+    "example": {
+          "title": "Sneaker Concept",
+          "goal": "Turn a pencil sketch of a shoe into a photorealistic rendering.",
+          "prompt": "Leather and mesh materials, futuristic sole, studio lighting, cinematic view.",
+          "result": "A professional-grade product rendering that looks like a real photograph."
     },
-    {
-      "name": "Nano Banana",
-      "category": "visual",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=artlist.io&sz=128",
-      "desc": "AI image and video generator by Artlist. Quick visual generation for prototyping and creative projects.",
-      "url": "https://toolkit.artlist.io/",
-      "pricingDetails": "Part of Artlist subscription. Free trial available.",
-      "useCases": [
-        "Quick AI images",
-        "Video content generation",
-        "Creative experimentation",
-        "Rapid prototyping visuals"
-      ],
-      "whenToUse": "Choose Nano Banana for fast AI image/video generation, especially if you already have Artlist for stock media.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Using messy sketches: The cleaner your lines, the more accurate the rendering will be.",
+          "Vague material descriptions: Be specific (e.g., 'brushed aluminum' instead of 'metal').",
+          "Ignoring the 'Strength' slider: Adjust how much the AI follows your sketch vs. its own creativity."
+    ],
+    "useWhen": "You are a product or industrial designer who wants to visualize concepts without hours of 3D modeling.",
+    "notUse": "General graphic design (use Canva) or building websites.",
+    "nextSteps": ["Upload a pencil sketch", "Choose a rendering style", "Experiment with materials"],
+    "difficulty": "Medium",
+    "product": "Visual Content"
+  },
+  {
+    "id": "nanobanana",
+    "name": "Nano Banana",
+    "tagline": "Artlist's AI toolkit for creators. Generate unique B-roll and images for your videos.",
+    "category": "visual",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=artlist.io&sz=128",
+    "desc": "AI image and video generator by Artlist. Quick visual generation for prototyping and creative projects.",
+    "url": "https://toolkit.artlist.io/",
+    "pricingDetails": "Part of Artlist subscription. Free trial available.",
+    "useCases": [
+      "Quick AI images",
+      "Video content generation",
+      "Creative experimentation",
+      "Rapid prototyping visuals"
+    ],
+    "guide": ["<strong>Access:</strong> Part of Artlist subscription (free trial available)",
+          "<strong>Choose tool:</strong> Image generator or video generator",
+          "<strong>Describe content:</strong> Write what you want to create",
+          "<strong>Generate:</strong> AI creates your visual in seconds",
+          "<strong>Download:</strong> Use in your projects with Artlist license"],
+    "example": {
+          "title": "Cinematic B-Roll",
+          "goal": "Create a 5-second clip of a neon city in the rain.",
+          "prompt": "Cyberpunk city street, neon signs, heavy rain, 4k, cinematic camera drone shot.",
+          "result": "A high-quality video clip to use as a transition in your project."
     },
-    {
-      "name": "Perplexity",
-      "category": "researching",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "images/logos/perplexityLogo.png",
-      "desc": "AI search engine that gives concise answers with citations. Excellent for fast research and fact-checking.",
-      "url": "https://www.perplexity.ai/",
-      "pricingDetails": "Free tier available. Pro plan $20/month.",
-      "useCases": [
-        "Quick research with sources",
-        "Fact-checking",
-        "Current events and news",
-        "Comparative analysis"
-      ],
-      "whenToUse": "Use Perplexity when you need current information with citations. Better than traditional search for research questions.",
-      "difficulty": " ",
-      "product": " "
+    "mistakes": [
+          "Expecting long movies: The AI generates short clips (4-10 seconds); use them as B-roll.",
+          "Ignoring the license: Make sure you understand how you can use the generated content based on your subscription.",
+          "Vague descriptions: Describe movement (e.g., 'camera panning left') for better video results."
+    ],
+    "useWhen": "You need specific B-roll or imagery for a video project that you can't find in stock libraries.",
+    "notUse": "Building websites or managing spreadsheets.",
+    "nextSteps": ["Generate a video clip", "Incorporate into an edit", "Try the image tool"],
+    "difficulty": "Medium",
+    "product": "Visual Content"
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "tagline": "Search evolved. Get direct answers with live citations and source verification.",
+    "category": "Phase 1",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "images/logos/perplexityLogo.png",
+    "desc": "AI search engine that gives concise answers with citations. Excellent for fast research and fact-checking.",
+    "url": "https://www.perplexity.ai/",
+    "pricingDetails": "Free tier available. Pro plan $20/month.",
+    "useCases": [
+      "Quick research with sources",
+      "Fact-checking",
+      "Current events and news",
+      "Comparative analysis"
+    ],
+    "guide": ["<strong>Go to:</strong> perplexity.ai (no signup required)",
+          "<strong>Ask question:</strong> Natural language, be specific",
+          "<strong>Review sources:</strong> Click numbered citations to verify",
+          "<strong>Follow up:</strong> Ask clarifying questions",
+          "<strong>Upgrade to Pro:</strong> ($20/mo) for GPT-4 and more searches"],
+    "example": {
+          "title": "Tech Comparison",
+          "goal": "Decide between two laptops for video editing.",
+          "prompt": "Compare the 2024 MacBook Air M3 and the Dell XPS 13 for 4k video editing. Focus on thermal throttling and battery life.",
+          "result": "A cited summary of recent tech reviews and benchmarks."
     },
-    {
-      "name": "Zapier",
-      "category": "automating",
-      "pricing": "student",
-      "hasTutorial": true,
-      "logo": "https://www.google.com/s2/favicons?domain=zapier.com&sz=128",
-      "desc": "Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools and eliminating repetitive tasks.",
-      "url": "https://zapier.com/",
-      "pricingDetails": "Free tier with 100 tasks/month. Paid plans from $20/month.",
-      "useCases": [
-        "Automating data entry",
-        "Connecting apps together",
-        "Email and notification workflows",
-        "Social media automation"
-      ],
-      "whenToUse": "Choose Zapier to eliminate repetitive tasks by connecting your apps. Great for automating workflows between different tools.",
-      "difficulty": " ",
-      "product": " "
-    }
-  ];
-  
+    "mistakes": [
+          "Not clicking the links: Always verify the AI didn't misinterpret a source by clicking the citation.",
+          "Asking for creative stories: Perplexity is for facts. Use Claude or ChatGPT for fiction.",
+          "Ignoring the 'Focus' mode: Use the 'Academic' or 'YouTube' focus to narrow your search."
+    ],
+    "useWhen": "You are researching a topic and want to skip the list of blue links on Google.",
+    "notUse": "Creative writing or long-form analysis of private files (use Claude for that).",
+    "nextSteps": ["Ask a 'VS' question", "Verify citations", "Try Pro Search"],
+    "difficulty": "Easy",
+    "product": "Visual Content"
+  },
+  {
+    "id": "zapier",
+    "name": "Zapier",
+    "tagline": "The glue of the internet. Automate your repetitive tasks by connecting your favorite apps.",
+    "category": "automating",
+    "pricing": "student",
+    "hasTutorial": true,
+    "logo": "https://www.google.com/s2/favicons?domain=zapier.com&sz=128",
+    "desc": "Connects thousands of apps to automate workflows without coding. Ideal for moving data between tools and eliminating repetitive tasks.",
+    "url": "https://zapier.com/",
+    "pricingDetails": "Free tier with 100 tasks/month. Paid plans from $20/month.",
+    "useCases": [
+      "Automating data entry",
+      "Connecting apps together",
+      "Email and notification workflows",
+      "Social media automation"
+    ],
+    "guide": ["<strong>Sign up:</strong> Create account at zapier.com (free tier available)",
+          `<strong>Create Zap:</strong> Click 'Create Zap`,
+          "<strong>Choose trigger:</strong> 'When this happens...' (e.g., new email)",
+          "<strong>Choose action:</strong> 'Do this...' (e.g., add to spreadsheet)",
+          "<strong>Test and turn on:</strong> Verify it works, then activate"],
+    "example": {
+          "title": "Lead Management",
+          "goal": "Automatically save Instagram leads to a spreadsheet.",
+          "prompt": "Trigger: New lead in IG. Action: Create row in Google Sheets.",
+          "result": "A self-updating database that requires zero manual entry."
+    },
+    "mistakes": [
+          "Forgetting the test step: Always 'Test' your Zap to ensure the data maps correctly.",
+          "Leaving Zaps on during bulk edits: If you change 1000 rows, you might use up your task limit instantly.",
+          "Messy naming: Name your Zaps clearly (e.g., 'IG → Sheets') so you don't get lost."
+    ],
+    "useWhen": "You find yourself copying and pasting data between two different websites every day.",
+    "notUse": "Building a customer-facing UI (use Glide or Softr) or high-speed data processing.",
+    "nextSteps": ["Connect your email", "Create your first 'Zap'", "Explore the Zapier App Directory"],
+    "difficulty": "Medium",
+    "product": "Visual Content"
+  }
+];

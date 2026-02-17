@@ -45,25 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
         const panel = document.getElementById("tool-detail-panel");
         const content = document.getElementById("tool-detail-content");
-        const layout = document.querySelector(".tools-page-layout");
-        const resultsColumn = layout.querySelector(".tools-results-column");
+        const container = document.querySelector(".stage-expansion-content"); // container panel must stay in
     
-        // --- Active card state ---
+        // --- Active card ---
         if (activeToolCard) activeToolCard.classList.remove("active");
         cardElement.classList.add("active");
         activeToolCard = cardElement;
-        layout.classList.add("panel-open");
-    
-        // --- Move panel depending on screen ---
-        if (window.innerWidth <= 900) {
-            // MOBILE: place panel directly under card
-            cardElement.after(panel);
-        } else {
-            // DESKTOP: ensure panel is inside layout
-            if (panel.parentNode !== layout) {
-                layout.appendChild(panel);
-            }
-        }
     
         // --- Inject content ---
         content.innerHTML = `
@@ -79,42 +66,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h4>// Use Cases</h4>
                 <ul>${tool.useCases.map(u => `<li>${u}</li>`).join('')}</ul>
             </div>
+            <div class="tool-detail-actions">
             <a href="${tool.url}" target="_blank" class="action-btn">Launch ${tool.name}</a>
+            <a href="tutorial.html?tool=${tool.id || tool.name.toLowerCase().replace(/\s+/g, '-')}" class="action-btn secondary">
+            Step-by-Step Guide</a>
+            </div>
         `;
     
         panel.classList.remove("hidden");
     
-        // --- Wait for layout so height is accurate ---
-        requestAnimationFrame(() => {
-            if (window.innerWidth > 900) {
-                // ===== DESKTOP POSITIONING =====
-        
-                const layoutRect = layout.getBoundingClientRect();
-                const cardRect = cardElement.getBoundingClientRect();
-        
-                // Desired alignment
-                let offsetTop = cardRect.top - layoutRect.top;
-        
-                const panelHeight = panel.offsetHeight;
-                const containerHeight = resultsColumn.offsetHeight;
-        
-                // --- spacing controls ---
-                const TOP_GAP = 8;      // optional top breathing room
-                const BOTTOM_GAP = 70;  // space from bottom edge
-        
-                // Clamp so panel never touches edges
-                const maxOffset = containerHeight - panelHeight - BOTTOM_GAP;
-        
-                offsetTop = Math.min(offsetTop, maxOffset);
-                offsetTop = Math.max(offsetTop, TOP_GAP);
-        
-                panel.style.marginTop = offsetTop + "px";
-            } else {
-                panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
-            }
-        });
-        
+        if (window.innerWidth <= 900) {
+            // --- MOBILE: insert under card ---
+            cardElement.after(panel);
+            panel.style.position = "relative";
+            panel.style.marginTop = "0";
+            panel.style.top = "";
+            panel.style.transform = "";
+            panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } else {
+            // --- DESKTOP: center in visible portion of container ---
+            const containerRect = container.getBoundingClientRect();
+            const panelHeight = panel.offsetHeight;
+    
+            const TOP_GAP = 16;
+            const BOTTOM_GAP = 16;
+    
+            // visible portion of container in viewport
+            const visibleTop = Math.max(containerRect.top, 0);
+            const visibleBottom = Math.min(containerRect.bottom, window.innerHeight);
+            const visibleHeight = visibleBottom - visibleTop;
+    
+            // center panel in visible area
+            let offsetTop = (visibleHeight - panelHeight) / 2 + (visibleTop - containerRect.top);
+    
+            // clamp to container edges
+            offsetTop = Math.max(offsetTop, TOP_GAP);
+            offsetTop = Math.min(offsetTop, containerRect.height - panelHeight - BOTTOM_GAP);
+    
+            panel.style.position = "relative";
+            panel.style.marginTop = offsetTop + "px";
+            panel.style.top = "";
+            panel.style.transform = "";
+        }
     }
+    
+    
     
     function hideDetail() {
         const panel = document.getElementById("tool-detail-panel");

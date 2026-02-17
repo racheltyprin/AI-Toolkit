@@ -1,0 +1,127 @@
+/* --- 1. THE MAIN CONTAINER --- */
+.tutorial-grid {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    width: 100%;
+    padding-bottom: 80px;
+}
+
+/* --- 2. STEP CARDS (STATIC SHADOW) --- */
+.steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.step-card {
+    background: #FFFFFF;
+    border: 2px solid var(--palo-alto-dark);
+    /* Static shadow: no movement on hover */
+    box-shadow: 8px 8px 0px 0px var(--palo-alto-dark); 
+    margin-bottom: 12px;
+}
+
+.step-header {
+    background: var(--palo-alto-dark);
+    color: #FFFFFF;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 2px solid var(--palo-alto-dark);
+}
+
+.step-number {
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--illuminating);
+}
+
+.step-header h4 {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    font-weight: 900;
+}
+
+.step-body {
+    padding: 24px;
+    line-height: 1.6;
+    color: var(--stone-dark);
+    font-weight: 500;
+}
+
+/* --- 3. SIDEBAR BLOCKS (STATIC SHADOW) --- */
+.sidebar-block {
+    background: #FFFFFF;
+    border: 2px solid var(--palo-alto-dark);
+    padding: 28px;
+    margin-bottom: 32px;
+    /* Static shadow using Fog for secondary info */
+    box-shadow: 6px 6px 0px 0px var(--fog-dark); 
+}
+
+.sidebar-label {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--palo-alto-dark);
+    border-bottom: 3px solid var(--illuminating);
+    display: inline-block;
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+}
+
+/* Color accents for specific blocks */
+.sidebar-block.warning { box-shadow: 6px 6px 0px 0px var(--poppy); }
+.sidebar-block.stop { box-shadow: 6px 6px 0px 0px var(--brick); }
+
+/* --- 4. QUICK START BOX --- */
+.quick-start-box {
+    background: #FFFFFF;
+    border: 2px solid var(--palo-alto-dark);
+    padding: 32px;
+    /* Using Illuminating for the primary start block */
+    box-shadow: 10px 10px 0px 0px var(--illuminating); 
+    margin-bottom: 40px;
+}
+
+/* --- 5. NEXT STEPS (THE FINISHER) --- */
+.next-steps-card {
+    background: var(--palo-alto-dark);
+    padding: 32px;
+    color: white;
+    border: 2px solid var(--palo-alto-dark);
+    box-shadow: 8px 8px 0px 0px var(--palo-alto-dark);
+}
+
+.next-steps-card h4 {
+    color: var(--illuminating);
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+/* --- 6. SECTION LABELS --- */
+.section-label {
+    font-weight: 900;
+    font-size: 0.75rem;
+    color: var(--palo-alto-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: 48px 0 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-label::before {
+    content: "";
+    width: 30px;
+    height: 6px;
+    background: var(--spirited);
+    border: 1px solid var(--palo-alto-dark);
+}

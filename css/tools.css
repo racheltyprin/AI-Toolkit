@@ -347,7 +347,6 @@
 }
 
 .action-btn {
-    display: block;
     text-align: center;
     background: var(--illuminating);
     color: var(--palo-alto-dark);
@@ -359,7 +358,6 @@
     text-transform: uppercase;
     letter-spacing: 0.15em;
     box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
-    margin-top: 20px;
     transition: all 0.2s ease;
 }
 
@@ -386,8 +384,10 @@
 
     .tool-detail-panel {
         width: 100%;
-        position: relative;
-        top: 0;
+        position: fixed;
+        top: 50%;              /* vertical center in screen */
+        
+        transform: translateY(-50%);  /* true vertical centering */
         margin-top: 0;
         margin-right: 0; /* Remove right margin on mobile */
         max-height: none;
@@ -439,4 +439,25 @@
 /* --- 6. UTILITIES --- */
 .hidden {
     display: none !important;
+}
+
+/* Container for the two buttons */
+.tool-detail-actions {
+    display: flex;             
+    flex-direction: row;       /* Ensure they stay side-by-side */
+    gap: 16px;                 /* This creates the space between them */
+    width: 100%;               /* Take up full panel width */
+    margin-top: 32px;          
+    box-sizing: border-box;
+}
+
+/* Specific styling for buttons when inside the actions container */
+.tool-detail-actions .action-btn {
+    flex: 1;                   /* Force equal 50/50 width */
+    margin: 0 !important;      /* Remove any top/bottom margins that cause misalignment */
+    display: flex;             
+    align-items: center;       
+    justify-content: center;   
+    white-space: nowrap;       /* Prevent text from wrapping and breaking height */
+    padding: 16px 8px;         /* Balanced padding */
 }

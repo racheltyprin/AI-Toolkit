@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Toolbox | Tutorial</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tutorial.css">
+</head>
+<body>
+    <div class="landing-content-wrapper">
+        <header>
+            <h1 class="main-title">AI TOOLBOX</h1>
+            <nav class="inner-nav">
+                <a href="index.html" class="nav-item">HOME</a>
+                <a href="tools.html" class="nav-item">AI TOOLS</a>
+                <a href="uses.html" class="nav-item active">TUTORIAL</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="stage-header-card is-open tutorial-mode">
+                <div class="stage-header-flex" id="tutorial-header">
+                    </div>
+
+                <div class="expansion-divider-line"></div>
+
+                <div class="stage-expansion-content">
+                    <div class="expansion-inner">
+                        <div class="tutorial-grid">
+                            <div class="tutorial-main-column">
+                                <div id="quick-start"></div>
+                                <h3 class="section-label">// Step-by-Step Instructions</h3>
+                                <div id="steps-container" class="steps-list"></div>
+                            </div>
+
+                            <aside class="tutorial-sidebar">
+                                <div class="sidebar-block" id="example-project"></div>
+                                <div class="sidebar-block warning" id="mistakes-section"></div>
+                                <div class="sidebar-block stop" id="not-use-section"></div>
+                                <div id="next-steps"></div>
+                            </aside>
+                        </div>
+
+                        <div class="error-message hidden" id="error-message">
+                            <h2 class="stage-title">404 // NOT FOUND</h2>
+                            <p>Documentation for this module is missing.</p>
+                            <a href="tools.html" class="action-btn">Return to Directory</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/tutorial.js"></script>
+</body>
+</html>
