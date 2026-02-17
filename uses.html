@@ -6,9 +6,36 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/uses.css">
-  <title>AI Tools | AI Toolbox</title>
+  <title>AI Toolbox - Use Cases</title>
 </head>
+<script>
+  const drawer = document.querySelector('.quiz-drawer');
+  const toggle = document.querySelector('.drawer-toggle');
+
+  toggle.addEventListener('click', () => {
+      drawer.classList.toggle('collapsed');
+  });
+</script>
 <body>
+
+<div class="quiz-drawer collapsed" id="quiz-drawer">
+    <button class="drawer-toggle">
+      <span>What Phase Am I In?</span>
+    </button>
+    
+    <div class="drawer-content">
+        <div class="drawer-header">
+            <span class="section-label">Program Progress</span>
+            <button onclick="State.clear()" class="clear-btn">Clear All</button>
+        </div>
+        
+        <div id="steps-list"></div>
+
+        <div id="quiz-result" class="quiz-result-card">
+            <p id="status-text">Select your completed steps.</p>
+        </div>
+    </div>
+</div>
 
 <div class="landing-content-wrapper">
   
@@ -20,11 +47,12 @@
     <a href="uses.html" class="nav-item active">USE CASES</a>
   </nav>
 
-  <main class="content-body">
+  <div id="roadmap-root">
+      </div>
+  
+</div>
 
-    
 <script src="js/data.js"></script>
 <script src="js/uses.js"></script>
-
 </body>
 </html>

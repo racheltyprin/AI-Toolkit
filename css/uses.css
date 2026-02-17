@@ -1,204 +1,270 @@
-:root {
-    /* Palo Alto */
-    --palo-alto: #175E54;
-    --palo-alto-light: #2D716F;
-    --palo-alto-dark: #014240;
-  
-    /* Palo Verde */
-    --palo-verde: #279989;
-    --palo-verde-light: #59B3A9;
-    --palo-verde-dark: #017E7C;
-  
-    /* Olive */
-    --olive: #8F993E;
-    --olive-light: #A6B168;
-    --olive-dark: #7A863B;
-  
-    /* Bay */
-    --bay: #6FA287;
-    --bay-light: #8AB8A7;
-    --bay-dark: #417865;
-  
-    /* Sky */
-    --sky: #4298B5;
-    --sky-light: #67AFD2;
-    --sky-dark: #016895;
-  
-    /* Lagunita */
-    --lagunita: #007C92;
-    --lagunita-light: #009AB4;
-    --lagunita-dark: #006B81;
-  
-    /* Poppy */
-    --poppy: #E98300;
-    --poppy-light: #F9A44A;
-    --poppy-dark: #D1660F;
-  
-    /* Spirited */
-    --spirited: #E04F39;
-    --spirited-light: #F4795B;
-    --spirited-dark: #C74632;
-  
-    /* Illuminating */
-    --illuminating: #FEDD5C;
-    --illuminating-light: #FFE781;
-    --illuminating-dark: #FEC51D;
-  
-    /* Plum */
-    --plum: #620059;
-    --plum-light: #734675;
-    --plum-dark: #350D36;
-  
-    /* Brick */
-    --brick: #651C32;
-    --brick-light: #7F2D48;
-    --brick-dark: #42081B;
-  
-    /* Archway */
-    --archway: #5D4B3C;
-    --archway-light: #766253;
-    --archway-dark: #2F2424;
-  
-    /* Stone */
-    --stone: #7F7776;
-    --stone-light: #D4D1D1;
-    --stone-dark: #544948;
-  
-    /* Fog */
-    --fog: #DAD7CB;
-    --fog-light: #F4F4F4;
-    --fog-dark: #B6B1A9;
-  
-  
-  }
-/* --- ACTIVE CARD STATE --- */
-.stage-header-card.is-active {
-    border-color: var(--palo-alto-dark);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    transform: translateY(-4px);
+/* --- USE CASES SPECIFIC LAYOUT --- */
+.diagnostic-quiz {
+    background: #FFFFFF;
+    border: 3px solid var(--palo-alto-dark);
+    padding: 30px;
+    margin: 40px 0;
+    box-shadow: 10px 10px 0px 0px var(--palo-alto-dark);
 }
 
-/* --- EXPANSION CONTENT PANEL --- */
-.stage-expansion-content {
-    max-height: 400px;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.35s ease;
-    background: var(--fog-light);
-    border-top: 6px solid var(--poppy-light);
-}
-
-/* --- INNER PADDING WRAPPER --- */
-.expansion-inner {
-    padding: 40px;
-}
-
-/* --- DIVIDER --- */
-.expansion-divider {
-    display: none; /* border-top on the panel itself handles this now */
-}
-
-/* --- GRID --- */
-.expansion-grid {
+.quiz-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 32px;
+    gap: 15px;
+    margin: 20px 0;
 }
 
-/* --- COLUMNS --- matches .sub-section language from style.css --- */
-.expansion-column {
-    border-left: 3px solid var(--stone-light);
-    padding-left: 20px;
-    transition: border-color 0.3s ease;
+.phase-section { margin-bottom: 80px; }
+
+.roadmap-notebook {
+    border: 3px solid var(--palo-alto-dark);
+    background: white;
+    box-shadow: 12px 12px 0px 0px var(--palo-alto-dark);
+    display: flex;
+    flex-direction: column;
 }
 
-.stage-header-card.is-active .expansion-column {
-    border-left-color: var(--lagunita);
+.subsection-row {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    border-bottom: 2px solid var(--fog);
 }
 
-.expansion-column h4 {
-    font-weight: 900;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--lagunita);
-    margin: 0 0 8px 0;
-}
-
-.expansion-column p,
-.expansion-column li {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--stone-dark);
-    line-height: 1.4;
-}
-
-.expansion-column ul {
-    margin: 0;
-    padding-left: 16px;
-}
-
-.expansion-column li {
-    margin-bottom: 4px;
-}
-
-/* --- MOBILE --- */
-@media (max-width: 900px) {
-    .expansion-inner {
-        padding: 24px 20px;
-    }
-
-    .expansion-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .stage-header-card.is-active {
-        transform: none;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    }
-}
-
-/* --- SHOW MORE / SHOW LESS BUTTON --- */
-.show-more-btn {
-    align-self: flex-end;
-    margin-left: auto;
-    margin-top: auto;
-    flex-shrink: 0;
-
-    background: var(--white);
-    border: 2px solid var(--palo-alto-dark);
-    color: var(--palo-alto-dark);
-    font-weight: 900;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    padding: 8px 16px;
-    cursor: pointer;
-    box-shadow: 3px 3px 0px 0px var(--palo-alto-dark);
-    transition: all 0.2s ease;
-}
-
-.show-more-btn:hover {
-    background: var(--spirited-light);
-    transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0px 0px var(--palo-alto-dark);
-}
-
-.show-more-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0px 0px var(--palo-alto-dark);
-}
-
-/* When open — button goes dark */
-.show-more-btn.is-less {
+.sub-sidebar {
+    padding: 25px;
     background: var(--fog-light);
-    color: var(--palo-alto-dark);
-    box-shadow: 3px 3px 0px 0px var(--palo-alto-dark);
+    border-right: 2px solid var(--palo-alto-dark);
 }
 
-.show-more-btn.is-less:hover {
-    background: var(--spirited-light);
-    box-shadow: 5px 5px 0px 0px var(--palo-alto-dark);
+.sub-content { padding: 30px; }
+
+.sub-metrics-vertical {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sub-metric {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 6px;
+    border: 1px solid var(--palo-alto-dark);
+    background: white;
+}
+
+/* Expanded Tool Cards */
+.tool-integration-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.mini-tool-card.expanded {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border: 2px solid var(--palo-alto-dark);
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+}
+
+.mini-tool-card.expanded:hover {
+    box-shadow: 6px 6px 0px var(--illuminating);
+    transform: translate(-2px, -2px);
+}
+
+.mini-logo { width: 40px; height: 40px; object-fit: contain; }
+.phase-header-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Aligns title and metrics to the bottom line */
+    border-bottom: 8px solid var(--illuminating);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.phase-metrics {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px; /* Slight lift from the yellow bar */
+}
+
+.metric-pill {
+    background: var(--palo-alto-dark);
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* --- COLLAPSIBLE PROGRESS DRAWER --- */
+/* --- COLLAPSIBLE PROGRESS DRAWER --- */
+.quiz-drawer {
+    position: fixed;
+    top: 150px; 
+    right: 0;
+    width: 300px; /* The width of the content area */
+    z-index: 9999;
+    
+    /* We transition the transform of the container */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* Ensure the tab isn't cut off when we move the drawer */
+    visibility: visible; 
+}
+
+/* THE FIX: Translate by the exact width of the content area */
+.quiz-drawer.collapsed {
+    transform: translateX(300px); 
+}
+.drawer-toggle {
+    position: absolute;
+    /* Positioned outside the main box */
+    left: -48px; 
+    top: -3px; 
+    
+    width: 45px;
+    height: 120px; 
+    
+    background: var(--illuminating);
+    border: 3px solid var(--palo-alto-dark);
+    border-right: none; 
+    
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    font-weight: 900;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+}
+
+
+.drawer-toggle span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.drawer-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* --- STAMP CHECKBOX MECHANISM --- */
+.quiz-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.quiz-item input { display: none; }
+
+.custom-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--palo-alto-dark);
+    display: inline-block;
+    position: relative;
+    background: white;
+}
+
+.quiz-item input:checked + .custom-box {
+    background: var(--palo-verde-light);
+}
+
+.quiz-item input:checked + .custom-box::after {
+    content: "✓";
+    position: absolute;
+    top: -5px;
+    left: 2px;
+    font-size: 18px;
+    color: var(--palo-alto-dark);
+}
+
+/* --- CLEAR BUTTON --- */
+.clear-btn {
+    margin-top: 15px;
+    background: #ffeded;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.quiz-drawer {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width: 300px; /* Fixed width of the entire unit */
+    height: auto;
+    max-height: 80vh;
+    background: white;
+    border: 3px solid var(--palo-alto-dark);
+    display: flex; /* Keeps button and content side-by-side */
+    z-index: 9999;
+    /* Use a clean transition for the slide effect */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* THE FIX: Translate exactly by the width of the content area */
+.quiz-drawer.collapsed {
+    /* If width is 300px and toggle is 45px, we move it 255px */
+    transform: translateX(100%); 
+}
+
+/* Ensure the toggle button has a consistent width */
+.drawer-toggle {
+    width: 45px; /* This is the only part that will stick out */
+    flex-shrink: 0; /* Prevents the button from squishing */
+    background: var(--illuminating);
+    border: none;
+    border-right: 3px solid var(--palo-alto-dark);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.7rem;
+    gap: 4px;
+    padding: 10px 0;
+}
+
+/* Remove any unwanted shadows that might bleed over when collapsed */
+.quiz-drawer.collapsed {
+    box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+}
+.quiz-phase-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: var(--palo-alto);
+    margin: 15px 0 8px 0;
+    border-bottom: 1px solid var(--fog);
+}
+
+.clear-btn {
+    background: #fff0f0;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+    font-size: 0.6rem;
+    font-weight: 900;
+    cursor: pointer;
+    padding: 2px 6px;
 }

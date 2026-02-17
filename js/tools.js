@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="tool-detail-section">
                 <h4>// Cost </h4>
-                <p>${tool.pricing || tool.cost}</p>
+                <p>${tool.pricingDetails || tool.pricingDetails}</p>
             </div>
             <div class="tool-detail-actions">
                 <a href="${tool.url}" target="_blank" class="action-btn">Launch ${tool.name}</a>
