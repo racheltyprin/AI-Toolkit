@@ -92,10 +92,9 @@ const State = {
         updateStatus(); 
     },
     clear: () => { 
-        if(confirm("Clear all progress?")) {
             localStorage.clear(); 
             location.reload(); 
-        }
+        
     }
 };
 
@@ -187,7 +186,7 @@ function renderApp(hydratedData) {
     const root = document.getElementById('roadmap-root');
     if (root) {
         root.innerHTML = hydratedData.map(phase => `
-            <section class="phase-section">
+        <section class="phase-section" id="${phase.id}">
                 ${partPhaseHeader(phase)}
                 <div class="roadmap-notebook">${phase.subsections.map(partSubsection).join('')}</div>
             </section>
