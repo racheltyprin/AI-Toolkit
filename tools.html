@@ -23,58 +23,42 @@
             <div class="stage-header-card is-open" id="tools-directory-container">
                 <div class="stage-header-flex">
                     <div class="stage-content-left">
-                        <span class="stage-badge">Library // 01</span>
+                        <span class="stage-badge">Database // 01</span>
                         <h2 class="stage-title">Resource <br>Directory</h2>
-                        <p class="stage-description">Industrial-grade AI modules. Select filters to narrow the toolkit.</p>
+                        <p class="stage-description">Industrial-grade AI modules. Select a category to filter the toolkit.</p>
                         
-                        <!-- COLLAPSIBLE FILTER: Phase -->
-                        <div class="filter-group-wrapper collapsible-filter" id="filter-group-category">
-                            <button type="button" class="filter-toggle-btn" aria-expanded="true">
-                                <h4 class="filter-label">// Filter by Phase</h4>
-                                <span class="filter-toggle-icon">▼</span>
-                            </button>
-                            <div class="filter-chips-container">
-                                <div class="tool-chips-grid" id="filter-category">
-                                    <button type="button" class="filter-chip ai-tool-chip active" data-filter="category" data-value="all">
-                                        <span class="chip-name">All Tools</span>
-                                    </button>
-                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="website-building">
-                                        <span class="chip-name">Research and Field Exploration</span>
-                                    </button>
-                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="app-building">
-                                        <span class="chip-name">Prototyping</span>
-                                    </button>
-                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="demo-building">
-                                        <span class="chip-name">MVP Development</span>
-                                    </button>
-                                </div>
+                        <div class="filter-group-wrapper">
+                            <h4 class="filter-label">// Filter by Phase</h4>
+                            <div class="tool-chips-grid" id="filter-category">
+                                <button type="button" class="filter-chip ai-tool-chip active" data-filter="category" data-value="all">
+                                    <span class="chip-name">All Tools</span>
+                                </button>
+                                <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="website-building">
+                                    <span class="chip-name">Research and Field Exploration</span>
+                                </button>
+                                <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="app-building">
+                                    <span class="chip-name">Prototyping</span>
+                                </button>
+                                <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="demo-building">
+                                    <span class="chip-name">MVP Development</span>
+                                </button>
                             </div>
                         </div>
-
-                        <!-- COLLAPSIBLE FILTER: End Product -->
-                        <div class="filter-group-wrapper collapsible-filter" id="filter-group-product">
-                            <button type="button" class="filter-toggle-btn" aria-expanded="true">
-                                <h4 class="filter-label">// Filter by End Product</h4>
-                                <span class="filter-toggle-icon">▼</span>
-                            </button>
-                            <div class="filter-chips-container">
-                                <div class="tool-chips-grid" id="filter-product">
-                                    <button type="button" class="filter-chip ai-tool-chip active" data-filter="product" data-value="all">
-                                        <span class="chip-name">All Products</span>
-                                    </button>
-                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="website">
-                                        <span class="chip-name">Website</span>
-                                    </button>
-                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="app">
-                                        <span class="chip-name">App</span>
-                                    </button>
-                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="demo">
-                                        <span class="chip-name">Demo</span>
-                                    </button>
-                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="visual">
-                                        <span class="chip-name">Visual Content</span>
-                                    </button>
-                                </div>
+                        <div class="filter-group-wrapper">
+                            <h4 class="filter-label">// Filter by End Product</h4>
+                            <div class="tool-chips-grid" id="filter-product">
+                                <button type="button" class="filter-chip ai-tool-chip active" data-filter="product" data-value="all">
+                                    <span class="chip-name">Website</span>
+                                </button>
+                                <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="free">
+                                    <span class="chip-name">App</span>
+                                </button>
+                                <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="student">
+                                    <span class="chip-name">Demo</span>
+                                </button>
+                                <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="student">
+                                    <span class="chip-name">Visual Content</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -93,19 +77,18 @@
                         <div class="tools-results-column">
                             <div class="expansion-inner">
                                 <div class="tools-container-grid" id="tools-container">
-                                    <p style="font-weight: 900; text-transform: uppercase; color: var(--stone-dark); opacity: 0.5;">Loading Modules...</p>
-                                </div>
+                                    </div>
                                 <div id="tools-empty" class="hidden" style="padding: 40px; text-align: center;">
                                     <p style="font-weight: 900; text-transform: uppercase; color: var(--stone-dark);">No tools match your selection.</p>
                                 </div>
                             </div>
                         </div>
-
+                
                         <aside class="tool-detail-panel hidden" id="tool-detail-panel">
                             <button class="tool-detail-close" id="tool-detail-close">✕</button>
                             <div id="tool-detail-content"></div>
                         </aside>
-
+                
                     </div> 
                 </div>
             </div>

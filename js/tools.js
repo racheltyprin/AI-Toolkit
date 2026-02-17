@@ -47,30 +47,39 @@ document.addEventListener('DOMContentLoaded', function() {
         const content = document.getElementById("tool-detail-content");
         const layout = document.querySelector(".tools-page-layout");
 
-        // Remove previous active state
-        if (activeToolCard) {
-            activeToolCard.classList.remove("active");
-        }
-
-        // Add active state to clicked card
+        // UI State
+        if (activeToolCard) activeToolCard.classList.remove("active");
         cardElement.classList.add("active");
         activeToolCard = cardElement;
-
-        // Add class to layout to trigger panel-open styles
         layout.classList.add("panel-open");
 
-        // CHANGED: On mobile, insert after card. On desktop, keep in sidebar.
+        // Logic to move Panel in DOM
         if (window.innerWidth <= 900) {
-            // Mobile: Insert panel right after the clicked card
-            const nextSibling = cardElement.nextElementSibling;
-            if (nextSibling) {
-                cardElement.parentNode.insertBefore(panel, nextSibling);
-            } else {
-                cardElement.parentNode.appendChild(panel);
-            }
+            // MOBILE: Insert panel directly under card
+            cardElement.after(panel);
         } else {
-            // Desktop: Panel stays in its sticky sidebar position
-            // (it's already in the layout from HTML, so we don't need to move it)
+            if (panel.parentNode !== layout) {
+                layout.appendChild(panel);
+            }
+        
+            // Get positions
+            const layoutRect = layout.getBoundingClientRect();
+            const cardRect = cardElement.getBoundingClientRect();
+        
+            // Desired offset (align with card)
+            let offsetTop = cardRect.top - layoutRect.top + layout.scrollTop;
+        
+            // --- Prevent overflow past bottom ---
+            const panelHeight = panel.offsetHeight;
+            const layoutHeight = layout.scrollHeight;
+        
+            const maxOffset = layoutHeight - panelHeight;
+        
+            // Clamp value
+            offsetTop = Math.min(offsetTop, maxOffset);
+            offsetTop = Math.max(offsetTop, 0);
+        
+            panel.style.marginTop = offsetTop + "px";
         }
 
         content.innerHTML = `
@@ -83,14 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>${tool.desc}</p>
             </div>
             <div class="tool-detail-section">
-                <h4>// When to Use</h4>
-                <p>${tool.whenToUse}</p>
-            </div>
-            <div class="tool-detail-section">
-                <h4>// Pricing</h4>
-                <p>${tool.pricingDetails}</p>
-            </div>
-            <div class="tool-detail-section">
                 <h4>// Use Cases</h4>
                 <ul>${tool.useCases.map(u => `<li>${u}</li>`).join('')}</ul>
             </div>
@@ -99,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         panel.classList.remove("hidden");
 
-        // Scroll to panel on mobile
         if (window.innerWidth <= 900) {
             setTimeout(() => {
                 panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -110,6 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function hideDetail() {
         const panel = document.getElementById("tool-detail-panel");
         const layout = document.querySelector(".tools-page-layout");
+        panel.style.marginTop = "0";
+
         
         panel.classList.add("hidden");
         layout.classList.remove("panel-open");
@@ -119,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
             activeToolCard = null;
         }
 
-        // Move panel back to layout container (for next time)
-        if (window.innerWidth <= 900 && !layout.contains(panel)) {
+        // Move panel back to layout container
+        if (!layout.contains(panel)) {
             layout.appendChild(panel);
         }
     }

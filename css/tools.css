@@ -229,7 +229,7 @@
     padding: 60px 40px; /* Increased top/bottom padding for breathing room */
     
     /* Desktop: Sticky positioning with offset from right */
-    position: sticky;
+    position: relative;
     top: 40px;
     margin-right: 40px; /* Space from right edge */
     margin-bottom: 40px; /* Bottom margin for breathing room */
