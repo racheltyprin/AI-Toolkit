@@ -469,3 +469,115 @@
     line-height: 0.8;
     
   }
+
+
+  /* ============================================================
+   7. RESPONSIVE — TABLET & MOBILE
+   ============================================================ */
+
+/* --- Tablet (iPad ~768px) --- */
+@media (max-width: 768px) {
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .phase-header-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .phase-metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .metric-pill {
+        margin-left: 0;
+    }
+
+    .subsection-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sub-sidebar {
+        border-right: none;
+        border-bottom: 3px solid var(--palo-alto-dark);
+    }
+
+    .tool-integration-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .quiz-drawer {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        max-width: 100%;
+        width: 100%;
+        max-height: 60vh;
+        flex-direction: column;
+        border-left: 3px solid var(--palo-alto-dark);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .quiz-drawer.collapsed {
+        transform: translateY(100%);
+    }
+
+    .drawer-toggle {
+        position: absolute;
+        left: 50%;
+        top: -48px;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 45px;
+        border: 3px solid var(--palo-alto-dark);
+        border-bottom: none;
+    }
+
+    .jump-highlight::before {
+        display: none;
+    }
+}
+
+/* --- Mobile (iPhone ~480px) --- */
+@media (max-width: 480px) {
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .roadmap-notebook {
+        box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
+    }
+
+    .sub-sidebar {
+        padding: 15px;
+    }
+
+    .sub-content {
+        padding: 15px;
+    }
+
+    .tool-integration-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metric-pill {
+        font-size: 0.6rem;
+        padding: 4px 8px;
+    }
+
+    .quiz-drawer {
+        max-height: 70vh;
+    }
+
+    .drawer-toggle {
+        width: 100px;
+        font-size: 0.6rem;
+    }
+}
