@@ -1,0 +1,442 @@
+/* ============================================================
+   TOOLS PAGE CONSOLIDATED STYLES
+   Layout: Full-width list → Side panel shrinks it on desktop
+   Mobile: Panel spawns below clicked card
+   ============================================================ */
+
+/* --- 1. THE SHARED LAYOUT WRAPPER --- */
+.tools-page-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The left side - starts full width, shrinks when panel opens */
+.tools-results-column {
+    flex: 1;
+    min-width: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* When panel is open, ensure minimum width for the results column */
+.tools-page-layout.panel-open .tools-results-column {
+    min-width: 500px; /* Ensures column doesn't get too squished */
+}
+
+/* Override expansion-inner padding for tools page */
+.tools-page-layout .expansion-inner {
+    padding: 40px 0 40px 0 !important; /* Remove horizontal padding */
+}
+
+/* --- 2. FILTER SYSTEM --- */
+.filter-group-wrapper {
+    margin-bottom: 24px;
+}
+
+.filter-label {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    margin-bottom: 12px;
+    letter-spacing: 0.1em;
+}
+
+.tool-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.ai-tool-chip {
+    padding: 10px 18px;
+    background: #FFFFFF;
+    border: 2px solid var(--palo-alto-dark);
+    color: var(--stone-dark);
+    font-weight: 900;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    box-shadow: 3px 3px 0px 0px var(--palo-alto-dark);
+}
+
+.ai-tool-chip:hover {
+    background: var(--illuminating-light);
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px 0px var(--palo-alto-dark);
+}
+
+.ai-tool-chip:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px 0px var(--palo-alto-dark);
+}
+
+.ai-tool-chip.active {
+    background: var(--palo-alto-dark) !important;
+    color: #FFFFFF !important;
+    border-color: var(--palo-alto-dark);
+}
+
+.chip-name {
+    pointer-events: none;
+}
+
+/* --- COLLAPSIBLE FILTER GROUPS --- */
+.collapsible-filter {
+    border: 2px solid var(--palo-alto-dark);
+    background: #FFFFFF;
+    margin-bottom: 20px;
+    box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.collapsible-filter:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 7px 7px 0px 0px var(--palo-alto-dark);
+}
+
+.filter-toggle-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.filter-toggle-btn:hover {
+    background: var(--illuminating);
+}
+
+.filter-toggle-btn .filter-label {
+    margin: 0;
+    pointer-events: none;
+    text-align: left;
+    font-size: 0.7rem;
+}
+
+.filter-toggle-icon {
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: var(--palo-alto-dark);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.collapsible-filter.collapsed .filter-toggle-icon {
+    transform: rotate(-90deg);
+}
+
+/* FIXED: Proper collapse animation */
+.filter-chips-container {
+    margin-top: 20px;
+    max-height: 500px; /* Large enough for content */
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.collapsible-filter.collapsed .filter-chips-container {
+    max-height: 0;
+}
+
+.filter-chips-container .tool-chips-grid {
+    padding: 0 24px 24px 24px;
+}
+
+/* --- 3. TOOL CARDS (FULL WIDTH WITHIN CONTAINER) --- */
+.tools-container-grid {
+    padding: 0 40px; /* Add padding here instead of expansion-inner */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tool-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #FFFFFF;
+    border: 2px solid var(--palo-alto-dark);
+    padding: 24px 32px;
+    cursor: pointer;
+    box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%; /* Full width of container */
+    max-width: 100%; /* Prevent overflow */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.tool-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px 0px var(--illuminating);
+}
+
+.tool-card.active {
+    border-color: var(--illuminating);
+    box-shadow: 9px 9px 0px 0px var(--illuminating);
+}
+
+.tool-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tool-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: none !important;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.tool-name {
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--palo-alto-dark);
+    line-height: 1.1;
+    pointer-events: none;
+}
+
+.tool-description {
+    display: block; /* Always show description */
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--stone-dark);
+    line-height: 1.4;
+    margin: 0;
+    pointer-events: none;
+}
+
+/* --- 4. THE DETAIL PANEL --- */
+.tool-detail-panel {
+    width: 450px; /* Panel width */
+    background: #FFFFFF;
+    border: 2px solid var(--palo-alto-dark);
+    box-shadow: 12px 12px 0px 0px var(--illuminating);
+    padding: 60px 40px; /* Increased top/bottom padding for breathing room */
+    
+    /* Desktop: Sticky positioning with offset from right */
+    position: sticky;
+    top: 40px;
+    margin-right: 40px; /* Space from right edge */
+    margin-bottom: 40px; /* Bottom margin for breathing room */
+    
+    height: fit-content;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    flex-shrink: 0;
+    z-index: 100;
+    
+    /* Slide in animation */
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tool-detail-panel:not(.hidden) {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.tool-detail-panel.hidden {
+    display: none !important;
+}
+
+/* Close Button */
+.tool-detail-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--palo-alto-dark);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.tool-detail-close:hover {
+    background: var(--illuminating);
+    color: var(--palo-alto-dark);
+    transform: rotate(90deg);
+}
+
+/* Detail Content */
+.tool-detail-header {
+    margin-bottom: 30px;
+    border-bottom: 6px solid var(--illuminating);
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tool-detail-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.tool-detail-title {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.9;
+    color: var(--palo-alto-dark);
+}
+
+.tool-detail-section {
+    margin-bottom: 24px;
+}
+
+.tool-detail-section h4 {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--lagunita-dark);
+    border-bottom: 2px solid var(--illuminating);
+    display: inline-block;
+    margin-bottom: 12px;
+    letter-spacing: 0.1em;
+}
+
+.tool-detail-section p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--stone-dark);
+    line-height: 1.5;
+}
+
+.tool-detail-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tool-detail-section li {
+    padding: 10px 0;
+    color: var(--stone-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--fog);
+    line-height: 1.4;
+}
+
+.tool-detail-section li:last-child {
+    border-bottom: none;
+}
+
+.action-btn {
+    display: block;
+    text-align: center;
+    background: var(--illuminating);
+    color: var(--palo-alto-dark);
+    padding: 18px;
+    border: 2px solid var(--palo-alto-dark);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
+    margin-top: 20px;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px 0px var(--palo-alto-dark);
+    background: var(--illuminating-light);
+}
+
+.action-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px 0px var(--palo-alto-dark);
+}
+
+/* --- 5. MOBILE OVERRIDE --- */
+@media (max-width: 900px) {
+    .tools-page-layout {
+        flex-direction: column;
+    }
+
+    .tools-page-layout.panel-open .tools-results-column {
+        min-width: 0; /* Remove min-width on mobile */
+    }
+
+    .tool-detail-panel {
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-top: 0;
+        margin-right: 0; /* Remove right margin on mobile */
+        max-height: none;
+        box-shadow: 6px 6px 0px 0px var(--illuminating);
+        padding: 40px 20px; /* Smaller padding on mobile */
+        
+        /* Mobile: Insert after clicked card */
+        order: 2;
+    }
+
+    .tools-results-column {
+        order: 1;
+    }
+
+    .tools-container-grid {
+        padding: 0 20px; /* Smaller padding on mobile */
+    }
+
+    .tool-card {
+        padding: 20px;
+    }
+
+    .tool-name {
+        font-size: 1rem;
+    }
+
+    .tool-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tool-description {
+        font-size: 0.85rem;
+    }
+
+    .collapsible-filter {
+        box-shadow: 4px 4px 0px 0px var(--palo-alto-dark);
+    }
+
+    .filter-toggle-btn {
+        padding: 16px 20px;
+    }
+
+    .filter-chips-container .tool-chips-grid {
+        padding: 0 20px 20px 20px;
+    }
+}
+
+/* --- 6. UTILITIES --- */
+.hidden {
+    display: none !important;
+}

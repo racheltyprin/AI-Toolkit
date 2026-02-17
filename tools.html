@@ -1,56 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
-  <link rel="stylesheet" href="css/style.css">
-  <title>AI Tools | AI Toolbox</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Toolbox | Tools</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tools.css">
 </head>
 <body>
+    <div class="landing-content-wrapper">
+        <header>
+            <h1 class="main-title">AI TOOLBOX</h1>
+            <nav class="inner-nav">
+                <a href="index.html" class="nav-item">HOME</a>
+                <a href="tools.html" class="nav-item active">AI TOOLS</a>
+                <a href="uses.html" class="nav-item">USE CASES</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="stage-header-card is-open" id="tools-directory-container">
+                <div class="stage-header-flex">
+                    <div class="stage-content-left">
+                        <span class="stage-badge">Library // 01</span>
+                        <h2 class="stage-title">Resource <br>Directory</h2>
+                        <p class="stage-description">Industrial-grade AI modules. Select filters to narrow the toolkit.</p>
+                        
+                        <!-- COLLAPSIBLE FILTER: Phase -->
+                        <div class="filter-group-wrapper collapsible-filter" id="filter-group-category">
+                            <button type="button" class="filter-toggle-btn" aria-expanded="true">
+                                <h4 class="filter-label">// Filter by Phase</h4>
+                                <span class="filter-toggle-icon">▼</span>
+                            </button>
+                            <div class="filter-chips-container">
+                                <div class="tool-chips-grid" id="filter-category">
+                                    <button type="button" class="filter-chip ai-tool-chip active" data-filter="category" data-value="all">
+                                        <span class="chip-name">All Tools</span>
+                                    </button>
+                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="website-building">
+                                        <span class="chip-name">Research and Field Exploration</span>
+                                    </button>
+                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="app-building">
+                                        <span class="chip-name">Prototyping</span>
+                                    </button>
+                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="category" data-value="demo-building">
+                                        <span class="chip-name">MVP Development</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-<div class="landing-content-wrapper">
-  
-  <h1 class="main-title">AI TOOLBOX</h1>
+                        <!-- COLLAPSIBLE FILTER: End Product -->
+                        <div class="filter-group-wrapper collapsible-filter" id="filter-group-product">
+                            <button type="button" class="filter-toggle-btn" aria-expanded="true">
+                                <h4 class="filter-label">// Filter by End Product</h4>
+                                <span class="filter-toggle-icon">▼</span>
+                            </button>
+                            <div class="filter-chips-container">
+                                <div class="tool-chips-grid" id="filter-product">
+                                    <button type="button" class="filter-chip ai-tool-chip active" data-filter="product" data-value="all">
+                                        <span class="chip-name">All Products</span>
+                                    </button>
+                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="website">
+                                        <span class="chip-name">Website</span>
+                                    </button>
+                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="app">
+                                        <span class="chip-name">App</span>
+                                    </button>
+                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="demo">
+                                        <span class="chip-name">Demo</span>
+                                    </button>
+                                    <button type="button" class="filter-chip ai-tool-chip" data-filter="product" data-value="visual">
+                                        <span class="chip-name">Visual Content</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-  <nav class="inner-nav">
-    <a href="index.html" class="nav-item">HOME</a>
-    <a href="tools.html" class="nav-item active">AI TOOLS</a>
-    <a href="uses.html" class="nav-item">USE CASES</a>
-  </nav>
+                    <div class="toolset-sticker">
+                        <p class="sticker-label">Results</p>
+                        <div class="phase-number" id="results-count">--</div>
+                    </div>
+                </div>
 
-  <main class="content-body">
+                <div class="expansion-divider-line"></div>
 
-    <div class="content-body">
-        <div class="bento-grid">
-    
-          <div class="style-guide-card">
-            <div class="card-tag">RESEARCH // AI</div>
-            
-            <div class="card-header">
-              <h2 class="card-title">Perplex<br>ity</h2>
-              <div class="tool-logo-box">
+                <div class="stage-expansion-content">
+                    <div class="tools-page-layout">
+                        
+                        <div class="tools-results-column">
+                            <div class="expansion-inner">
+                                <div class="tools-container-grid" id="tools-container">
+                                    <p style="font-weight: 900; text-transform: uppercase; color: var(--stone-dark); opacity: 0.5;">Loading Modules...</p>
+                                </div>
+                                <div id="tools-empty" class="hidden" style="padding: 40px; text-align: center;">
+                                    <p style="font-weight: 900; text-transform: uppercase; color: var(--stone-dark);">No tools match your selection.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <aside class="tool-detail-panel hidden" id="tool-detail-panel">
+                            <button class="tool-detail-close" id="tool-detail-close">✕</button>
+                            <div id="tool-detail-content"></div>
+                        </aside>
+
+                    </div> 
                 </div>
             </div>
-            
-            <p class="card-desc">An AI-powered search engine that provides real-time citations and deep research summaries.</p>
-            
-            <div class="swatch-container">
-              <div class="swatch" style="background-color: #E98300;" title="Research"></div>
-              <div class="swatch" style="background-color: #E04F39;" title="Productivity"></div>
-              <div class="swatch" style="background-color: #007C92;" title="Analysis"></div>
-            </div>
-            
-            <a href="getting-started.html" class="card-button">EXPLORE TOOL →</a>
-          </div>
-          </div>
-    
-    
-        </div>
-        
-    </main>
-
-</div>
-
+        </main>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/tools.js"></script>
 </body>
 </html>
