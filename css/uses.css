@@ -1,0 +1,465 @@
+/* ============================================================
+   TOOLS PAGE CONSOLIDATED STYLES
+   Layout: Full-width list → Side panel shrinks it on desktop
+   Mobile: Panel spawns below clicked card
+   ============================================================ */
+
+/* --- 1. THE SHARED LAYOUT WRAPPER --- */
+.tools-page-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The left side - starts full width, shrinks when panel opens */
+.tools-results-column {
+    flex: 1;
+    min-width: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* When panel is open, ensure minimum width for the results column */
+.tools-page-layout.panel-open .tools-results-column {
+    min-width: 500px; /* Ensures column doesn't get too squished */
+}
+
+/* Override expansion-inner padding for tools page */
+.tools-page-layout .expansion-inner {
+    padding: 40px 0 40px 0 !important; /* Remove horizontal padding */
+}
+
+/* --- 2. FILTER SYSTEM --- */
+.filter-group-wrapper {
+    margin-bottom: 24px;
+}
+
+.filter-label {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    margin-bottom: 12px;
+    letter-spacing: 0.15em;
+}
+
+.tool-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.ai-tool-chip {
+    padding: 10px 18px;
+    background: #FFFFFF;
+    border: 2px solid var(--palo-alto-dark);
+    color: var(--stone-dark);
+    font-weight: 900;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    box-shadow: 4px 4px 0px 0px var(--palo-alto-dark);
+}
+
+.ai-tool-chip:hover {
+    background: var(--illuminating-light);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
+}
+
+.ai-tool-chip:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px 0px var(--palo-alto-dark);
+}
+
+.ai-tool-chip.active {
+    background: var(--palo-alto-dark) !important;
+    color: #FFFFFF !important;
+    border-color: var(--palo-alto-dark);
+}
+
+.chip-name {
+    pointer-events: none;
+}
+
+/* --- COLLAPSIBLE FILTER GROUPS --- */
+.collapsible-filter {
+    position: relative;
+    background-color: #FFFFFF;
+    border: 1px solid var(--stone-light);
+    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+.collapsible-filter:hover {
+    border-color: var(--palo-alto-dark);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+}
+
+.filter-toggle-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.filter-toggle-btn:hover {
+    background: var(--illuminating-light);
+}
+
+.filter-toggle-btn .filter-label {
+    margin: 0;
+    pointer-events: none;
+    text-align: left;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+}
+
+.filter-toggle-icon {
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: var(--palo-alto-dark);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.collapsible-filter.collapsed .filter-toggle-icon {
+    transform: rotate(-90deg);
+}
+
+/* FIXED: Proper collapse animation */
+.filter-chips-container {
+    max-height: 500px; /* Large enough for content */
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.collapsible-filter.collapsed .filter-chips-container {
+    max-height: 0;
+}
+
+.filter-chips-container .tool-chips-grid {
+    padding: 0 24px 24px 24px;
+}
+
+/* --- STAGE HEADER CARD UPDATES --- */
+.stage-header-card {
+    background: #FFFFFF;
+    border: 1px solid var(--stone-light);
+    margin-bottom: 40px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Elevation on hover (when not already open) */
+.stage-header-card:not(.is-open):hover {
+    border-color: var(--palo-alto-dark);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+}
+
+/* When the card is expanded */
+.stage-header-card.is-open {
+    border-color: var(--stone-light);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.stage-header-flex {
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Divider line inside expanded cards */
+.expansion-divider-line {
+    height: 1px;
+    background: var(--stone-light);
+    margin: 0 40px;
+    opacity: 0.5;
+}
+
+/* Expanded Content Area */
+.stage-expansion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--fog-light); /* Subtle background for the 'inner' area */
+}
+
+.stage-header-card.is-open .stage-expansion-content {
+    max-height: 2000px; /* Large enough to fit all filters/content */
+}
+
+.expansion-inner {
+    padding: 40px;
+}
+
+/* Mobile Tweaks for Stage Headers */
+@media (max-width: 900px) {
+    .stage-header-flex {
+        padding: 24px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .expansion-inner {
+        padding: 24px 20px;
+    }
+    
+    .expansion-divider-line {
+        margin: 0 20px;
+    }
+}
+
+/* --- 4. THE DETAIL PANEL (MATCHING STAGE CARD STYLE) --- */
+.tool-detail-panel {
+    width: 450px;
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid var(--stone-light);
+    padding: 40px;
+    
+    /* Desktop: Sticky positioning */
+    top: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    
+    height: fit-content;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    flex-shrink: 0;
+    z-index: 100;
+    
+    /* Subtle shadow instead of harsh offset *
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    
+    /* Slide in animation */
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tool-detail-panel:not(.hidden) {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.tool-detail-panel.hidden {
+    display: none !important;
+}
+
+/* Close Button */
+.tool-detail-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--palo-alto-dark);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.tool-detail-close:hover {
+    background: var(--spirited);
+    transform: rotate(90deg);
+}
+
+/* Detail Content */
+.tool-detail-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--stone-light);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tool-detail-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.tool-detail-title {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--palo-alto-dark);
+}
+
+.tool-detail-section {
+    margin-bottom: 24px;
+}
+
+.tool-detail-section h4 {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    margin-bottom: 12px;
+    letter-spacing: 0.15em;
+}
+
+.tool-detail-section p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--stone-dark);
+    line-height: 1.5;
+}
+
+.tool-detail-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tool-detail-section li {
+    padding: 10px 0;
+    color: var(--stone-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--fog);
+    line-height: 1.4;
+}
+
+.tool-detail-section li:last-child {
+    border-bottom: none;
+}
+
+/* Container for the two buttons */
+.tool-detail-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+    margin-top: 32px;
+    box-sizing: border-box;
+}
+
+/* Action buttons */
+.tool-detail-actions .action-btn,
+.action-btn {
+    flex: 1;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--illuminating);
+    color: var(--palo-alto-dark);
+    padding: 18px;
+    border: 2px solid var(--palo-alto-dark);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    box-shadow: 4px 4px 0px 0px var(--palo-alto-dark);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.action-btn:hover,
+.tool-detail-actions .action-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
+    background: var(--illuminating-light);
+}
+
+.action-btn:active,
+.tool-detail-actions .action-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px var(--palo-alto-dark);
+}
+
+/* --- 5. MOBILE OVERRIDE --- */
+@media (max-width: 900px) {
+    .tools-page-layout {
+        flex-direction: column;
+    }
+
+    .tools-page-layout.panel-open .tools-results-column {
+        min-width: 0;
+    }
+
+    .tool-detail-panel {
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-top: 20px;
+        margin-right: 0;
+        max-height: none;
+        padding: 30px 20px;
+        order: 2;
+    }
+
+    .tools-results-column {
+        order: 1;
+    }
+
+    .tools-container-grid {
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .tool-card {
+        padding: 20px;
+    }
+
+    .tool-name {
+        font-size: 1rem;
+    }
+
+    .tool-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tool-description {
+        font-size: 0.85rem;
+    }
+
+    .collapsible-filter {
+        margin-bottom: 16px;
+    }
+
+    .filter-toggle-btn {
+        padding: 16px 20px;
+    }
+
+    .filter-chips-container .tool-chips-grid {
+        padding: 0 20px 20px 20px;
+    }
+}
+
+/* --- 6. UTILITIES --- */
+.hidden {
+    display: none !important;
+}

@@ -30,10 +30,7 @@
         <h2 class="stage-title">${tool.name}</h2>
         <p class="stage-description">${tool.tagline}</p>
         </div>
-        <div class="toolset-sticker">
-        <p class="sticker-label">ID</p>
-        <span class="phase-number">${tool.id.substring(0,2).toUpperCase()}</span>
-        </div>
+        
 `       ;
 
         // Quick Start / Use Cases

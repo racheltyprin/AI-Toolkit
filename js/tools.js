@@ -45,9 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
         const panel = document.getElementById("tool-detail-panel");
         const content = document.getElementById("tool-detail-content");
-        const container = document.querySelector(".stage-expansion-content"); // container panel must stay in
+        const container = document.querySelector(".stage-expansion-content");
+        const layout = document.querySelector(".tools-page-layout");
     
-        // --- Active card ---
+        // --- Active card styling ---
         if (activeToolCard) activeToolCard.classList.remove("active");
         cardElement.classList.add("active");
         activeToolCard = cardElement;
@@ -66,40 +67,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h4>// Use Cases</h4>
                 <ul>${tool.useCases.map(u => `<li>${u}</li>`).join('')}</ul>
             </div>
+            <div class="tool-detail-section">
+                <h4>// Cost </h4>
+                <p>${tool.pricing || tool.cost}</p>
+            </div>
             <div class="tool-detail-actions">
-            <a href="${tool.url}" target="_blank" class="action-btn">Launch ${tool.name}</a>
-            <a href="tutorial.html?tool=${tool.id || tool.name.toLowerCase().replace(/\s+/g, '-')}" class="action-btn secondary">
-            Step-by-Step Guide</a>
+                <a href="${tool.url}" target="_blank" class="action-btn">Launch ${tool.name}</a>
+                <a href="tutorial.html?tool=${tool.id || tool.name.toLowerCase().replace(/\s+/g, '-')}" class="action-btn secondary">Step-by-Step Guide</a>
             </div>
         `;
     
         panel.classList.remove("hidden");
     
         if (window.innerWidth <= 900) {
-            // --- MOBILE: insert under card ---
-            cardElement.after(panel);
-            panel.style.position = "relative";
+            // --- MOBILE FIX ---
+            // 1. Move it to the body so it overlaps the entire screen
+            document.body.appendChild(panel);
+            document.body.style.overflow = "hidden"; // Stop background scroll
+            
+            // 2. Explicitly set fixed styles to ensure it shows up
+            panel.style.position = "fixed";
+            panel.style.top = "0";
+            panel.style.left = "0";
+            panel.style.width = "100%";
+            panel.style.height = "100%";
             panel.style.marginTop = "0";
-            panel.style.top = "";
-            panel.style.transform = "";
-            panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            panel.style.zIndex = "99999";
         } else {
-            // --- DESKTOP: center in visible portion of container ---
+            // --- DESKTOP (UNTOUCHED LOGIC) ---
+            // 1. Ensure it's back in the layout container
+            if (layout && !layout.contains(panel)) {
+                layout.appendChild(panel);
+            }
+            document.body.style.overflow = "";
+    
             const containerRect = container.getBoundingClientRect();
             const panelHeight = panel.offsetHeight;
     
             const TOP_GAP = 16;
             const BOTTOM_GAP = 16;
     
-            // visible portion of container in viewport
             const visibleTop = Math.max(containerRect.top, 0);
             const visibleBottom = Math.min(containerRect.bottom, window.innerHeight);
             const visibleHeight = visibleBottom - visibleTop;
     
-            // center panel in visible area
             let offsetTop = (visibleHeight - panelHeight) / 2 + (visibleTop - containerRect.top);
-    
-            // clamp to container edges
             offsetTop = Math.max(offsetTop, TOP_GAP);
             offsetTop = Math.min(offsetTop, containerRect.height - panelHeight - BOTTOM_GAP);
     
@@ -110,24 +122,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    
-    
     function hideDetail() {
         const panel = document.getElementById("tool-detail-panel");
         const layout = document.querySelector(".tools-page-layout");
-        panel.style.marginTop = "0";
-
         
         panel.classList.add("hidden");
-        layout.classList.remove("panel-open");
-        
+        document.body.style.overflow = ""; // Unlock scrolling
+    
         if (activeToolCard) {
             activeToolCard.classList.remove("active");
             activeToolCard = null;
         }
-
-        // Move panel back to layout container
-        if (!layout.contains(panel)) {
+    
+        // Move panel back to its desktop home so it's ready for next time
+        if (layout && !layout.contains(panel)) {
             layout.appendChild(panel);
         }
     }
