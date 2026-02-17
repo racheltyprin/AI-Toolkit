@@ -1,117 +1,222 @@
-(function() {
-    function getToolFromURL() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('tool');
+
+
+/* data.js declares `const toolsData = [...]` which isn't automatically
+   on window in all environments. This makes it available either way. */
+   if (typeof toolsData !== "undefined" && !window.toolsData) {
+    window.toolsData = toolsData;
+}
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+
+/** Reads ?tool=<id> from the URL. */
+function getToolId() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("tool");
+}
+
+/**
+ * Finds a tool by id inside window.toolsData.
+ * Supports both array format:  [ { id: "zapier", ... }, ... ]
+ * and object format:           { zapier: { id: "zapier", ... }, ... }
+ */
+function findTool(id) {
+    if (!id || !window.toolsData) return null;
+    if (Array.isArray(window.toolsData)) {
+        return window.toolsData.find(t => t.id === id) || null;
     }
+    return window.toolsData[id] || null;
+}
 
-    function renderTutorial(toolSlug) {
-        // 1. Ensure toolsData exists
-        if (typeof toolsData === 'undefined') {
-            console.error("Data.js not loaded properly.");
-            showError();
-            return;
-        }
+/** Maps difficulty string  CSS modifier class. */
+function diffClass(difficulty) {
+    if (!difficulty) return "";
+    switch (difficulty.toLowerCase()) {
+        case "easy":   return "diff-easy";
+        case "hard":   return "diff-hard";
+        default:       return "diff-medium";
+    }
+}
 
-        // 2. Find tool (Case-insensitive check)
-        const tool = toolsData.find(t => t.id.toLowerCase() === toolSlug.toLowerCase());
-        
-        if (!tool) {
-            showError();
-            return;
-        }
-
-        // 3. Update UI
-        document.title = `${tool.name} // AI TOOLBOX`;
-
-        // Header
-        document.getElementById('tutorial-header').innerHTML = `
-        <div class="stage-content-left">
-        <span class="stage-badge"> ${tool.category} // ${tool.product.toUpperCase()}</span>
-        <h2 class="stage-title">${tool.name}</h2>
-        <p class="stage-description">${tool.tagline}</p>
+/* ============================================================
+   RENDER — NOTEBOOK HEADER
+   ============================================================ */
+function renderHeader(tool) {
+    return `
+        <div class="nb-logo-fallback" id="logo-fallback">
+            ${(tool.name || "?").charAt(0)}
         </div>
-        
-`       ;
+        <img
+            class="nb-logo"
+            id="tool-logo"
+            src="${tool.logo || ""}"
+            alt="${tool.name} logo"
+            onerror="
+                this.style.display='none';
+                document.getElementById('logo-fallback').style.display='flex';
+            "
+        />
+        <div class="nb-header-text">
+            <div class="nb-tool-name">${tool.name || ""}</div>
+            <div class="nb-tagline">${tool.tagline || ""}</div>
+        </div>
+        <div class="nb-header-meta">
+            <a class="nb-url-btn" href="${tool.url || "#"}" target="_blank" rel="noopener">
+                Visit Site
+            </a>
+        </div>
+    `;
+}
 
-        // Quick Start / Use Cases
-        document.getElementById('quick-start').innerHTML = `
-            <h3 class="section-label">// Core Capabilities</h3>
-            <div class="quick-start-box">
-                <ul style="padding-left: 20px;">
-                    ${tool.useCases.map(item => `<li>${item}</li>`).join('')}
-                </ul>
+/* ============================================================
+   RENDER — LEFT CUE COLUMN
+   Quick-reference: cost, difficulty, URL
+   ============================================================ */
+function renderLeftColumn(tool) {
+    const dc = diffClass(tool.difficulty);
+    const videoUrl = (tool.video || "").trim();
+
+    const videoBtn = videoUrl ? `
+        <a class="left-video-btn" href="${videoUrl}" target="_blank" rel="noopener">
+            Video Tutorial
+        </a>
+    ` : `
+        <span class="left-video-btn left-video-btn--disabled">
+            Video Tutorial
+        </span>
+    `;
+
+    return `
+        <div class="left-column">
+            <span class="section-label">// Quick Info</span>
+
+            <div class="meta-pill cost">
+                <span class="meta-pill-dot"></span>
+                <span>${tool.pricingDetails || tool.pricing || "N/A"}</span>
             </div>
-        `;
 
-        // Steps (Parsing the guide array)
-        const stepsContainer = document.getElementById('steps-container');
-        stepsContainer.innerHTML = tool.guide.map((stepText, index) => {
-            const cleanText = stepText.replace(/<\/?strong>/g, '');
-            const parts = cleanText.split(':');
-            const title = parts.length > 1 ? parts[0] : `Step ${index + 1}`;
-            const content = parts.length > 1 ? parts.slice(1).join(':') : stepText;
-
-            return `
-                <div class="step-card">
-                    <div class="step-header">
-                        <span class="step-number">0${index + 1}</span>
-                        <h4>${title}</h4>
-                    </div>
-                    <div class="step-body">
-                        <p>${content}</p>
-                    </div>
-                </div>
-            `;
-        }).join('');
-
-        // Example Section
-        document.getElementById('example-project').innerHTML = `
-            <h4 class="sidebar-label">// Example Project</h4>
-            <div class="sidebar-content">
-                <h5 style="font-weight:900; margin-bottom:5px;">${tool.example.title}</h5>
-                <p style="font-size:0.85rem;"><strong>Goal:</strong> ${tool.example.goal}</p>
-                ${tool.example.prompt !== 'N/A' ? `
-                    <div class="prompt-box">
-                        <code>${tool.example.prompt}</code>
-                    </div>
-                ` : ''}
+            <div class="meta-pill ${dc}">
+                <span class="meta-pill-dot"></span>
+                <span>Difficulty: ${tool.difficulty || "N/A"}</span>
             </div>
-        `;
 
-        // Mistakes
-        document.getElementById('mistakes-section').innerHTML = `
-            <h4 class="sidebar-label">// Common Pitfalls</h4>
-            <ul style="padding-left: 15px; font-size: 0.8rem;">
-                ${tool.mistakes.map(m => `<li style="margin-bottom:8px;">${m}</li>`).join('')}
-            </ul>
-        `;
+            ${videoBtn}
+        </div>
+    `;
+}
 
-        // Next Steps
-        document.getElementById('next-steps').innerHTML = `
-            <div class="next-steps-card">
-                <h4 style="color:var(--illuminating); margin-bottom:10px;">🎯 NEXT STEPS</h4>
-                <ul style="list-style:none; padding:0; font-size:0.85rem;">
-                    ${tool.nextSteps.map(s => `<li style="margin-bottom:5px;">→ ${s}</li>`).join('')}
-                </ul>
+/* ============================================================
+   RENDER — RIGHT NOTES COLUMN SECTIONS
+   Each section() call wraps content in a labelled row block.
+   ============================================================ */
+
+function section(label, contentHTML) {
+    return `
+        <div class="nb-row-content">
+            <div class="row-label">
+                <span class="section-label">${label}</span>
             </div>
-        `;
+            ${contentHTML}
+        </div>
+    `;
+}
 
-        // Strategic Fit
-        document.getElementById('not-use-section').innerHTML = `
-            <h4 class="sidebar-label">// Constraints</h4>
-            <p style="font-size:0.75rem; color:#666;">${tool.notUse}</p>
-        `;
+function renderDescription(tool) {
+    return section("// Description", `
+        <p class="body-text">${tool.desc || ""}</p>
+    `);
+}
+
+function renderUseCases(tool) {
+    if (!tool.useCases || !tool.useCases.length) return "";
+    const chips = tool.useCases
+        .map(u => `<span class="chip">${u}</span>`)
+        .join("");
+    return section("// Use Cases", `<div class="chip-list">${chips}</div>`);
+}
+
+function renderGuide(tool) {
+    if (!tool.guide || !tool.guide.length) return "";
+    const steps = tool.guide
+        .map((step, i) => `
+            <div class="guide-step">
+                <div class="step-num">${String(i + 1).padStart(2, "0")}</div>
+                <div class="step-text">${step}</div>
+            </div>
+        `)
+        .join("");
+    return section("// Step-by-Step Guide", `<div class="guide-steps">${steps}</div>`);
+}
+
+function renderMistakes(tool) {
+    if (!tool.mistakes || !tool.mistakes.length) return "";
+    const items = tool.mistakes
+        .map(m => `
+            <div class="mistake-item">
+                <div class="mistake-x">--</div>
+                <div>${m}</div>
+            </div>
+        `)
+        .join("");
+    return section("// Common Mistakes", `<div class="mistake-list">${items}</div>`);
+}
+
+function renderVerdict(tool) {
+    if (!tool.useWhen && !tool.notUse) return "";
+    return section("// When to Use / Not to Use", `
+        <div class="verdict-grid">
+            <div class="verdict-box use">
+                <span class="verdict-head">Use for</span>
+                <p>${tool.useWhen || "N/A"}</p>
+            </div>
+            <div class="verdict-box no">
+                <span class="verdict-head">Avoid For</span>
+                <p>${tool.notUse || "N/A"}</p>
+            </div>
+        </div>
+    `);
+}
+
+
+
+function renderRightColumn(tool) {
+    return `
+        <div class="right-column">
+            ${renderDescription(tool)}
+            ${renderUseCases(tool)}
+            ${renderGuide(tool)}
+            ${renderMistakes(tool)}
+            ${renderVerdict(tool)}
+        </div>
+    `;
+}
+
+
+/* ============================================================
+   MOUNT — Entry point
+   ============================================================ */
+function renderTutorial() {
+    const id   = getToolId();
+    const tool = findTool(id);
+
+    /* ── Tool not found or no tutorial ── */
+    if (!tool || !tool.hasTutorial) {
+        document.getElementById("notebook").style.display = "none";
+        document.getElementById("error-state").style.display = "block";
+        return;
     }
 
-    function showError() {
-        document.getElementById('error-message').classList.remove('hidden');
-        const grid = document.querySelector('.tutorial-grid');
-        const divider = document.querySelector('.expansion-divider-line');
-        if(grid) grid.style.display = 'none';
-        if(divider) divider.style.display = 'none';
-    }
+    /* ── Page title ── */
+    document.title = `AI Toolbox - ${tool.name}`;
 
-    const toolId = getToolFromURL();
-    if (toolId) renderTutorial(toolId);
-    else showError();
-})();
+    /* ── Header ── */
+    document.getElementById("nb-header").innerHTML = renderHeader(tool);
+
+    /* ── Cornell body:  left-column | right-column + summary spanning both ── */
+    document.getElementById("nb-body").innerHTML =
+        renderLeftColumn(tool) +
+        renderRightColumn(tool);
+}
+
+document.addEventListener("DOMContentLoaded", renderTutorial);

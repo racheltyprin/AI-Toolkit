@@ -1,82 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Toolbox | Tutorial</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/tutorial.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Toolbox - Tool Tutorial</title>
+  <!-- Global site styles (design tokens + base) -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Tutorial-specific styles -->
+  <link rel="stylesheet" href="css/tutorial.css" />
 </head>
 <body>
-    <div class="landing-content-wrapper">
-        <header>
-            <h1 class="main-title">AI TOOLBOX</h1>
-            <nav class="inner-nav">
-                <a href="index.html" class="nav-item">HOME</a>
-                <a href="tools.html" class="nav-item">AI TOOLS</a>
-                <a href="uses.html" class="nav-item active">USE CASES</a>
-            </nav>
-        </header>
-        <div> <a href="tools.html" class="back-btn">Return to Directory</a> </div>
-        
-        
-        <main>
-            
-            
-            <div class="stage-header-card is-open tutorial-mode">
-                <div class="stage-header-flex" id="tutorial-header">
-                    </div>
 
-                <div class="expansion-divider-line"></div>
+  <div class="landing-content-wrapper">
 
-                <div class="stage-expansion-content">
-                    <div class="expansion-inner">
-                        <div class="tutorial-grid">
-                            <div class="tutorial-main-column">
-                                <div id="quick-start"></div>
-                                <h3 class="section-label">// Step-by-Step Instructions</h3>
-                                <div id="steps-container" class="steps-list"></div>
-                            </div>
+    <!-- NAV — matches style.css .main-title / .inner-nav / .nav-item -->
+    <h1 class="main-title">AI Toolbox</h1>
+    <nav class="inner-nav">
+        <a href="index.html" class="nav-item">HOME</a>
+        <a href="tools.html" class="nav-item active">AI TOOLS</a>
+        <a href="uses.html" class="nav-item">USE CASES</a>
+    </nav>
 
-                            <aside class="tutorial-sidebar">
-                                <div class="sidebar-block" id="example-project"></div>
-                                <div class="sidebar-block warning" id="mistakes-section"></div>
-                                <div class="sidebar-block stop" id="not-use-section"></div>
-                                <div id="next-steps"></div>
-                            </aside>
-                        </div>
-                        
-                       
-                        
-                            
-                            <div class="bottom-right">
-                                <h4 class="resources-label">// Additional Resources</h4>
-                                <div class="resource-links">
-                                    <a href="#" class="resource-link youtube" target="_blank">
-                                        <span class="resource-icon">▶</span>
-                                        <span>Video Tutorial</span>
-                                    </a>
-                                    <a href="#" class="resource-link docs" target="_blank">
-                                        <span class="resource-icon">📄</span>
-                                        <span>Official Docs</span>
-                                    </a>
-                                    <a href="#" class="resource-link community" target="_blank">
-                                        <span class="resource-icon">💬</span>
-                                        <span>Community Forum</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                       
-                    </div>
-                </div>
-            </div>
-        </main>
+    <!-- Back button -->
+    <a href="tools.html" class="back-btn">Return to Directory</a>
+
+    <!-- Shown when tool ID is not found or hasTutorial is false -->
+    <div class="error-state" id="error-state">
+      TOOL NOT FOUND. <a href="#">Return to Directory</a>
     </div>
 
-    <script src="js/data.js"></script>
-    <script src="js/tutorial.js"></script>
+    <!-- CORNELL NOTEBOOK — filled by tutorial.js -->
+    <div class="notebook" id="notebook">
+      <div class="nb-header" id="nb-header"></div>
+      <div class="nb-body" id="nb-body"></div>
+    </div>
+
+  </div><!-- /.landing-content-wrapper -->
+
+  <!-- data.js must load before tutorial.js -->
+  <script src="js/data.js"></script>
+  <script src="js/tutorial.js"></script>
 </body>
 </html>

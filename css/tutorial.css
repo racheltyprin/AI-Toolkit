@@ -1,326 +1,364 @@
-/* --- 1. THE MAIN CONTAINER --- */
-.tutorial-grid {
-    display: flex;
-    gap: 48px;
-    align-items: flex-start;
-    width: 100%;
-    padding-bottom: 80px;
-}
+/* ============================================================
+   TUTORIAL PAGE — CORNELL NOTEBOOK
+   Matches AI Toolbox visual language
+   ============================================================ */
 
-.tutorial-left-column {
-    flex: 1;
-    min-width: 0;
-}
-
-.tutorial-right-column {
-    width: 380px;
-    flex-shrink: 0;
-}
-
-/* --- 2. STEP CARDS (COMPACT, BETTER PROPORTIONS) --- */
-.steps-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Reduced gap */
-}
-
-.step-card {
-    background: #FFFFFF;
+/* --- BACK BUTTON --- */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 32px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--palo-alto-dark);
+    text-decoration: none;
+    border-bottom: 2px solid var(--illuminating);
+    padding-bottom: 4px;
+  }
+  
+  .back-btn:hover {
+    color: var(--lagunita-dark);
+  }
+  
+  /* --- ERROR STATE --- */
+  .error-state {
+    display: none;
+    padding: 40px;
     border: 2px solid var(--palo-alto-dark);
-    box-shadow: 4px 4px 0px 0px var(--palo-alto-dark); /* Smaller shadow */
-    margin-bottom: 0; /* Remove extra margin */
-}
-
-.step-header {
+    background: #fff;
+    box-shadow: 6px 6px 0 var(--palo-alto-dark);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+  }
+  
+  .error-state a {
+    color: var(--palo-alto-dark);
+    text-decoration: underline;
+  }
+  
+  /* ============================================================
+     NOTEBOOK CONTAINER
+     ============================================================ */
+  
+  .notebook {
+    background: #fff;
+    border: 2px solid var(--palo-alto-dark);
+    box-shadow: 10px 10px 0 var(--illuminating);
+    margin-bottom: 80px;
+  }
+  
+  /* ============================================================
+     NOTEBOOK HEADER
+     ============================================================ */
+  
+  .nb-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 40px;
+    border-bottom: 6px solid var(--illuminating);
+  }
+  
+  .nb-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+  
+  .nb-logo-fallback {
+    width: 64px;
+    height: 64px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
     background: var(--palo-alto-dark);
-    color: #FFFFFF;
-    padding: 10px 16px; /* Much smaller padding */
+  }
+  
+  .nb-header-text {
+    flex: 1;
+  }
+  
+  .nb-tool-name {
+    font-size: 2.4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--palo-alto-dark);
+    line-height: 0.95;
+  }
+  
+  .nb-tagline {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--stone-dark);
+    margin-top: 8px;
+  }
+  
+  .nb-header-meta {
+    flex-shrink: 0;
+  }
+  
+  .nb-url-btn {
+    padding: 14px 20px;
+    background: var(--illuminating);
+    border: 2px solid var(--palo-alto-dark);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--palo-alto-dark);
+    box-shadow: 4px 4px 0 var(--palo-alto-dark);
+  }
+  
+  .nb-url-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--palo-alto-dark);
+  }
+  
+  /* ============================================================
+     NOTEBOOK BODY — CORNELL LAYOUT
+     ============================================================ */
+  
+  .nb-body {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+  }
+  
+  /* ============================================================
+     LEFT COLUMN — CUE / QUICK INFO
+     ============================================================ */
+  
+  .left-column {
+    padding: 32px 24px;
+    border-right: 2px solid var(--fog);
+    background: var(--fog-light);
+  }
+  
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--lagunita-dark);
+    border-bottom: 2px solid var(--illuminating);
+    display: inline-block;
+    margin-bottom: 12px;
+    letter-spacing: 0.1em;
+  }
+  
+  .meta-pill {
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 2px solid var(--palo-alto-dark);
-}
-
-.step-number {
-    font-weight: 900;
-    font-size: 0.85rem; /* Smaller number */
-    color: var(--illuminating);
-    flex-shrink: 0;
-}
-
-.step-header h4 {
-    margin: 0;
-    text-transform: uppercase;
-    font-size: 0.7rem; /* Smaller title */
-    letter-spacing: 0.1em;
-    font-weight: 900;
-    line-height: 1.2;
-}
-
-.step-body {
-    padding: 14px 16px; /* Reduced padding */
-    line-height: 1.5;
-    color: var(--stone-dark);
-    font-weight: 500;
-    font-size: 0.85rem;
-}
-
-.step-body p {
-    margin: 0; /* Remove default paragraph margins */
-}
-
-/* --- 3. SIDEBAR BLOCKS (REDESIGNED) --- */
-.sidebar-block {
-    background: #FFFFFF;
+    padding: 10px 12px;
+    background: #fff;
     border: 2px solid var(--palo-alto-dark);
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
-    position: relative;
-}
-
-/* Add colored accent bar on the left */
-.sidebar-block::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 6px;
-    background: var(--lagunita);
-}
-
-.sidebar-label {
-    font-size: 1rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: var(--palo-alto-dark);
-    border-bottom: 2px solid var(--illuminating);
-    display: inline-block;
-    margin-bottom: 0px;
-    letter-spacing: 0.15em;
-    padding-bottom: 0px;
-}
-
-.sidebar-content {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: var(--stone-dark);
-}
-
-.sidebar-content h5 {
-    font-size: 0.95rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: var(--palo-alto-dark);
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
-}
-
-.sidebar-content p {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: var(--stone-dark);
     margin-bottom: 12px;
-}
-
-.sidebar-content ul {
-    padding-left: 20px;
-    font-size: 0.85rem;
-    line-height: 1.6;
-}
-
-.sidebar-content li {
-    margin-bottom: 8px;
-    color: var(--stone-dark);
-}
-
-/* Different accent colors for different sidebar types */
-#example-project.sidebar-block::before {
-    background: var(--lagunita);
-}
-
-#mistakes-section.sidebar-block::before {
-    background: var(--spirited);
-}
-
-#not-use-section.sidebar-block::before {
-    background: var(--poppy);
-}
-
-/* --- 4. QUICK START BOX --- */
-.quick-start-box {
-    background: #FFFFFF;
-    border: 2px solid var(--palo-alto-dark);
-    padding: 28px;
-    box-shadow: 10px 10px 0px 0px var(--illuminating); 
-    margin-bottom: 40px;
-}
-
-.quick-start-box ul {
-    padding-left: 24px;
-    margin: 0;
-}
-
-.quick-start-box li {
-    margin-bottom: 10px;
-    line-height: 1.5;
-    color: var(--stone-dark);
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-/* --- 5. PROMPT BOX (NEW) --- */
-.prompt-box {
-    background: var(--fog-light);
-    border: 2px solid var(--palo-alto-dark);
-    padding: 16px;
-    margin-top: 12px;
-    font-family: 'Courier New', monospace;
-}
-
-.prompt-box code {
-    font-size: 0.8rem;
-    color: var(--palo-alto-dark);
-    line-height: 1.6;
-    display: block;
-}
-
-/* --- 6. NEXT STEPS (THE FINISHER) --- */
-.next-steps-card {
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 3px 3px 0 var(--palo-alto-dark);
+  }
+  
+  .meta-pill-dot {
+    width: 8px;
+    height: 8px;
     background: var(--palo-alto-dark);
-    padding: 28px;
-    color: white;
-    border: 2px solid var(--palo-alto-dark);
-    box-shadow: 8px 8px 0px 0px var(--illuminating);
-    margin-bottom: 24px;
-}
-
-.next-steps-card h4 {
-    color: var(--illuminating);
-    text-transform: uppercase;
-    font-weight: 900;
-    margin-bottom: 16px;
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-}
-
-.next-steps-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.next-steps-card li {
-    font-size: 0.85rem;
-    margin-bottom: 8px;
-    padding-left: 0;
-    color: #FFFFFF;
-    line-height: 1.5;
-}
-
-/* --- 7. SECTION LABELS --- */
-/* --- SECTION LABELS --- */
-.section-label {
-    font-weight: 900;
-    font-size: 1rem;
-    color: var(--palo-alto-dark);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin: 0 0 8px 0; /* Changed from 48px 0 24px 0 - removes top margin */
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.section-label::before {
-    content: "";
-    width: 30px;
-    height: 6px;
-    background: var(--spirited);
-    border: 1px solid var(--palo-alto-dark);
-}
-
-/* --- 8. MOBILE RESPONSIVE --- */
-@media (max-width: 900px) {
-    .tutorial-grid {
-        flex-direction: column;
-        gap: 32px;
-    }
-
-    .tutorial-right-column {
-        width: 100%;
-    }
-
-    .step-card {
-        box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
-    }
-
-    .sidebar-block {
-        box-shadow: 4px 4px 0px 0px var(--palo-alto-dark);
-    }
-
-    .quick-start-box {
-        box-shadow: 6px 6px 0px 0px var(--illuminating);
-    }
-
-    .next-steps-card {
-        box-shadow: 6px 6px 0px 0px var(--illuminating);
-    }
-}
-
-/*---BACK BUTTON---*/
-
-/* --- BACK BUTTON (ABOVE HEADER) --- */
-.back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px; /* Smaller padding */
-    background: #FFFFFF;
-    border: 2px solid var(--palo-alto-dark);
-    color: var(--palo-alto-dark);
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 0.65rem; /* Smaller font */
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    box-shadow: 3px 3px 0px 0px var(--palo-alto-dark);
-    transition: all 0.2s ease;
-    margin-bottom: 24px; /* Space below button */
-}
-
-.back-btn::before {
-    content: '←';
-    font-size: 1rem;
-}
-
-.back-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0px 0px var(--palo-alto-dark);
-    background: var(--fog-light);
-}
-
-.back-btn:active {
-    transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0px 0px var(--palo-alto-dark);
-}
-/* --- DESKTOP STYLES (Default) --- */
-.tool-detail-panel {
-    position: relative;
-    width: 350px; /* Or whatever your desktop width is */
+  }
+  
+  .diff-easy .meta-pill-dot { background: var(--bay); }
+  .diff-medium .meta-pill-dot { background: var(--olive); }
+  .diff-hard .meta-pill-dot { background: var(--spirited); }
+  
+  .left-video-btn {
     display: block;
-}
-
-/* --- MOBILE STYLES (The "Wall" between views) --- */
-@media screen and (max-width: 900px) {
-    .tool-detail-panel {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        z-index: 9999;
-        background: white;
+    margin-top: 20px;
+    padding: 12px;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--palo-alto-dark);
+    background: var(--illuminating);
+    border: 2px solid var(--palo-alto-dark);
+    box-shadow: 4px 4px 0 var(--palo-alto-dark);
+  }
+  
+  .left-video-btn--disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  /* ============================================================
+     RIGHT COLUMN — NOTES
+     ============================================================ */
+  
+  .right-column {
+    padding: 40px;
+  }
+  
+  /* --- SECTION ROW --- */
+  .nb-row-content {
+    margin-bottom: 40px;
+  }
+  
+  .row-label {
+    margin-bottom: 12px;
+  }
+  
+  /* --- TEXT --- */
+  .body-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--stone-dark);
+  }
+  
+  /* --- CHIP LIST --- */
+  .chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .chip {
+    padding: 8px 14px;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 2px solid var(--palo-alto-dark);
+    box-shadow: 3px 3px 0 var(--palo-alto-dark);
+    background: #fff;
+  }
+  
+  /* --- GUIDE STEPS --- */
+  .guide-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .guide-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+  }
+  
+  .step-num {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-align: center;
+    padding: 10px 0;
+    background: var(--illuminating);
+    border: 2px solid var(--palo-alto-dark);
+  }
+  
+  .step-text {
+    font-size: 0.95rem;
+    color: var(--stone-dark);
+    line-height: 1.5;
+  }
+  
+  /* --- MISTAKES --- */
+  .mistake-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .mistake-item {
+    display: flex;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--stone-dark);
+  }
+  
+  .mistake-x {
+    font-weight: 900;
+    color: var(--spirited);
+  }
+  
+  /* --- VERDICT --- */
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .verdict-box {
+    padding: 20px;
+    border: 2px solid var(--palo-alto-dark);
+    box-shadow: 4px 4px 0 var(--palo-alto-dark);
+    background: #fff;
+  }
+  
+  .verdict-box.use {
+    border-left: 6px solid var(--bay);
+  }
+  
+  .verdict-box.no {
+    border-left: 6px solid var(--spirited);
+  }
+  
+  .verdict-head {
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  /* --- NEXT STEPS --- */
+  .next-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .next-item {
+    padding-left: 12px;
+    border-left: 3px solid var(--illuminating);
+    font-size: 0.95rem;
+  }
+  
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  
+  @media (max-width: 900px) {
+    .nb-body {
+      grid-template-columns: 1fr;
     }
-}
+  
+    .left-column {
+      border-right: none;
+      border-bottom: 2px solid var(--fog);
+    }
+  
+    .nb-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .verdict-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .nb-tool-name {
+      font-size: 1.6rem;
+    }
+  
+    .right-column {
+      padding: 28px 20px;
+    }
+  }
+  
