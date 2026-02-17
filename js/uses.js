@@ -30,7 +30,7 @@ const rawRoadmap = [
         subsections: [
             { id: "w7", diffKey: 1, name: "Product Planning", question: "Have you prioritized the essential features for your launch?", tools: ["taskade", "chatgpt"], desc: "Define the scope, features, and roadmap of your MVP. Prioritize what is essential to learn." },
             { id: "w8", diffKey: 3, name: "Product Creation", question: "Is your functional MVP built and ready for launch?", tools: ["softr", "glide", "carrd","framer","zapier"], desc: "Bring your MVP to life using the refined designs. Focus on building a functional, testable version." },
-            { id: "w9", diffKey: 2, name: "Product Test", question: "Have you measured the impact of your solution with live users?", tools: ["elicity", "taskade"], desc: "Evaluate your MVP with real users to validate assumptions and identify next steps." }
+            { id: "w9", diffKey: 2, name: "Product Test", question: "Have you measured the impact of your solution with live users?", tools: ["elicit", "taskade"], desc: "Evaluate your MVP with real users to validate assumptions and identify next steps." }
         ]
     }
 ];
