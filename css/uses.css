@@ -1,20 +1,84 @@
-/* --- USE CASES SPECIFIC LAYOUT --- */
-.diagnostic-quiz {
-    background: #FFFFFF;
-    border: 3px solid var(--palo-alto-dark);
-    padding: 30px;
-    margin: 40px 0;
-    box-shadow: 10px 10px 0px 0px var(--palo-alto-dark);
-}
+/* ============================================================
+   1. VARIABLES & CORE LAYOUT
+   ============================================================ */
+   :root {
+    --cardinal-light: #B83A4B;
+    --cardinal-dark: #820000;
+  
+    /* Palo Alto */
+    --palo-alto: #175E54;
+    --palo-alto-light: #2D716F;
+    --palo-alto-dark: #014240;
+  
+    /* Palo Verde */
+    --palo-verde: #279989;
+    --palo-verde-light: #59B3A9;
+    --palo-verde-dark: #017E7C;
+  
+    /* Olive */
+    --olive: #8F993E;
+    --olive-light: #A6B168;
+    --olive-dark: #7A863B;
+  
+    /* Bay */
+    --bay: #6FA287;
+    --bay-light: #8AB8A7;
+    --bay-dark: #417865;
+  
+    /* Sky */
+    --sky: #4298B5;
+    --sky-light: #67AFD2;
+    --sky-dark: #016895;
+  
+    /* Lagunita */
+    --lagunita: #007C92;
+    --lagunita-light: #009AB4;
+    --lagunita-dark: #006B81;
+  
+    /* Poppy */
+    --poppy: #E98300;
+    --poppy-light: #F9A44A;
+    --poppy-dark: #D1660F;
+  
+    /* Spirited */
+    --spirited: #E04F39;
+    --spirited-light: #F4795B;
+    --spirited-dark: #C74632;
+  
+    /* Illuminating */
+    --illuminating: #FEDD5C;
+    --illuminating-light: #FFE781;
+    --illuminating-dark: #FEC51D;
+  
+    /* Plum */
+    --plum: #620059;
+    --plum-light: #734675;
+    --plum-dark: #350D36;
+  
+    /* Brick */
+    --brick: #651C32;
+    --brick-light: #7F2D48;
+    --brick-dark: #42081B;
+  
+    /* Archway */
+    --archway: #5D4B3C;
+    --archway-light: #766253;
+    --archway-dark: #2F2424;
+  
+    /* Stone */
+    --stone: #7F7776;
+    --stone-light: #D4D1D1;
+    --stone-dark: #544948;
+  
+    /* Fog */
+    --fog: #DAD7CB;
+    --fog-light: #F4F4F4;
+    --fog-dark: #B6B1A9;
+  }
 
-.quiz-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin: 20px 0;
+.phase-section { 
+    margin-bottom: 80px; 
 }
-
-.phase-section { margin-bottom: 80px; }
 
 .roadmap-notebook {
     border: 3px solid var(--palo-alto-dark);
@@ -22,21 +86,99 @@
     box-shadow: 12px 12px 0px 0px var(--palo-alto-dark);
     display: flex;
     flex-direction: column;
+    overflow: visible; 
 }
 
 .subsection-row {
     display: grid;
     grid-template-columns: 250px 1fr;
-    border-bottom: 2px solid var(--fog);
+    border-bottom: 3px solid var(--palo-alto-dark); 
+    background: white;
+    position: relative;
+}
+
+.roadmap-notebook .subsection-row:last-child {
+    border-bottom: none;
 }
 
 .sub-sidebar {
     padding: 25px;
     background: var(--fog-light);
-    border-right: 2px solid var(--palo-alto-dark);
+    border-right: 3px solid var(--palo-alto-dark);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s;
 }
 
-.sub-content { padding: 30px; }
+.sub-content { 
+    padding: 30px; 
+    background: white;
+    transition: background-color 0.3s;
+}
+
+/* ============================================================
+   2. BACKGROUND HIGHLIGHT ANIMATION
+   ============================================================ */
+@keyframes highlight-pulse {
+    0% { background-color: white; }
+    30% { background-color: var(--illuminating); }
+    100% { background-color: white; }
+}
+
+@keyframes sidebar-pulse {
+    0% { background-color: var(--fog-light); }
+    30% { background-color: var(--illuminating); }
+    100% { background-color: var(--fog-light); }
+}
+
+.jump-highlight {
+    z-index: 5;
+}
+
+/* Animates the sidebar and content together */
+.jump-highlight .sub-sidebar {
+    animation: sidebar-pulse 2s ease-out;
+}
+
+.jump-highlight .sub-content {
+    animation: highlight-pulse 2s ease-out;
+}
+
+/* Optional Visual indicator: Arrow on the left */
+.jump-highlight::before {
+    content: "→";
+    position: absolute;
+    left: -45px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    color: var(--palo-alto-dark);
+    font-weight: 900;
+    pointer-events: none;
+}
+
+/* ============================================================
+   3. PHASE HEADERS & METRICS
+   ============================================================ */
+.phase-header-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 8px solid var(--illuminating);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.metric-pill {
+    background: var(--palo-alto-dark);
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 10px;
+}
 
 .sub-metrics-vertical {
     margin-top: 15px;
@@ -54,112 +196,146 @@
     background: white;
 }
 
-/* Expanded Tool Cards */
+/* ============================================================
+   4. HORIZONTAL TOOL CARDS
+   ============================================================ */
 .tool-integration-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 20px;
     margin-top: 20px;
 }
 
 .mini-tool-card.expanded {
     display: flex;
-    gap: 15px;
-    padding: 15px;
-    background: white;
-    border: 2px solid var(--palo-alto-dark);
+    flex-direction: column; 
+    padding: 0; 
+    background: #FFFFFF;
+    border: 3px solid var(--palo-alto-dark);
     text-decoration: none;
     color: inherit;
     transition: 0.2s;
+    overflow: hidden;
+}
+
+.card-top-half {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: var(--fog-light);
+    border-bottom: 2px solid var(--fog);
+}
+
+.mini-logo { 
+    width: 28px; 
+    height: 28px; 
+    object-fit: contain; 
+    flex-shrink: 0;
+}
+
+.tool-name-style {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--palo-alto-dark);
+}
+
+.card-bottom-half {
+    padding: 15px;
+    background: white;
+    flex-grow: 1;
+}
+
+.spec-tag {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    font-weight: 400; 
+    color: #444;
+    display: block;
 }
 
 .mini-tool-card.expanded:hover {
-    box-shadow: 6px 6px 0px var(--illuminating);
-    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--illuminating);
+    transform: translate(-3px, -3px);
 }
 
-.mini-logo { width: 40px; height: 40px; object-fit: contain; }
-.phase-header-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end; /* Aligns title and metrics to the bottom line */
-    border-bottom: 8px solid var(--illuminating);
-    padding-bottom: 15px;
-    margin-bottom: 30px;
-}
-
-.phase-metrics {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 5px; /* Slight lift from the yellow bar */
-}
-
-.metric-pill {
-    background: var(--palo-alto-dark);
-    color: white;
-    padding: 6px 12px;
-    font-size: 0.7rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* --- COLLAPSIBLE PROGRESS DRAWER --- */
-/* --- COLLAPSIBLE PROGRESS DRAWER --- */
+/* ============================================================
+   5. PROGRESS DRAWER (QUIZ)
+   ============================================================ */
 .quiz-drawer {
     position: fixed;
-    top: 150px; 
+    top: 100px;
     right: 0;
-    width: 300px; /* The width of the content area */
+    width: fit-content; 
+    min-width: 260px;   
+    max-width: 380px;   
+    height: auto;
+    max-height: 85vh;   
+    background: white;
+    border: 3px solid var(--palo-alto-dark);
+    display: flex;
     z-index: 9999;
-    
-    /* We transition the transform of the container */
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    
-    /* Ensure the tab isn't cut off when we move the drawer */
-    visibility: visible; 
+    box-shadow: -5px 5px 15px rgba(0,0,0,0.05);
 }
 
-/* THE FIX: Translate by the exact width of the content area */
 .quiz-drawer.collapsed {
-    transform: translateX(300px); 
+    transform: translateX(100%);
+    box-shadow: none;
 }
+
 .drawer-toggle {
-    position: absolute;
-    /* Positioned outside the main box */
-    left: -48px; 
-    top: -3px; 
-    
-    width: 45px;
-    height: 120px; 
-    
+    width: 75px;
+    flex-shrink: 0;
     background: var(--illuminating);
-    border: 3px solid var(--palo-alto-dark);
-    border-right: none; 
-    
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
     font-weight: 900;
     font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    position: absolute;
+    left: -75px;
+    top: -3px;
+    height: 45px;
+    border: 3px solid var(--palo-alto-dark);
+    border-right: none;
+    padding: 0, 12px;
 }
 
-
 .drawer-toggle span {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
+    
+    transform: none;
 }
 
 .drawer-content {
     padding: 20px;
-    overflow-y: auto;
+    overflow-y: auto; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-/* --- STAMP CHECKBOX MECHANISM --- */
+#quiz-result {
+    height: auto;
+    margin-top: auto; 
+}
+
+/* ============================================================
+   6. STAMP CHECKBOXES & UI
+   ============================================================ */
+.quiz-phase-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: var(--palo-alto);
+    margin: 15px 0 8px 0;
+    border-bottom: 1px solid var(--fog);
+}
+
 .quiz-item {
     display: flex;
     align-items: center;
@@ -194,71 +370,6 @@
     color: var(--palo-alto-dark);
 }
 
-/* --- CLEAR BUTTON --- */
-.clear-btn {
-    margin-top: 15px;
-    background: #ffeded;
-    border: 1px solid #ff4d4d;
-    color: #ff4d4d;
-    font-size: 0.7rem;
-    padding: 5px 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 900;
-}
-
-.quiz-drawer {
-    position: fixed;
-    top: 100px;
-    right: 0;
-    width: 300px; /* Fixed width of the entire unit */
-    height: auto;
-    max-height: 80vh;
-    background: white;
-    border: 3px solid var(--palo-alto-dark);
-    display: flex; /* Keeps button and content side-by-side */
-    z-index: 9999;
-    /* Use a clean transition for the slide effect */
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* THE FIX: Translate exactly by the width of the content area */
-.quiz-drawer.collapsed {
-    /* If width is 300px and toggle is 45px, we move it 255px */
-    transform: translateX(100%); 
-}
-
-/* Ensure the toggle button has a consistent width */
-.drawer-toggle {
-    width: 45px; /* This is the only part that will stick out */
-    flex-shrink: 0; /* Prevents the button from squishing */
-    background: var(--illuminating);
-    border: none;
-    border-right: 3px solid var(--palo-alto-dark);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    font-size: 0.7rem;
-    gap: 4px;
-    padding: 10px 0;
-}
-
-/* Remove any unwanted shadows that might bleed over when collapsed */
-.quiz-drawer.collapsed {
-    box-shadow: -2px 0 5px rgba(0,0,0,0.05);
-}
-.quiz-phase-label {
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    font-weight: 900;
-    color: var(--palo-alto);
-    margin: 15px 0 8px 0;
-    border-bottom: 1px solid var(--fog);
-}
-
 .clear-btn {
     background: #fff0f0;
     color: #cc0000;
@@ -266,5 +377,95 @@
     font-size: 0.6rem;
     font-weight: 900;
     cursor: pointer;
-    padding: 2px 6px;
+    padding: 4px 8px;
+    text-transform: uppercase;
 }
+
+.section-label {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--palo-alto-dark);
+    opacity: 0.6;
+}
+
+.status-recommendation {
+    background: var(--fog-light);
+    border: 2px dashed var(--palo-alto-dark);
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.quiz-question {
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 700;
+    margin: 10px 0;
+    line-height: 1.3;
+}
+
+.quiz-hint {
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+}
+
+.jump-btn {
+    width: 100%;
+    background: var(--palo-alto-dark);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.jump-btn:hover {
+    background: var(--illuminating);
+    color: var(--palo-alto-dark);
+}
+
+.status-recommendation.complete {
+    border: 2px solid var(--palo-verde-light);
+    background: #f0fff4;
+    text-align: center;
+}
+
+.quiz-item-block {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--fog);
+}
+
+.quiz-item-block:last-child {
+    border-bottom: none;
+}
+
+.quiz-item-name {
+    font-size: 0.85rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--palo-alto-dark);
+}
+
+.quiz-item-question {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #666;
+    margin: 5px 0 0 32px; /* Aligns under the text, not the checkbox */
+    line-height: 1.3;
+}
+
+.title {
+    text-align: left;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--palo-alto-dark);
+    letter-spacing: 0.00rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    line-height: 0.8;
+    
+  }

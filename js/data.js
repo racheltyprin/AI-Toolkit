@@ -37,7 +37,7 @@ const toolsData = [
     "nextSteps": ["Build your first site in 30 mins", "Share link for feedback", "Check Framer Academy"],
     "difficulty": "Easy",
     "product": "Website",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=izpblc6ppwk",
   },
   {
     "id": "carrd",
@@ -77,7 +77,7 @@ const toolsData = [
     "nextSteps": ["Pick a template", "Link your social media", "Upgrade for custom domain"],
     "difficulty": "Very Easy",
     "product": "Website",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=1PL6NntBaK4",
   },
   {
     "id": "glide",
@@ -117,7 +117,7 @@ const toolsData = [
     "nextSteps": ["Connect a Google Sheet", "Design the layout", "Share with your team"],
     "difficulty": "Medium",
     "product": "App",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=JM6ykgcG0TM",
   },
   {
     "id": "softr",
@@ -157,7 +157,7 @@ const toolsData = [
     "nextSteps": ["Link Airtable base", "Set up user roles", "Publish to subdomain"],
     "difficulty": "Medium",
     "product": "App",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=Hu_xjP8PArM",
   },
   {
     "id": "figma",
@@ -197,7 +197,7 @@ const toolsData = [
     "nextSteps": ["Get Education License", "Explore Community UI Kits", "Link frames in Prototype mode"],
     "difficulty": "Medium/High",
     "product": "Demo",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=qJoGFDHjLSE",
   },
   {
     "id": "uizard",
@@ -237,7 +237,7 @@ const toolsData = [
     "nextSteps": ["Upload a sketch", "Use Autodesigner", "Preview on phone"],
     "difficulty": "Easy",
     "product": "Demo",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=4iIOvROrMtI&list=PLl0Umi92CQzXTjyb8LmpFmfdQytu2941X",
   },
   {
     "id": "taskade",
@@ -278,7 +278,7 @@ const toolsData = [
     "nextSteps": ["Create a Mind Map", "Invite a collaborator", "Install the mobile app"],
     "difficulty": "Easy",
     "product": "Visual Content",
-    "video": " "
+    "video": "https://www.youtube.com/watch?v=K1PDxxbJHj0&list=PL6AK9nQTVp4qf4OuINFJH9QIU6vFI0fH3"
   },
   {
     "id": "elicit",
@@ -319,7 +319,7 @@ const toolsData = [
     "nextSteps": ["Ask a research question", "Export your table", "Check the 'Evidence' column"],
     "difficulty": "Hard (Academic)",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=rJJPS-EvNfk",
   },
   {
     "id": "claude",
@@ -398,7 +398,7 @@ const toolsData = [
     "nextSteps": ["Set Custom Instructions", "Try Voice Mode", "Build a Custom GPT"],
     "difficulty": "Easy",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=Gaf_jCnA6mc",
   },
   {
     "id": "canva",
@@ -438,7 +438,7 @@ const toolsData = [
     "nextSteps": ["Search for a template", "Try 'Magic Media' (AI Image)", "Brand your kit"],
     "difficulty": "Easy",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=jzWxBuvwuwQ",
   },
   {
     "id": "dalle-leonardo",
@@ -478,7 +478,7 @@ const toolsData = [
     "nextSteps": ["Write a detailed prompt", "Choose a model", "Upscale your result"],
     "difficulty": "Medium",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=ri1FCeVHGPg",
   },
   {
     "id": "designer",
@@ -518,7 +518,7 @@ const toolsData = [
     "nextSteps": ["Describe your post", "Select a style", "Download for Instagram"],
     "difficulty": "Very Easy",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=vCiuBCIBABo",
   },
   {
     "id": "vizcom",
@@ -558,7 +558,7 @@ const toolsData = [
     "nextSteps": ["Upload a pencil sketch", "Choose a rendering style", "Experiment with materials"],
     "difficulty": "Medium",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=0QIh7QK_wkI",
   },
   {
     "id": "nanobanana",
@@ -598,7 +598,7 @@ const toolsData = [
     "nextSteps": ["Generate a video clip", "Incorporate into an edit", "Try the image tool"],
     "difficulty": "Medium",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=-Yq1Yi0MpDQ",
   },
   {
     "id": "perplexity",
@@ -638,7 +638,7 @@ const toolsData = [
     "nextSteps": ["Ask a 'VS' question", "Verify citations", "Try Pro Search"],
     "difficulty": "Easy",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=YoWdogtZRw8",
   },
   {
     "id": "zapier",
@@ -678,6 +678,6 @@ const toolsData = [
     "nextSteps": ["Connect your email", "Create your first 'Zap'", "Explore the Zapier App Directory"],
     "difficulty": "Medium",
     "product": "Visual Content",
-    "video": " ",
+    "video": "https://www.youtube.com/watch?v=JtdUgJGI_Oo",
   }
 ];
