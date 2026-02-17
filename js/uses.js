@@ -262,6 +262,12 @@ document.addEventListener("DOMContentLoaded", () => {
             toggle.addEventListener('click', (e) => {
                 e.preventDefault(); 
                 drawer.classList.toggle('collapsed');
+        
+                // If drawer just opened, scroll content to top
+                if (!drawer.classList.contains('collapsed')) {
+                    const drawerContent = drawer.querySelector('.drawer-content');
+                    if (drawerContent) drawerContent.scrollTop = 0;
+                }
             });
         }
 
