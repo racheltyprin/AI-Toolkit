@@ -42,46 +42,30 @@ document.addEventListener('DOMContentLoaded', function() {
     function showDetail(toolName, cardElement) {
         const tool = tools.find(t => t.name === toolName);
         if (!tool) return;
-
+    
         const panel = document.getElementById("tool-detail-panel");
         const content = document.getElementById("tool-detail-content");
         const layout = document.querySelector(".tools-page-layout");
-
-        // UI State
+        const resultsColumn = layout.querySelector(".tools-results-column");
+    
+        // --- Active card state ---
         if (activeToolCard) activeToolCard.classList.remove("active");
         cardElement.classList.add("active");
         activeToolCard = cardElement;
         layout.classList.add("panel-open");
-
-        // Logic to move Panel in DOM
+    
+        // --- Move panel depending on screen ---
         if (window.innerWidth <= 900) {
-            // MOBILE: Insert panel directly under card
+            // MOBILE: place panel directly under card
             cardElement.after(panel);
         } else {
+            // DESKTOP: ensure panel is inside layout
             if (panel.parentNode !== layout) {
                 layout.appendChild(panel);
             }
-        
-            // Get positions
-            const layoutRect = layout.getBoundingClientRect();
-            const cardRect = cardElement.getBoundingClientRect();
-        
-            // Desired offset (align with card)
-            let offsetTop = cardRect.top - layoutRect.top + layout.scrollTop;
-        
-            // --- Prevent overflow past bottom ---
-            const panelHeight = panel.offsetHeight;
-            const layoutHeight = layout.scrollHeight;
-        
-            const maxOffset = layoutHeight - panelHeight;
-        
-            // Clamp value
-            offsetTop = Math.min(offsetTop, maxOffset);
-            offsetTop = Math.max(offsetTop, 0);
-        
-            panel.style.marginTop = offsetTop + "px";
         }
-
+    
+        // --- Inject content ---
         content.innerHTML = `
             <div class="tool-detail-header">
                 <img src="${tool.logo}" class="tool-detail-logo" onerror="this.style.display='none'">
@@ -97,16 +81,41 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <a href="${tool.url}" target="_blank" class="action-btn">Launch ${tool.name}</a>
         `;
-        
+    
         panel.classList.remove("hidden");
-
-        if (window.innerWidth <= 900) {
-            setTimeout(() => {
-                panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 50);
-        }
+    
+        // --- Wait for layout so height is accurate ---
+        requestAnimationFrame(() => {
+            if (window.innerWidth > 900) {
+                // ===== DESKTOP POSITIONING =====
+        
+                const layoutRect = layout.getBoundingClientRect();
+                const cardRect = cardElement.getBoundingClientRect();
+        
+                // Desired alignment
+                let offsetTop = cardRect.top - layoutRect.top;
+        
+                const panelHeight = panel.offsetHeight;
+                const containerHeight = resultsColumn.offsetHeight;
+        
+                // --- spacing controls ---
+                const TOP_GAP = 8;      // optional top breathing room
+                const BOTTOM_GAP = 70;  // space from bottom edge
+        
+                // Clamp so panel never touches edges
+                const maxOffset = containerHeight - panelHeight - BOTTOM_GAP;
+        
+                offsetTop = Math.min(offsetTop, maxOffset);
+                offsetTop = Math.max(offsetTop, TOP_GAP);
+        
+                panel.style.marginTop = offsetTop + "px";
+            } else {
+                panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+        });
+        
     }
-
+    
     function hideDetail() {
         const panel = document.getElementById("tool-detail-panel");
         const layout = document.querySelector(".tools-page-layout");
