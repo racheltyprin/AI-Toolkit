@@ -411,7 +411,7 @@
     text-transform: uppercase;
     letter-spacing: -0.03em;
     color: var(--palo-alto-dark);
-    line-height: 0.9;
+    line-height: 1.1;
   }
   
   .about-big-text .hl {
