@@ -230,6 +230,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const hydrated = hydrateRoadmap(rawRoadmap, toolsData);
         renderApp(hydrated);
         updateStatus();
+        if (window.location.hash) {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
 
         const toggle = document.querySelector('.drawer-toggle');
         const drawer = document.querySelector('.quiz-drawer');
