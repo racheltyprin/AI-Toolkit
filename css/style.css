@@ -135,11 +135,6 @@ body {
   overflow: hidden;
 }
 
-.stage-header-card:hover {
-  border-color: var(--palo-alto-dark);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  transform: translateY(-4px);
-}
 
 .stage-header-flex {
   display: flex;
@@ -147,6 +142,7 @@ body {
   align-items: flex-start;
   padding: 40px;
   border-bottom-color: var(--illuminating-light);
+  padding-bottom: 0px;
 }
 
 
@@ -177,14 +173,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: left;
-  box-shadow: 4px 4px 0px 0px var(--cardinal-dark);
+  box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
   transition: transform 0.2s ease;
 }
 
-.stage-header-card:hover .toolset-sticker {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px 0px var(--palo-alto-dark);
-}
 
 .sticker-label {
   font-size: 10px;
