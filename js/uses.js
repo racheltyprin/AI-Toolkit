@@ -21,7 +21,7 @@ const rawRoadmap = [
         subsections: [
             { id: "w4", diffKey: 2, name: "Product Designing", question: "Have you translated your research into a concrete design or wireframe?", tools: ["vizcom", "designer", "dalle-leonardo", "uizard"], desc: "Translate insights into concrete design concepts. Sketch or wireframe potential solutions to explore flow." },
             { id: "w5", diffKey: 3, name: "Gathering User Feedback", question: "Have you tested your initial design with potential users?", tools: ["elicit","taskade", "julius"], desc: "Test early prototypes with users to validate assumptions and uncover unanticipated needs." },
-            { id: "w6", diffKey: 1, name: "Low to High Fidelity Prototypes", question: "Is your prototype functional enough to simulate the real experience?", tools: ["figma", "framer", "canva"], desc: "Start with quick, rough prototypes, then iteratively refine toward high-fidelity, functional models." },
+            { id: "w6", diffKey: 1, name: "Low to High Fidelity Prototypes", question: "Is your prototype functional enough to simulate the real experience?", tools: ["figma", "framer", "canva", "spline"], desc: "Start with quick, rough prototypes, then iteratively refine toward high-fidelity, functional models." },
         ]
     },
     {
@@ -29,7 +29,7 @@ const rawRoadmap = [
         title: "Phase 3: Create an MVP",
         subsections: [
             { id: "w7", diffKey: 1, name: "Product Planning", question: "Have you prioritized the essential features for your launch?", tools: ["taskade", "chatgpt"], desc: "Define the scope, features, and roadmap of your MVP. Prioritize what is essential to learn." },
-            { id: "w8", diffKey: 3, name: "Product Creation", question: "Is your functional MVP built and ready for launch?", tools: ["softr", "glide", "carrd","framer","zapier"], desc: "Bring your MVP to life using the refined designs. Focus on building a functional, testable version." },
+            { id: "w8", diffKey: 3, name: "Product Creation", question: "Is your functional MVP built and ready for launch?", tools: ["softr", "glide", "carrd","framer","zapier", "spline"], desc: "Bring your MVP to life using the refined designs. Focus on building a functional, testable version." },
             { id: "w9", diffKey: 2, name: "Product Test", question: "Have you measured the impact of your solution with live users?", tools: ["elicit", "taskade"], desc: "Evaluate your MVP with real users to validate assumptions and identify next steps." }
         ]
     }

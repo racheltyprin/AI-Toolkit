@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!container) return;
     
         const filtered = tools.filter(t => {
-            const categoryMatch = currentCategory === "all" || t.category === currentCategory;
+            // This works whether t.category is a single string or an array
+            const categoryMatch = currentCategory === "all" || 
+            (Array.isArray(t.category) ? t.category.includes(currentCategory) : t.category === currentCategory);
             const productMatch = currentProduct === "all" || t.product === currentProduct;
             
             const searchTerm = currentSearch.toLowerCase().trim();
