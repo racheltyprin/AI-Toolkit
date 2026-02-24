@@ -10,7 +10,7 @@ const rawRoadmap = [
         id: "arc-1",
         title: "Phase 1: Research and Exploration",
         subsections: [
-            { id: "w1", diffKey: 1, name: "Research the Problem", question: "Have you clearly defined your research scope and stakeholders?", tools: ["perplexity", "elicit", "chatgpt", "claude"], desc: "Dive into the landscape of your research topic. Explore the context, identify stakeholders, and define the scope of your inquiry." },
+            { id: "w1", diffKey: 1, name: "Research the Problem", question: "Have you clearly defined your research scope and stakeholders?", tools: ["julius","perplexity", "elicit", "chatgpt", "claude"], desc: "Dive into the landscape of your research topic. Explore the context, identify stakeholders, and define the scope of your inquiry." },
             { id: "w2", diffKey: 3, name: "Gauge User Interest", question: "Do you have data on real user pain points and motivations?", tools: ["taskade", "elicit"], desc: "Engage potential users early to understand their needs, motivations, and pain points." },
             { id: "w3", diffKey: 2, name: "Evaluate Existing Solutions", question: "Have you identified the gaps in current market solutions?", tools: ["claude", "chatgpt"], desc: "Study the competitive or adjacent solutions already in the problem space. Identify gaps and opportunities."}
         ]

@@ -2,26 +2,49 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reference the array from data.js
     const tools = toolsData;
 
-    // State management - NOW WITH TWO FILTERS
+    // --- STATE MANAGEMENT ---
+    // Now tracks Category, Product, and Search Term
     let currentCategory = "all";
     let currentProduct = "all";
+    let currentSearch = ""; 
     let activeToolCard = null;
 
+    /**
+     * Renders the tool cards based on all active filters
+     */
     function renderTools() {
         const container = document.getElementById("tools-container");
         const countEl = document.getElementById("results-count");
         const emptyEl = document.getElementById("tools-empty");
         
         if (!container) return;
-
-        // Filter the data based on BOTH filters
+    
         const filtered = tools.filter(t => {
             const categoryMatch = currentCategory === "all" || t.category === currentCategory;
             const productMatch = currentProduct === "all" || t.product === currentProduct;
-            return categoryMatch && productMatch; // Both must match
+            
+            const searchTerm = currentSearch.toLowerCase().trim();
+            if (searchTerm === "") return categoryMatch && productMatch;
+        
+            // \b matches the beginning of a word. 
+            // This will match "Art" or "Artistic" but NOT "startup" or "Framer"
+            const regex = new RegExp(`\\b${searchTerm}`, 'i'); 
+        
+            const nameMatch = regex.test(t.name);
+            const descMatch = regex.test(t.desc);
+            const keywordMatch = t.keywords && t.keywords.some(k => regex.test(k));
+            const useCaseMatch = t.useCases && t.useCases.some(uc => regex.test(uc));
+        
+            // Notice we are NOT including guide, mistakes, or nextSteps here
+            const searchMatch = nameMatch || descMatch || keywordMatch || useCaseMatch;
+        
+            return categoryMatch && productMatch && searchMatch; 
         });
-
-        // Inject the cards into the HTML
+    
+        // Debugging: Open your browser console (F12) to see this output!
+        console.log(`Searching for: "${currentSearch}" | Found: ${filtered.length} tools`);
+    
+        // Inject cards
         container.innerHTML = filtered.map(t => `
             <div class="tool-card" data-name="${t.name}">
                 <div class="tool-header">
@@ -33,12 +56,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `).join("");
-
-        // Update the UI elements
+    
         if (countEl) countEl.textContent = filtered.length;
         if (emptyEl) emptyEl.classList.toggle("hidden", filtered.length > 0);
     }
 
+    /**
+     * UI Logic for showing tool details
+     */
     function showDetail(toolName, cardElement) {
         const tool = tools.find(t => t.name === toolName);
         if (!tool) return;
@@ -48,12 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const container = document.querySelector(".stage-expansion-content");
         const layout = document.querySelector(".tools-page-layout");
     
-        // --- Active card styling ---
         if (activeToolCard) activeToolCard.classList.remove("active");
         cardElement.classList.add("active");
         activeToolCard = cardElement;
     
-        // --- Inject content ---
         content.innerHTML = `
             <div class="tool-detail-header">
                 <img src="${tool.logo}" class="tool-detail-logo" onerror="this.style.display='none'">
@@ -69,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="tool-detail-section">
                 <h4>// Cost </h4>
-                <p>${tool.pricingDetails || tool.pricingDetails}</p>
+                <p>${tool.pricingDetails || 'Contact for pricing'}</p>
             </div>
             <div class="tool-detail-actions">
                 <a href="${tool.url}" target="_blank" class="action-btn">Launch ${tool.name}</a>
@@ -80,12 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
         panel.classList.remove("hidden");
     
         if (window.innerWidth <= 900) {
-            // --- MOBILE FIX ---
-            // 1. Move it to the body so it overlaps the entire screen
             document.body.appendChild(panel);
-            document.body.style.overflow = "hidden"; // Stop background scroll
-            
-            // 2. Explicitly set fixed styles to ensure it shows up
+            document.body.style.overflow = "hidden";
             panel.style.position = "fixed";
             panel.style.top = "0";
             panel.style.left = "0";
@@ -94,27 +113,20 @@ document.addEventListener('DOMContentLoaded', function() {
             panel.style.marginTop = "0";
             panel.style.zIndex = "99999";
         } else {
-            // --- DESKTOP (UNTOUCHED LOGIC) ---
-            // 1. Ensure it's back in the layout container
             if (layout && !layout.contains(panel)) {
                 layout.appendChild(panel);
             }
             document.body.style.overflow = "";
-    
             const containerRect = container.getBoundingClientRect();
             const panelHeight = panel.offsetHeight;
-    
             const TOP_GAP = 16;
             const BOTTOM_GAP = 16;
-    
             const visibleTop = Math.max(containerRect.top, 0);
             const visibleBottom = Math.min(containerRect.bottom, window.innerHeight);
             const visibleHeight = visibleBottom - visibleTop;
-    
             let offsetTop = (visibleHeight - panelHeight) / 2 + (visibleTop - containerRect.top);
             offsetTop = Math.max(offsetTop, TOP_GAP);
             offsetTop = Math.min(offsetTop, containerRect.height - panelHeight - BOTTOM_GAP);
-    
             panel.style.position = "relative";
             panel.style.marginTop = offsetTop + "px";
             panel.style.top = "";
@@ -125,31 +137,23 @@ document.addEventListener('DOMContentLoaded', function() {
     function hideDetail() {
         const panel = document.getElementById("tool-detail-panel");
         const layout = document.querySelector(".tools-page-layout");
-        
         panel.classList.add("hidden");
-        document.body.style.overflow = ""; // Unlock scrolling
-    
+        document.body.style.overflow = "";
         if (activeToolCard) {
             activeToolCard.classList.remove("active");
             activeToolCard = null;
         }
-    
-        // Move panel back to its desktop home so it's ready for next time
         if (layout && !layout.contains(panel)) {
             layout.appendChild(panel);
         }
     }
 
-    // --- COLLAPSIBLE FILTER LOGIC ---
     function setupCollapsibleFilters() {
         document.querySelectorAll('.collapsible-filter').forEach(filterGroup => {
             const toggleBtn = filterGroup.querySelector('.filter-toggle-btn');
-            
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    e.stopPropagation();
-                    
                     const isOpen = !filterGroup.classList.contains('collapsed');
                     filterGroup.classList.toggle('collapsed', isOpen);
                     toggleBtn.setAttribute('aria-expanded', !isOpen);
@@ -160,13 +164,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- EVENT LISTENERS ---
 
-    // 1. Category Filter
+    // 1. Search Input Listener
+    const searchInput = document.getElementById("tool-search");
+    if (searchInput) {
+        searchInput.addEventListener("input", function(e) {
+            currentSearch = e.target.value;
+            hideDetail(); // Close detail panel when searching to avoid layout jumps
+            renderTools();
+        });
+    }
+
+    // 2. Category Filter
     const filterCategory = document.getElementById("filter-category");
     if (filterCategory) {
         filterCategory.addEventListener("click", function(e) {
             const btn = e.target.closest(".filter-chip");
             if (!btn) return;
-
             currentCategory = btn.getAttribute("data-value");
             filterCategory.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
@@ -175,13 +188,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. End Product Filter
+    // 3. End Product Filter
     const filterProduct = document.getElementById("filter-product");
     if (filterProduct) {
         filterProduct.addEventListener("click", function(e) {
             const btn = e.target.closest(".filter-chip");
             if (!btn) return;
-
             currentProduct = btn.getAttribute("data-value");
             filterProduct.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
@@ -190,20 +202,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 3. Tool Card Clicks
+    // 4. Tool Card Clicks
     document.getElementById("tools-container").addEventListener("click", function(e) {
         const card = e.target.closest(".tool-card");
         if (!card) return;
         showDetail(card.getAttribute("data-name"), card);
     });
 
-    // 4. Close Detail Panel
+    // 5. Close Detail Panel
     const closeBtn = document.getElementById("tool-detail-close");
     if (closeBtn) {
         closeBtn.addEventListener("click", hideDetail);
     }
 
-    // 5. Handle window resize
+    // 6. Handle window resize
     window.addEventListener("resize", function() {
         const panel = document.getElementById("tool-detail-panel");
         if (!panel.classList.contains("hidden")) {
