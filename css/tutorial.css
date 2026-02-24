@@ -282,6 +282,7 @@
   .mistake-x {
     font-weight: 900;
     color: var(--spirited);
+    white-space: nowrap; /* This keeps the dashes together on one line */
   }
   
   /* --- VERDICT --- */

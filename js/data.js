@@ -38,7 +38,7 @@ const toolsData = [
     "difficulty": "Easy",
     "product": "Website",
     "video": "https://www.youtube.com/watch?v=izpblc6ppwk",
-    "keywords": ["poop", "website builder",
+    "keywords": ["website builder",
       "AI website",
       "no code",
       "landing page",
